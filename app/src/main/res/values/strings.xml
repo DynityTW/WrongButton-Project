@@ -286,6 +286,14 @@
     <string name="legal_consent">使用本 App，即代表你同意服務條款。</string>
     <string name="settings_about">關於</string>
     <string name="settings_ad_privacy">廣告隱私權選項</string>
+    <string name="settings_version">版本 %1$s</string>
+    <string name="review_title">輸入解鎖碼</string>
+    <string name="review_body">給審查人員使用。</string>
+    <string name="review_field">解鎖碼</string>
+    <string name="review_submit">解鎖</string>
+    <string name="review_cancel">取消</string>
+    <string name="review_wrong">解鎖碼不正確。</string>
+    <string name="review_done">已解鎖全部內容。</string>
     <string name="pro_terms_note">購買即代表你同意服務條款。退款依 Google Play 的退款政策處理。</string>
     <!-- 閃退紀錄 -->
     <string name="crash_title">遊戲上次意外關閉了</string>

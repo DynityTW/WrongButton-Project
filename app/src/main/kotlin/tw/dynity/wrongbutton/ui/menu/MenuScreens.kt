@@ -334,6 +334,8 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onPro: () -> Uni
     val cue = rememberCuePlayer()
     var confirming by rememberSaveable { mutableStateOf(false) }
     var forgotten by rememberSaveable { mutableStateOf(false) }
+    var versionTaps by rememberSaveable { mutableStateOf(0) }
+    var askingCode by rememberSaveable { mutableStateOf(false) }
 
     Box(Modifier.fillMaxSize()) {
         ScreenScaffold(title = stringResource(R.string.settings_title), onBack = onBack) {
@@ -427,7 +429,36 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onPro: () -> Uni
                     onClick = { confirming = true },
                     modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("settings_forget"),
                 ) { Text(stringResource(R.string.settings_forget)) }
+
+                // 版本號碼。連點 7 下會出現審查用解鎖碼的輸入框（給 Google Play 審查人員，見 ReviewAccess）。
+                Text(
+                    stringResource(R.string.settings_version, tw.dynity.wrongbutton.BuildConfig.VERSION_NAME),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier
+                        .testTag("settings_version")
+                        .fillMaxWidth()
+                        .padding(top = 16.dp)
+                        .clickable(
+                            interactionSource = remember { MutableInteractionSource() },
+                            indication = null,
+                        ) {
+                            versionTaps++
+                            if (versionTaps >= tw.dynity.wrongbutton.core.monetization.ReviewAccess.TAPS_TO_OPEN) {
+                                versionTaps = 0
+                                askingCode = true
+                            }
+                        }
+                        .padding(vertical = 12.dp),
+                )
             }
+        }
+        if (askingCode) {
+            ReviewCodeDialog(
+                onSubmit = { code -> container.monetization.unlockForReview(code) },
+                onClose = { askingCode = false },
+            )
         }
         if (confirming) {
             WbDialog(face = Expression(Mood.Sad, Tell.Honest)) {
@@ -549,5 +580,50 @@ private fun LinkRow(label: String, tag: String, onClick: () -> Unit) {
     ) {
         Text(label, style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
         Text("›", style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+/** 審查用解鎖碼的輸入框。碼正確就開通這台手機的 Pro。 */
+@Composable
+private fun ReviewCodeDialog(onSubmit: (String) -> Boolean, onClose: () -> Unit) {
+    var code by remember { mutableStateOf("") }
+    var result by remember { mutableStateOf<Boolean?>(null) }
+    WbDialog(face = Expression(Mood.Normal, Tell.Honest)) {
+        Text(stringResource(R.string.review_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
+        Text(stringResource(R.string.review_body), style = MaterialTheme.typography.bodyMedium)
+        if (result == true) {
+            Text(stringResource(R.string.review_done), style = MaterialTheme.typography.titleMedium, modifier = Modifier.testTag("review_done"))
+            Button(onClick = onClose, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) { Text(stringResource(R.string.records_back)) }
+        } else {
+            ReviewCodeForm(code, result, onCode = { code = it; result = null }, onCancel = onClose, onSubmit = { result = onSubmit(code) })
+        }
+    }
+}
+
+@Composable
+private fun ReviewCodeForm(code: String, result: Boolean?, onCode: (String) -> Unit, onCancel: () -> Unit, onSubmit: () -> Unit) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        androidx.compose.material3.OutlinedTextField(
+            value = code,
+            onValueChange = onCode,
+            label = { Text(stringResource(R.string.review_field)) },
+            singleLine = true,
+            visualTransformation = androidx.compose.ui.text.input.PasswordVisualTransformation(),
+            keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
+                autoCorrectEnabled = false,
+                keyboardType = androidx.compose.ui.text.input.KeyboardType.Password,
+            ),
+            isError = result == false,
+            supportingText = if (result == false) { { Text(stringResource(R.string.review_wrong)) } } else null,
+            modifier = Modifier.fillMaxWidth().testTag("review_code"),
+        )
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+            TextButton(onClick = onCancel, modifier = Modifier.heightIn(min = 48.dp)) { Text(stringResource(R.string.review_cancel)) }
+            Button(
+                onClick = onSubmit,
+                enabled = code.isNotBlank(),
+                modifier = Modifier.heightIn(min = 48.dp).testTag("review_submit"),
+            ) { Text(stringResource(R.string.review_submit)) }
+        }
     }
 }

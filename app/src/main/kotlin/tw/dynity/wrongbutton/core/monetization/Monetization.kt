@@ -27,6 +27,8 @@ data class MonetizationState(
     val adHints: Map<Int, Int> = emptyMap(),
     /** 上一次全版廣告之後又過了幾關（重玩也算）。存起來，關掉 App 再開也不會歸零。 */
     val clearsSinceAd: Int = 0,
+    /** 用審查用解鎖碼開通的（只在這台手機）。Google Play 查不到購買紀錄時也不會被收回。 */
+    val reviewAccess: Boolean = false,
 )
 
 /** 廣告規則。 */
@@ -123,6 +125,7 @@ class MonetizationRepository(
             pro = a.pro || b.pro,
             adHints = (a.adHints.keys + b.adHints.keys).associateWith { maxOf(a.adHints[it] ?: 0, b.adHints[it] ?: 0) },
             clearsSinceAd = maxOf(a.clearsSinceAd, b.clearsSinceAd),
+            reviewAccess = a.reviewAccess || b.reviewAccess,
         )
     }
 
@@ -133,14 +136,23 @@ class MonetizationRepository(
 
     /** Pro 的快取。正式版只由 [PlayBillingStore] 依 Play 的購買紀錄設定。 */
     fun setPro(pro: Boolean) {
-        if (_state.value.pro != pro) update { it.copy(pro = pro) }
+        // 審查用解鎖碼開通的，不會因為 Google Play 查不到購買紀錄而被收回。
+        val effective = pro || _state.value.reviewAccess
+        if (_state.value.pro != effective) update { it.copy(pro = effective) }
+    }
+
+    /** 輸入審查用解鎖碼：正確就開通這台手機的 Pro，回傳 true。 */
+    fun unlockForReview(code: String): Boolean {
+        if (!ReviewAccess.matches(code)) return false
+        update { it.copy(pro = true, reviewAccess = true) }
+        return true
     }
 
     /** 測試與模擬版用：直接開通 Pro。 */
     fun purchasePro() = setPro(true)
 
     /** 模擬版用：取消 Pro，方便測試免費版的流程。正式版畫面上沒有這個按鈕。 */
-    fun revokeProForTesting() = setPro(false)
+    fun revokeProForTesting() = update { it.copy(pro = false, reviewAccess = false) }
 
     /** 過了一關。Pro 不計數。 */
     fun recordClear() {

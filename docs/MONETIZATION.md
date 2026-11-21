@@ -61,3 +61,16 @@ AdMob 帶進來的 Privacy Sandbox 權限（`ACCESS_ADSERVICES_*`）已在 `Andr
 - 隱私權政策、服務條款（在 Luarvex 官網：https://luarvex.com/products/wrongbutton/terms/ 、https://luarvex.com/products/wrongbutton/privacy/ ，App 直接開這兩個網址）：寫明會連網載入廣告與結帳、AdMob 會使用廣告 ID。Play Console 的隱私權政策網址也填這個。
 - Play Console 的「資料安全性」表單：申報廣告 ID、裝置資訊、App 互動（由 AdMob 收集）。
 - Play Console 的「廣告」聲明：選「含有廣告」。
+
+## 五、給 Google Play 審查員的解鎖碼
+
+審查員不會自己付款，要能不付錢看到第 61–300 關。
+
+- 入口：設定 → 連點最下面的「版本 x.y.z」7 下 → 輸入解鎖碼。
+- 解鎖碼的**明碼只寫在 Play Console →「應用程式存取權」**，不寫進這個公開 repo；
+  程式裡只有加鹽後的 SHA-256（`ReviewAccess.EXPECTED_HASH`）。
+- 只解鎖那一台手機（`MonetizationState.reviewAccess`），Google Play 查不到購買紀錄時也不會被收回。
+- 換碼：用下面的方式算出新碼的雜湊，填進 `EXPECTED_HASH`，發新版，並更新 Play Console。
+  ```
+  python3 -c "import hashlib,getpass;print(hashlib.sha256(('wrongbutton-review:'+getpass.getpass()).encode()).hexdigest())"
+  ```
