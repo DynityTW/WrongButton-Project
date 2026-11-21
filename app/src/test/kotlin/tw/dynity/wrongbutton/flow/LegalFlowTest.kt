@@ -11,62 +11,54 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import tw.dynity.wrongbutton.app.MainActivity
-import tw.dynity.wrongbutton.core.legal.LegalDocs
 import tw.dynity.wrongbutton.core.legal.LegalKind
 
-/** 服務條款與隱私權政策：內建在 App 裡，主畫面、設定、Pro 頁都打得開。 */
+/** 服務條款與隱私權政策在 Luarvex 官網：主畫面、設定、Pro 頁的連結都用瀏覽器打開正確的網址。 */
 @RunWith(AndroidJUnit4::class)
 class LegalFlowTest {
     @get:Rule
     val rule = createAndroidComposeRule<MainActivity>()
 
-    @Test
-    fun bundledDocumentsAreComplete() {
-        val context = ApplicationProvider.getApplicationContext<android.content.Context>()
-        val terms = LegalDocs.load(context, LegalKind.Terms)
-        val privacy = LegalDocs.load(context, LegalKind.Privacy)
-        assertEquals(16, terms.sections.size)
-        assertEquals(14, privacy.sections.size)
-        listOf(terms, privacy).forEach { doc ->
-            doc.sections.forEach { s -> assertTrue(s.id, s.title.isNotBlank() && s.blocks.isNotEmpty()) }
-            assertTrue(doc.url.startsWith("https://"))
+    private fun lastOpenedUrl(): String? {
+        val app = ApplicationProvider.getApplicationContext<android.app.Application>()
+        var url: String? = null
+        while (true) {
+            val intent = org.robolectric.Shadows.shadowOf(app).nextStartedActivity ?: break
+            if (intent.action == android.content.Intent.ACTION_VIEW) url = intent.dataString
         }
-        val all = terms.sections.flatMap { it.blocks }.joinToString { it.text }
-        assertTrue("條款寫明使用即同意", all.contains("就代表你已經閱讀、了解並同意本條款"))
-        assertTrue("條款寫明 Pro 價格", all.contains("NT\$120"))
+        return url
     }
 
     @Test
-    fun titleSettingsAndProOpenTheDocuments() = with(Player(rule)) {
+    fun urlsPointAtLuarvex() {
+        assertEquals("https://luarvex.com/products/wrongbutton/terms/", LegalKind.Terms.url)
+        assertEquals("https://luarvex.com/products/wrongbutton/privacy/", LegalKind.Privacy.url)
+    }
+
+    @Test
+    fun titleSettingsAndProOpenTheWebsites() = with(Player(rule)) {
         waitFor("menu_levels")
         assertTrue(exists("legal_consent"))
         rule.onNodeWithTag("menu_terms").performScrollTo()
         tap("menu_terms")
-        waitFor("legal_terms")
-        back()
-        waitFor("menu_levels")
+        rule.waitForIdle()
+        assertEquals(LegalKind.Terms.url, lastOpenedUrl())
         rule.onNodeWithTag("menu_privacy").performScrollTo()
         tap("menu_privacy")
-        waitFor("legal_privacy")
-        back()
+        rule.waitForIdle()
+        assertEquals(LegalKind.Privacy.url, lastOpenedUrl())
         press("menu_settings")
         tap("settings_terms")
-        waitFor("legal_terms")
-        back()
+        rule.waitForIdle()
+        assertEquals(LegalKind.Terms.url, lastOpenedUrl())
         tap("settings_privacy")
-        waitFor("legal_privacy")
-        back()
+        rule.waitForIdle()
+        assertEquals(LegalKind.Privacy.url, lastOpenedUrl())
         tap("settings_pro")
         waitFor("pro_screen")
         tap("pro_terms")
-        waitFor("legal_terms")
-        back()
-        waitFor("pro_screen")
-    }
-
-    private fun back() {
-        rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }
         rule.waitForIdle()
+        assertEquals(LegalKind.Terms.url, lastOpenedUrl())
     }
 }
 

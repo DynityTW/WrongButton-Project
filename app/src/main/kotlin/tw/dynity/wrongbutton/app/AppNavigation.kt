@@ -32,7 +32,6 @@ import tw.dynity.wrongbutton.ui.records.RecordsScreen
 @Serializable data object SettingsKey : NavKey
 @Serializable data class LevelKey(val id: Int) : NavKey
 @Serializable data object ProKey : NavKey
-@Serializable data class LegalKey(val kind: tw.dynity.wrongbutton.core.legal.LegalKind) : NavKey
 
 @Composable
 fun WrongButtonNavigation(container: AppContainer) {
@@ -65,8 +64,10 @@ fun WrongButtonNavigation(container: AppContainer) {
         backStack.add(LevelKey(id))
     }
 
+    // 服務條款與隱私權政策在 Luarvex 官網，用瀏覽器打開。
+    val context = androidx.compose.ui.platform.LocalContext.current
     fun openLegal(kind: tw.dynity.wrongbutton.core.legal.LegalKind) {
-        if (backStack.last() != LegalKey(kind)) backStack.add(LegalKey(kind))
+        tw.dynity.wrongbutton.core.legal.LegalLinks.open(context, kind)
     }
 
     fun popTo(key: NavKey) {
@@ -154,12 +155,6 @@ fun WrongButtonNavigation(container: AppContainer) {
                     store = container.store,
                     onBack = { if (backStack.size > 1) backStack.removeAt(backStack.lastIndex) },
                     onTerms = { openLegal(tw.dynity.wrongbutton.core.legal.LegalKind.Terms) },
-                )
-            }
-            entry<LegalKey> { key ->
-                tw.dynity.wrongbutton.ui.legal.LegalScreen(
-                    kind = key.kind,
-                    onBack = { if (backStack.size > 1) backStack.removeAt(backStack.lastIndex) },
                 )
             }
             entry<LevelKey> { key ->

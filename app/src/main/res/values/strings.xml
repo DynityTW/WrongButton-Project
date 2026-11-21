@@ -284,11 +284,6 @@
     <string name="legal_terms">服務條款</string>
     <string name="legal_privacy">隱私權政策</string>
     <string name="legal_consent">使用本 App，即代表你同意服務條款。</string>
-    <string name="legal_updated">最後更新：%1$s</string>
-    <string name="legal_section">第 %1$d 節</string>
-    <string name="legal_mission">任務　%1$s</string>
-    <string name="legal_same_as_web">這份文件內建在 App 裡，內容和網站上的版本相同。</string>
-    <string name="legal_open_web">用瀏覽器開啟網頁版</string>
     <string name="settings_about">關於</string>
     <string name="settings_ad_privacy">廣告隱私權選項</string>
     <string name="pro_terms_note">購買即代表你同意服務條款。退款依 Google Play 的退款政策處理。</string>

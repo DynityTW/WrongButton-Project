@@ -58,6 +58,6 @@ AdMob 帶進來的 Privacy Sandbox 權限（`ACCESS_ADSERVICES_*`）已在 `Andr
 
 ## 四、上架前要一起改的
 
-- 隱私權政策、服務條款（以及 App 內建版本，`tools/legal/sync_legal.py`）：寫明會連網載入廣告與結帳、AdMob 會使用廣告 ID。
+- 隱私權政策、服務條款（在 Luarvex 官網：https://luarvex.com/products/wrongbutton/terms/ 、https://luarvex.com/products/wrongbutton/privacy/ ，App 直接開這兩個網址）：寫明會連網載入廣告與結帳、AdMob 會使用廣告 ID。Play Console 的隱私權政策網址也填這個。
 - Play Console 的「資料安全性」表單：申報廣告 ID、裝置資訊、App 互動（由 AdMob 收集）。
 - Play Console 的「廣告」聲明：選「含有廣告」。
