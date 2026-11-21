@@ -41,7 +41,7 @@ object AdRules {
 /** Pro 的商品資訊。 */
 object ProProduct {
     /** Google Play Console 裡「應用程式內產品」的商品 ID。建立後永遠不能改。 */
-    const val PRODUCT_ID = "pro"
+    const val PRODUCT_ID = "wrongbutton-pro"
 
     /** 還沒從 Play 拿到價格時（離線、模擬版）顯示的價格。 */
     const val PRICE_TEXT = "NT$120"
@@ -72,6 +72,14 @@ interface Store {
 
     /** 恢復購買：向 Play 查詢這個 Google 帳號買過的東西。 */
     suspend fun restore(): RestoreResult
+}
+
+/** Google Play 結帳無法建立時（理論上不會發生）：不能買，但已經買過的快取照常有效，遊戲不會因此閃退。 */
+class UnavailableStore : Store {
+    override val price: StateFlow<String?> = MutableStateFlow(null)
+    override val isMock = false
+    override suspend fun purchasePro(activity: android.app.Activity): PurchaseResult = PurchaseResult.Failed
+    override suspend fun restore(): RestoreResult = RestoreResult.Failed
 }
 
 /** 模擬的付費：直接改本機狀態，不連網、不扣款。 */

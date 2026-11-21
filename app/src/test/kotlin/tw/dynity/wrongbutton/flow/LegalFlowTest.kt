@@ -69,3 +69,25 @@ class LegalFlowTest {
         rule.waitForIdle()
     }
 }
+
+/** 閃退紀錄：寫在手機上，下次開啟時詢問；按「不用了」就刪除。 */
+@RunWith(AndroidJUnit4::class)
+class CrashReportTest {
+    @get:Rule
+    val rule = createAndroidComposeRule<MainActivity>()
+
+    @Test
+    fun nonFatalErrorIsKeptLocallyAndOfferedOnTheNextScreen() = with(Player(rule)) {
+        waitFor("menu_levels")
+        tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(IllegalStateException("測試用的錯誤"))
+        val text = tw.dynity.wrongbutton.core.crash.CrashReport.pending()
+        assertTrue(text!!.contains("測試用的錯誤"))
+        assertTrue("不含遊戲紀錄", !text.contains("records"))
+        // 這次啟動時才寫入的紀錄，下次開啟才會問；這裡直接重建畫面模擬「下次開啟」。
+        rule.activityRule.scenario.recreate()
+        waitFor("crash_report")
+        tap("crash_dismiss")
+        rule.waitUntil(5_000) { !exists("crash_report") }
+        assertEquals(null, tw.dynity.wrongbutton.core.crash.CrashReport.pending())
+    }
+}

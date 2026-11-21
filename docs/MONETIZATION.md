@@ -20,7 +20,7 @@
 1. 打包 release AAB（見 `docs/RELEASE.md`），上傳到 Play Console 的「內部測試」。
    Play Console 要先看到含有結帳功能的版本，才會開放建立商品。
 2. Play Console → 營利 → 產品 → 應用程式內產品 → 建立產品：
-   - 產品 ID：**`pro`**（必須和 `ProProduct.PRODUCT_ID` 一樣，建立後不能改）
+   - 產品 ID：**`wrongbutton-pro`**（必須和 `ProProduct.PRODUCT_ID` 一樣，建立後不能改）
    - 一次性購買，價格 NT$120（其他國家可以讓 Play 自動換算）
    - 啟用
 3. Play Console → 設定 → 授權測試：加入測試者的 Gmail。授權測試人員購買不會真的扣款。

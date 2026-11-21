@@ -38,7 +38,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) handleExternal(intent)
         // 正式版：先取得廣告同意（需要時顯示 Google 的同意表單），之後才載入廣告。
-        container.adMob?.gatherConsent(this)
+        // 上一次閃退的話，這一次先不載入廣告，讓玩家可以把錯誤紀錄寄出來。
+        if (!(application as WrongButtonApp).crashedLastTime) container.adMob?.gatherConsent(this)
         setContent {
             val settings by container.settings.settings.collectAsStateWithLifecycle()
             val systemReduce = remember { SystemMotion.animationsDisabled(this) }

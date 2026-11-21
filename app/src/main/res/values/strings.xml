@@ -292,4 +292,12 @@
     <string name="settings_about">關於</string>
     <string name="settings_ad_privacy">廣告隱私權選項</string>
     <string name="pro_terms_note">購買即代表你同意服務條款。退款依 Google Play 的退款政策處理。</string>
+    <!-- 閃退紀錄 -->
+    <string name="crash_title">遊戲上次意外關閉了</string>
+    <string name="crash_body">對不起。我們把錯誤訊息記在妳的手機上了（只有手機型號、系統版本、遊戲版本和錯誤訊息，沒有妳的遊戲紀錄）。願意的話，寄給我們，我們會盡快修好。</string>
+    <string name="crash_send">寄給我們</string>
+    <string name="crash_copy">複製錯誤紀錄（再寄到 %1$s）</string>
+    <string name="crash_copied">已複製，請貼到寄給 %1$s 的信裡</string>
+    <string name="crash_dismiss">不用了</string>
+    <string name="crash_email_subject">Wrong Button 閃退回報</string>
 </resources>

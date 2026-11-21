@@ -19,6 +19,8 @@ import com.android.billingclient.api.queryProductDetails
 import com.android.billingclient.api.queryPurchasesAsync
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -81,7 +83,7 @@ class PlayBillingStore(
     private var waiting: CompletableDeferred<PurchaseResult>? = null
 
     init {
-        scope.launch {
+        scope.launch(Dispatchers.Main) {
             if (connect()) {
                 loadProduct()
                 restore()
@@ -89,7 +91,21 @@ class PlayBillingStore(
         }
     }
 
-    private suspend fun connect(): Boolean = connectLock.withLock {
+    /** BillingClient 的呼叫一律在主執行緒；任何例外都記錄下來、當作失敗，不讓遊戲閃退。 */
+    private suspend fun <T> safe(fallback: T, block: suspend () -> T): T = withContext(Dispatchers.Main) {
+        try {
+            block()
+        } catch (e: kotlinx.coroutines.CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
+            fallback
+        }
+    }
+
+    private suspend fun connect(): Boolean = safe(false) { connectInner() }
+
+    private suspend fun connectInner(): Boolean = connectLock.withLock {
         if (client.isReady) return@withLock true
         suspendCancellableCoroutine { cont ->
             client.startConnection(object : BillingClientStateListener {
@@ -105,7 +121,9 @@ class PlayBillingStore(
         }
     }
 
-    private suspend fun loadProduct(): ProductDetails? {
+    private suspend fun loadProduct(): ProductDetails? = safe(null) { loadProductInner() }
+
+    private suspend fun loadProductInner(): ProductDetails? {
         details?.let { return it }
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(
@@ -126,7 +144,9 @@ class PlayBillingStore(
         return found
     }
 
-    override suspend fun purchasePro(activity: Activity): PurchaseResult {
+    override suspend fun purchasePro(activity: Activity): PurchaseResult = safe(PurchaseResult.Failed) { purchaseInner(activity) }
+
+    private suspend fun purchaseInner(activity: Activity): PurchaseResult {
         if (!connect()) return PurchaseResult.Failed
         val product = loadProduct() ?: return PurchaseResult.Failed
         val offerToken = product.oneTimePurchaseOfferDetailsList?.firstOrNull()?.offerToken
@@ -164,20 +184,22 @@ class PlayBillingStore(
         val deferred = waiting
         waiting = null
         when (result.responseCode) {
-            BillingResponseCode.OK -> scope.launch {
+            BillingResponseCode.OK -> scope.launch(Dispatchers.Main) {
                 val list = purchases.orEmpty()
                 grant(list)
                 deferred?.complete(PurchaseRules.result(list))
             }
             BillingResponseCode.USER_CANCELED -> deferred?.complete(PurchaseResult.Cancelled)
-            BillingResponseCode.ITEM_ALREADY_OWNED -> scope.launch {
+            BillingResponseCode.ITEM_ALREADY_OWNED -> scope.launch(Dispatchers.Main) {
                 deferred?.complete(if (restore() == RestoreResult.Found) PurchaseResult.Purchased else PurchaseResult.Failed)
             }
             else -> deferred?.complete(PurchaseResult.Failed)
         }
     }
 
-    override suspend fun restore(): RestoreResult {
+    override suspend fun restore(): RestoreResult = safe(RestoreResult.Failed) { restoreInner() }
+
+    private suspend fun restoreInner(): RestoreResult {
         if (!connect()) return RestoreResult.Failed
         val result = client.queryPurchasesAsync(
             QueryPurchasesParams.newBuilder().setProductType(BillingClient.ProductType.INAPP).build(),
@@ -194,7 +216,7 @@ class PlayBillingStore(
     private suspend fun grant(purchases: List<Purchase>) {
         if (PurchaseRules.owned(purchases).isNotEmpty()) cache.setPro(true)
         PurchaseRules.needsAcknowledge(purchases).forEach { p ->
-            client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build())
+            safe(Unit) { client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build()) }
         }
     }
 }

@@ -61,32 +61,49 @@ class AdMobService(
      * App 啟動時呼叫：更新同意狀態，需要時顯示同意表單，然後才開始載入廣告。
      * 上次已經同意過的話，不用等表單就先開始。
      */
-    fun gatherConsent(activity: Activity) {
+    fun gatherConsent(activity: Activity) = guard {
         attach(activity)
         val consent = UserMessagingPlatform.getConsentInformation(activity)
         consent.requestConsentInfoUpdate(
             activity,
             ConsentRequestParameters.Builder().build(),
             {
-                UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) {
-                    updatePrivacyOptions(consent)
-                    if (consent.canRequestAds()) start()
+                guard {
+                    // 畫面已經關掉（例如切換稱呼時重建）就不顯示表單，下次開啟再問。
+                    if (activity.isFinishing || activity.isDestroyed) return@guard
+                    UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) {
+                        guard {
+                            updatePrivacyOptions(consent)
+                            if (consent.canRequestAds()) start()
+                        }
+                    }
                 }
             },
             {
                 // 沒網路之類：沿用上次的同意結果。
-                if (consent.canRequestAds()) start()
+                guard { if (consent.canRequestAds()) start() }
             },
         )
         if (consent.canRequestAds()) start()
     }
 
     /** 設定頁的「廣告隱私權選項」：讓玩家隨時修改同意的內容。 */
-    fun showPrivacyOptions(activity: Activity) {
+    fun showPrivacyOptions(activity: Activity) = guard {
         UserMessagingPlatform.showPrivacyOptionsForm(activity) {
             updatePrivacyOptions(UserMessagingPlatform.getConsentInformation(activity))
         }
     }
+
+    /** 廣告 SDK 丟出的任何例外都記錄下來，不讓遊戲閃退（最多就是沒有廣告，提示照給）。 */
+    private fun guard(block: () -> Unit) {
+        try {
+            block()
+        } catch (e: Exception) {
+            tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
+        }
+    }
+
+    private val main = android.os.Handler(android.os.Looper.getMainLooper())
 
     private fun updatePrivacyOptions(consent: ConsentInformation) {
         _privacyOptionsRequired.value =
@@ -100,16 +117,21 @@ class AdMobService(
                 .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_T)
                 .build(),
         )
-        MobileAds.initialize(app) {
-            preloadRewarded()
-            preloadInterstitial()
+        guard {
+            MobileAds.initialize(app) {
+                // 初始化完成的通知不一定在主執行緒；載入廣告一律回到主執行緒做。
+                main.post {
+                    preloadRewarded()
+                    preloadInterstitial()
+                }
+            }
         }
     }
 
     private fun preloadRewarded() {
         if (!started.get() || rewarded != null || loadingRewarded) return
         loadingRewarded = true
-        RewardedAd.load(app, rewardedUnitId, AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
+        guard { RewardedAd.load(app, rewardedUnitId, AdRequest.Builder().build(), object : RewardedAdLoadCallback() {
             override fun onAdLoaded(ad: RewardedAd) {
                 loadingRewarded = false
                 rewarded = ad
@@ -118,13 +140,13 @@ class AdMobService(
             override fun onAdFailedToLoad(error: LoadAdError) {
                 loadingRewarded = false
             }
-        })
+        }) }
     }
 
     private fun preloadInterstitial() {
         if (!started.get() || interstitial != null || loadingInterstitial) return
         loadingInterstitial = true
-        InterstitialAd.load(app, interstitialUnitId, AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+        guard { InterstitialAd.load(app, interstitialUnitId, AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
             override fun onAdLoaded(ad: InterstitialAd) {
                 loadingInterstitial = false
                 interstitial = ad
@@ -133,7 +155,7 @@ class AdMobService(
             override fun onAdFailedToLoad(error: LoadAdError) {
                 loadingInterstitial = false
             }
-        })
+        }) }
     }
 
     /** 等廣告載好，最多 [WAIT_MS]。 */
@@ -162,7 +184,12 @@ class AdMobService(
                     if (cont.isActive) cont.resume(AdResult.NotAvailable)
                 }
             }
-            ad.show(activity) { earned = true }
+            try {
+                ad.show(activity) { earned = true }
+            } catch (e: Exception) {
+                tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
+                if (cont.isActive) cont.resume(AdResult.NotAvailable)
+            }
         }
         preloadRewarded()
         result
@@ -183,7 +210,12 @@ class AdMobService(
                     if (cont.isActive) cont.resume(AdResult.NotAvailable)
                 }
             }
-            ad.show(activity)
+            try {
+                ad.show(activity)
+            } catch (e: Exception) {
+                tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
+                if (cont.isActive) cont.resume(AdResult.NotAvailable)
+            }
         }
         preloadInterstitial()
         result

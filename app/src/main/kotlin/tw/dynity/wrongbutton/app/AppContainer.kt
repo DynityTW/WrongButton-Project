@@ -26,7 +26,11 @@ import java.io.File
 /** 手寫的依賴容器：整個 App 只有一份。 */
 class AppContainer(context: Context) {
     private val appContext = context.applicationContext
-    val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    /** 背景工作（存檔、結帳查詢）出錯時記錄下來，但不讓遊戲閃退。 */
+    val scope = CoroutineScope(
+        SupervisorJob() + Dispatchers.IO +
+            kotlinx.coroutines.CoroutineExceptionHandler { _, e -> tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e) },
+    )
 
     val memory = MemoryRepository(
         JsonDataStores.get(File(appContext.filesDir, "datastore/player_memory.json"), PlayerMemory(), PlayerMemory.serializer(), scope, MemoryMigrations),
@@ -69,7 +73,11 @@ class AppContainer(context: Context) {
 
     val store: tw.dynity.wrongbutton.core.monetization.Store =
         if (realMonetization) {
-            tw.dynity.wrongbutton.core.monetization.PlayBillingStore(appContext, monetization, scope)
+            runCatching { tw.dynity.wrongbutton.core.monetization.PlayBillingStore(appContext, monetization, scope) }
+                .getOrElse { e ->
+                    tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
+                    tw.dynity.wrongbutton.core.monetization.UnavailableStore()
+                }
         } else {
             tw.dynity.wrongbutton.core.monetization.MockStore(monetization)
         }

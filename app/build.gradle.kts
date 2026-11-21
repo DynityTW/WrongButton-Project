@@ -39,14 +39,15 @@ android {
         applicationId = "com.wrongbutton.app"
         minSdk = 26
         targetSdk = 37
-        versionCode = 5
-        versionName = "0.5.0"
+        versionCode = 6
+        versionName = "0.6.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["admobAppId"] = ADMOB_TEST_APP_ID
         buildConfigField("String", "ADMOB_REWARDED_ID", "\"$ADMOB_TEST_REWARDED_ID\"")
         buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$ADMOB_TEST_INTERSTITIAL_ID\"")
         // false：模擬的付費與廣告（不連網、不扣款），自動測試和 debug 版用。true：Google Play 結帳與 AdMob。
-        buildConfigField("boolean", "REAL_MONETIZATION", "false")
+        // debug 版想測真的結帳與廣告時：./gradlew assembleDebug -Pwb.realMonetization=true
+        buildConfigField("boolean", "REAL_MONETIZATION", (findProperty("wb.realMonetization") ?: "false").toString())
     }
 
     signingConfigs {

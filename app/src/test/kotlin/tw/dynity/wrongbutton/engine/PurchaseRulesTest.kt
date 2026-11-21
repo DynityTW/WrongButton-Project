@@ -13,6 +13,8 @@ import tw.dynity.wrongbutton.core.monetization.PurchaseRules
 /** Google Play 購買紀錄的判斷：付款完成才開通、待付款不開通、沒確認的要確認、別的商品不算。 */
 @RunWith(AndroidJUnit4::class)
 class PurchaseRulesTest {
+    private val PRO = tw.dynity.wrongbutton.core.monetization.ProProduct.PRODUCT_ID
+
     /** Play 回傳的購買 JSON：purchaseState 0＝已付款，4＝待付款。 */
     private fun purchase(product: String, state: Int, acknowledged: Boolean, token: String = "t-$product-$state") =
         Purchase(
@@ -23,16 +25,16 @@ class PurchaseRulesTest {
 
     @Test
     fun paidProIsOwnedAndUnacknowledgedOnesGetAcknowledged() {
-        val paid = purchase("pro", 0, acknowledged = false)
+        val paid = purchase(PRO, 0, acknowledged = false)
         assertEquals(listOf(paid), PurchaseRules.owned(listOf(paid)))
         assertEquals(listOf(paid), PurchaseRules.needsAcknowledge(listOf(paid)))
         assertEquals(PurchaseResult.Purchased, PurchaseRules.result(listOf(paid)))
-        assertTrue(PurchaseRules.needsAcknowledge(listOf(purchase("pro", 0, acknowledged = true))).isEmpty())
+        assertTrue(PurchaseRules.needsAcknowledge(listOf(purchase(PRO, 0, acknowledged = true))).isEmpty())
     }
 
     @Test
     fun pendingPaymentDoesNotUnlockPro() {
-        val pending = purchase("pro", 4, acknowledged = false)
+        val pending = purchase(PRO, 4, acknowledged = false)
         assertTrue(PurchaseRules.owned(listOf(pending)).isEmpty())
         assertTrue(PurchaseRules.pending(listOf(pending)))
         assertTrue("待付款不能確認", PurchaseRules.needsAcknowledge(listOf(pending)).isEmpty())

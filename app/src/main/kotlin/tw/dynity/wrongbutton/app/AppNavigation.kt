@@ -196,5 +196,7 @@ fun WrongButtonNavigation(container: AppContainer) {
     )
     // 模擬廣告蓋在最上層（只在玩家自己按「看廣告顯示提示」之後出現）。
     ad?.let { current -> tw.dynity.wrongbutton.ui.pro.MockAdOverlay(current, container.mockAds::finish) }
+    // 上一次閃退的話，問玩家要不要把錯誤紀錄寄給我們。
+    tw.dynity.wrongbutton.core.crash.CrashReportPrompt()
     }
 }
