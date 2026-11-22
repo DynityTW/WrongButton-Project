@@ -90,7 +90,8 @@ android {
             buildConfigField("String", "ADMOB_REWARDED_ID", "\"$ADMOB_RELEASE_REWARDED_ID\"")
             buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"$ADMOB_RELEASE_INTERSTITIAL_ID\"")
             buildConfigField("boolean", "REAL_MONETIZATION", "true")
-            isMinifyEnabled = true
+            // 找閃退原因用：-Pwb.noMinify=true 打包「不經 R8」的正式版，和一般正式版比較。
+            isMinifyEnabled = findProperty("wb.noMinify") != "true"
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
