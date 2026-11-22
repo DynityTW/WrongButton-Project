@@ -36,6 +36,19 @@ class LegalFlowTest {
     }
 
     @Test
+    fun contactRowOpensAnEmailToSupportWithTheVersion() = with(Player(rule)) {
+        waitFor("menu_levels")
+        tap("menu_settings")
+        tap("settings_contact")
+        rule.waitForIdle()
+        val app = ApplicationProvider.getApplicationContext<android.app.Application>()
+        val intent = org.robolectric.Shadows.shadowOf(app).nextStartedActivity
+        assertEquals(android.content.Intent.ACTION_SENDTO, intent.action)
+        assertEquals(listOf("support@luarvex.com"), intent.getStringArrayExtra(android.content.Intent.EXTRA_EMAIL)!!.toList())
+        assertTrue(intent.getStringExtra(android.content.Intent.EXTRA_TEXT)!!.contains(tw.dynity.wrongbutton.BuildConfig.VERSION_NAME))
+    }
+
+    @Test
     fun titleSettingsAndProOpenTheWebsites() = with(Player(rule)) {
         waitFor("menu_levels")
         assertTrue(exists("legal_consent"))

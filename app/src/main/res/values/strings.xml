@@ -287,6 +287,15 @@
     <string name="settings_about">關於</string>
     <string name="settings_ad_privacy">廣告隱私權選項</string>
     <string name="settings_version">版本 %1$s</string>
+    <string name="settings_contact">聯絡我們、回報問題</string>
+    <string name="contact_subject">Wrong Button 問題回報</string>
+    <string name="contact_body">請描述妳遇到的問題（例如第幾關、做了什麼、發生了什麼）：
+
+
+——
+遊戲版本：%1$s
+手機：%2$s
+Android：%3$s</string>
     <string name="review_title">輸入解鎖碼</string>
     <string name="review_body">給審查人員使用。</string>
     <string name="review_field">解鎖碼</string>

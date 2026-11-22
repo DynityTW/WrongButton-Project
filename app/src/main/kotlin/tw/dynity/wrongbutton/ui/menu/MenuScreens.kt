@@ -407,6 +407,8 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onPro: () -> Uni
                 )
                 LinkRow(stringResource(R.string.legal_terms), "settings_terms") { onLegal(LegalKind.Terms) }
                 LinkRow(stringResource(R.string.legal_privacy), "settings_privacy") { onLegal(LegalKind.Privacy) }
+                val contactContext = androidx.compose.ui.platform.LocalContext.current
+                LinkRow(stringResource(R.string.settings_contact), "settings_contact") { openContactEmail(contactContext) }
                 // 只有法規要求的地區（例如歐洲）才會出現：讓玩家隨時修改廣告的同意設定。
                 val adMob = container.adMob
                 val privacyOptions by (adMob?.privacyOptionsRequired ?: kotlinx.coroutines.flow.MutableStateFlow(false)).collectAsStateWithLifecycle()
@@ -625,5 +627,23 @@ private fun ReviewCodeForm(code: String, result: Boolean?, onCode: (String) -> U
                 modifier = Modifier.heightIn(min = 48.dp).testTag("review_submit"),
             ) { Text(stringResource(R.string.review_submit)) }
         }
+    }
+}
+
+/** 打開 email App 寫信給客服，先帶入版本與手機型號，方便我們查問題。沒有 email App 時什麼都不做。 */
+private fun openContactEmail(context: android.content.Context) {
+    runCatching {
+        val body = context.getString(
+            R.string.contact_body,
+            tw.dynity.wrongbutton.BuildConfig.VERSION_NAME,
+            "${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}",
+            android.os.Build.VERSION.RELEASE,
+        )
+        val intent = android.content.Intent(android.content.Intent.ACTION_SENDTO, android.net.Uri.parse("mailto:")).apply {
+            putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(tw.dynity.wrongbutton.core.crash.Contact.SUPPORT_EMAIL))
+            putExtra(android.content.Intent.EXTRA_SUBJECT, context.getString(R.string.contact_subject))
+            putExtra(android.content.Intent.EXTRA_TEXT, body)
+        }
+        context.startActivity(intent)
     }
 }

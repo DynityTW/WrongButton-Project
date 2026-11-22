@@ -30,6 +30,18 @@ val ADMOB_RELEASE_APP_ID = ADMOB_TEST_APP_ID
 val ADMOB_RELEASE_REWARDED_ID = ADMOB_TEST_REWARDED_ID
 val ADMOB_RELEASE_INTERSTITIAL_ID = ADMOB_TEST_INTERSTITIAL_ID
 
+// 正式版還在用測試廣告 ID 時，打包會印出明顯的警告（內部測試可以，正式上架前一定要換）。
+gradle.taskGraph.whenReady {
+    val releasing = allTasks.any { it.name == "bundleRelease" || it.name == "assembleRelease" }
+    val testIds = listOf(ADMOB_RELEASE_APP_ID, ADMOB_RELEASE_REWARDED_ID, ADMOB_RELEASE_INTERSTITIAL_ID).any { "3940256099942544" in it }
+    if (releasing && testIds) {
+        logger.warn(
+            "\n⚠️  正式版還在用 AdMob 的「測試」廣告 ID：不會有廣告收入。\n" +
+                "    拿到正式 ID 後，換掉 app/build.gradle.kts 最上面的 ADMOB_RELEASE_*。\n",
+        )
+    }
+}
+
 android {
     namespace = "tw.dynity.wrongbutton"
     compileSdk = 37
@@ -39,8 +51,8 @@ android {
         applicationId = "com.wrongbutton.app"
         minSdk = 26
         targetSdk = 37
-        versionCode = 7
-        versionName = "0.6.1"
+        versionCode = 8
+        versionName = "1.0.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["admobAppId"] = ADMOB_TEST_APP_ID
         buildConfigField("String", "ADMOB_REWARDED_ID", "\"$ADMOB_TEST_REWARDED_ID\"")
