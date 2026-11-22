@@ -49,6 +49,22 @@ class LegalFlowTest {
     }
 
     @Test
+    fun withoutAnEmailAppTheAddressIsShownInstead() = with(Player(rule)) {
+        waitFor("menu_levels")
+        // 模擬「手機上沒有能寄信的 App」：沒有對應的 App 時 startActivity 會丟例外。
+        val app = ApplicationProvider.getApplicationContext<android.app.Application>()
+        org.robolectric.Shadows.shadowOf(app).checkActivities(true)
+        tap("menu_settings")
+        tap("settings_contact")
+        waitFor("contact_fallback")
+        assertTrue(exists("contact_address"))
+        tap("contact_copy_address")
+        rule.waitForIdle()
+        val clip = app.getSystemService(android.content.ClipboardManager::class.java).primaryClip!!.getItemAt(0).text.toString()
+        assertEquals("support@luarvex.com", clip)
+    }
+
+    @Test
     fun titleSettingsAndProOpenTheWebsites() = with(Player(rule)) {
         waitFor("menu_levels")
         assertTrue(exists("legal_consent"))

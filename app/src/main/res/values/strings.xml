@@ -289,6 +289,11 @@
     <string name="settings_version">版本 %1$s</string>
     <string name="settings_contact">聯絡我們、回報問題</string>
     <string name="contact_subject">Wrong Button 問題回報</string>
+    <string name="contact_fallback_title">寫信給我們</string>
+    <string name="contact_fallback_body">這支手機上找不到可以寄信的 App。請用妳習慣的方式寄信到下面的信箱，附上手機型號和遊戲版本會更好。</string>
+    <string name="contact_copy_address">複製信箱</string>
+    <string name="contact_copy_info">複製手機與版本資訊</string>
+    <string name="contact_copied">已複製</string>
     <string name="contact_body">請描述妳遇到的問題（例如第幾關、做了什麼、發生了什麼）：
 
 

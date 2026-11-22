@@ -335,6 +335,7 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onPro: () -> Uni
     var confirming by rememberSaveable { mutableStateOf(false) }
     var forgotten by rememberSaveable { mutableStateOf(false) }
     var versionTaps by rememberSaveable { mutableStateOf(0) }
+    var contactFallback by rememberSaveable { mutableStateOf(false) }
     var askingCode by rememberSaveable { mutableStateOf(false) }
 
     Box(Modifier.fillMaxSize()) {
@@ -408,7 +409,10 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onPro: () -> Uni
                 LinkRow(stringResource(R.string.legal_terms), "settings_terms") { onLegal(LegalKind.Terms) }
                 LinkRow(stringResource(R.string.legal_privacy), "settings_privacy") { onLegal(LegalKind.Privacy) }
                 val contactContext = androidx.compose.ui.platform.LocalContext.current
-                LinkRow(stringResource(R.string.settings_contact), "settings_contact") { openContactEmail(contactContext) }
+                LinkRow(stringResource(R.string.settings_contact), "settings_contact") {
+                    // 手機上沒有能寄信的 App 時，改成顯示信箱讓玩家自己寄。
+                    if (!openContactEmail(contactContext)) contactFallback = true
+                }
                 // 只有法規要求的地區（例如歐洲）才會出現：讓玩家隨時修改廣告的同意設定。
                 val adMob = container.adMob
                 val privacyOptions by (adMob?.privacyOptionsRequired ?: kotlinx.coroutines.flow.MutableStateFlow(false)).collectAsStateWithLifecycle()
@@ -455,6 +459,9 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onPro: () -> Uni
                         .padding(vertical = 12.dp),
                 )
             }
+        }
+        if (contactFallback) {
+            ContactFallbackDialog(onClose = { contactFallback = false })
         }
         if (askingCode) {
             ReviewCodeDialog(
@@ -631,19 +638,36 @@ private fun ReviewCodeForm(code: String, result: Boolean?, onCode: (String) -> U
 }
 
 /** 打開 email App 寫信給客服，先帶入版本與手機型號，方便我們查問題。沒有 email App 時什麼都不做。 */
-private fun openContactEmail(context: android.content.Context) {
-    runCatching {
-        val body = context.getString(
-            R.string.contact_body,
-            tw.dynity.wrongbutton.BuildConfig.VERSION_NAME,
-            "${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}",
-            android.os.Build.VERSION.RELEASE,
-        )
-        val intent = android.content.Intent(android.content.Intent.ACTION_SENDTO, android.net.Uri.parse("mailto:")).apply {
-            putExtra(android.content.Intent.EXTRA_EMAIL, arrayOf(tw.dynity.wrongbutton.core.crash.Contact.SUPPORT_EMAIL))
-            putExtra(android.content.Intent.EXTRA_SUBJECT, context.getString(R.string.contact_subject))
-            putExtra(android.content.Intent.EXTRA_TEXT, body)
+private fun contactBody(context: android.content.Context): String = context.getString(
+    R.string.contact_body,
+    tw.dynity.wrongbutton.BuildConfig.VERSION_NAME,
+    "${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}",
+    android.os.Build.VERSION.RELEASE,
+)
+
+/** 打開 email App 寫信給客服，先帶入版本與手機型號。沒有 App 能寄信時回傳 false。 */
+private fun openContactEmail(context: android.content.Context): Boolean =
+    tw.dynity.wrongbutton.core.crash.Contact.sendEmail(context, context.getString(R.string.contact_subject), contactBody(context))
+
+/** 沒有能寄信的 App：顯示信箱，讓玩家複製後用自己習慣的方式寄。 */
+@Composable
+private fun ContactFallbackDialog(onClose: () -> Unit) {
+    val context = androidx.compose.ui.platform.LocalContext.current
+    var copied by remember { mutableStateOf(0) }
+    WbDialog(face = Expression(Mood.Normal, Tell.Honest)) {
+        Column(Modifier.testTag("contact_fallback"), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            Text(stringResource(R.string.contact_fallback_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
+            Text(stringResource(R.string.contact_fallback_body), style = MaterialTheme.typography.bodyMedium)
+            Text(tw.dynity.wrongbutton.core.crash.Contact.SUPPORT_EMAIL, style = MaterialTheme.typography.titleMedium, modifier = Modifier.testTag("contact_address"))
+            Button(
+                onClick = { if (tw.dynity.wrongbutton.core.crash.Contact.copy(context, tw.dynity.wrongbutton.core.crash.Contact.SUPPORT_EMAIL)) copied = 1 },
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("contact_copy_address"),
+            ) { Text(stringResource(if (copied == 1) R.string.contact_copied else R.string.contact_copy_address)) }
+            OutlinedButton(
+                onClick = { if (tw.dynity.wrongbutton.core.crash.Contact.copy(context, contactBody(context))) copied = 2 },
+                modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("contact_copy_info"),
+            ) { Text(stringResource(if (copied == 2) R.string.contact_copied else R.string.contact_copy_info)) }
+            TextButton(onClick = onClose, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) { Text(stringResource(R.string.records_back)) }
         }
-        context.startActivity(intent)
     }
 }

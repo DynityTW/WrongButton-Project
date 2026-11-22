@@ -35,6 +35,35 @@ import tw.dynity.wrongbutton.core.ui.WbDialog
 /** 客服信箱（網站、條款、App 都用這一個）。 */
 object Contact {
     const val SUPPORT_EMAIL = "support@luarvex.com"
+
+    /**
+     * 打開 email App 寫信給客服。依序嘗試：
+     * 1. mailto: 網址（收件人、主旨、內文都放在網址裡，大部分 email App 都看得懂）；
+     * 2. 一般的分享（讓玩家選要用哪個 App 寄）。
+     * 都沒有 App 能處理時回傳 false，畫面要改成顯示信箱讓玩家自己寄。
+     */
+    fun sendEmail(context: Context, subject: String, body: String): Boolean {
+        val uri = Uri.parse("mailto:$SUPPORT_EMAIL?subject=${Uri.encode(subject)}&body=${Uri.encode(body)}")
+        val mailto = Intent(Intent.ACTION_SENDTO, uri).apply {
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(SUPPORT_EMAIL))
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_TEXT, body)
+        }
+        if (runCatching { context.startActivity(mailto) }.isSuccess) return true
+        val share = Intent(Intent.ACTION_SEND).apply {
+            type = "message/rfc822"
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(SUPPORT_EMAIL))
+            putExtra(Intent.EXTRA_SUBJECT, subject)
+            putExtra(Intent.EXTRA_TEXT, body)
+        }
+        return runCatching { context.startActivity(Intent.createChooser(share, subject)) }.isSuccess
+    }
+
+    fun copy(context: Context, text: String): Boolean = runCatching {
+        val clipboard = context.getSystemService(ClipboardManager::class.java)
+        clipboard.setPrimaryClip(ClipData.newPlainText("Wrong Button", text))
+        true
+    }.getOrDefault(false)
 }
 
 /**
@@ -72,18 +101,7 @@ fun CrashReportPrompt() {
     }
 }
 
-private fun sendEmail(context: Context, text: String): Boolean = runCatching {
-    val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:")).apply {
-        putExtra(Intent.EXTRA_EMAIL, arrayOf(Contact.SUPPORT_EMAIL))
-        putExtra(Intent.EXTRA_SUBJECT, context.getString(R.string.crash_email_subject))
-        putExtra(Intent.EXTRA_TEXT, text)
-    }
-    context.startActivity(intent)
-    true
-}.getOrDefault(false)
+private fun sendEmail(context: Context, text: String): Boolean =
+    Contact.sendEmail(context, context.getString(R.string.crash_email_subject), text)
 
-private fun copyToClipboard(context: Context, text: String): Boolean = runCatching {
-    val clipboard = context.getSystemService(ClipboardManager::class.java)
-    clipboard.setPrimaryClip(ClipData.newPlainText("Wrong Button", text))
-    true
-}.getOrDefault(false)
+private fun copyToClipboard(context: Context, text: String): Boolean = Contact.copy(context, text)
