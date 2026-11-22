@@ -1,10 +1,10 @@
-# 上架檢查清單（0.8.2）
+# 上架檢查清單（0.8.3）
 
 ## 已經完成（在程式裡）
 
-- [x] 套件名稱 `com.wrongbutton.app`，版本 0.8.2（versionCode 802）
+- [x] 套件名稱 `com.wrongbutton.app`，版本 0.8.3（versionCode 803）
 - [x] 強制更新：Play 上有主版本或次版本較新的版本時，蓋住遊戲並打開 Google Play 的更新畫面
-- [x] Google Play 結帳：商品 ID `wrongbutton-pro`，自動恢復購買、確認購買、退款收回、待付款處理
+- [x] Google Play 結帳：商品 ID `wrongbutton_pro`，自動恢復購買、確認購買、退款收回、待付款處理
 - [x] AdMob：第 2、3 階提示的獎勵廣告、每 5 關一次的全版廣告、Google 同意表單、廣告隱私權選項
 - [x] 前 60 關免費，Pro 解鎖第 61–300 關並移除所有廣告
 - [x] 給審查員的解鎖碼（設定 → 連點版本號碼 7 下；碼只寫在 Play Console）
@@ -19,7 +19,7 @@
 1. **AdMob 正式 ID**：把 `app/build.gradle.kts` 最上面的三個 `ADMOB_RELEASE_*` 換成正式 ID。
    還沒換時，打包會印出「正式版還在用 AdMob 的測試廣告 ID」的警告（內部測試可以先用測試 ID）。
 2. **打包**：用你自己的上傳金鑰（`docs/RELEASE.md`），`./gradlew bundleRelease`。
-3. **上傳內部測試**，然後到「營利 → 一次性產品」建立 `wrongbutton-pro`（NT$120，啟用），
+3. **上傳內部測試**，然後到「營利 → 一次性產品」建立 `wrongbutton_pro`（NT$120，啟用），
    並在「授權測試」加入測試者（`docs/MONETIZATION.md`）。
 4. **從 Play 安裝測試版，實機走一遍**：
    - 開啟、玩前幾關、看提示（第 2 階會跳廣告）、連過 5 關（會跳全版廣告）

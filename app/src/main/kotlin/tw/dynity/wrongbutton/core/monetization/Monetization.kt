@@ -43,7 +43,7 @@ object AdRules {
 /** Pro 的商品資訊。 */
 object ProProduct {
     /** Google Play Console 裡「應用程式內產品」的商品 ID。建立後永遠不能改。 */
-    const val PRODUCT_ID = "wrongbutton-pro"
+    const val PRODUCT_ID = "wrongbutton_pro"
 
     /** 還沒從 Play 拿到價格時（離線、模擬版）顯示的價格。 */
     const val PRICE_TEXT = "NT$120"
