@@ -61,4 +61,30 @@ class StoreScreenshotTool {
             tap("menu_pro"); waitFor("pro_screen"); shot("pro")
         }
     }
+
+    /** WB_STORE=1 時也把 App 的桌面圖示（自適應圖示：一般、圓形遮罩、主題單色）畫出來檢查。 */
+    @Test
+    fun launcherIcon() {
+        assumeTrue(System.getenv("WB_STORE") == "1")
+        val out = File(System.getProperty("user.dir"), "build/store").apply { mkdirs() }
+        val context = androidx.test.core.app.ApplicationProvider.getApplicationContext<android.content.Context>()
+        val icon = context.getDrawable(tw.dynity.wrongbutton.R.mipmap.ic_launcher) as android.graphics.drawable.AdaptiveIconDrawable
+        fun render(name: String, draw: (android.graphics.Canvas) -> Unit) {
+            val bmp = Bitmap.createBitmap(432, 432, Bitmap.Config.ARGB_8888)
+            draw(android.graphics.Canvas(bmp))
+            File(out, "$name.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }
+        }
+        render("launcher_full") { c ->
+            // 108dp 全畫布（含裁切區外）
+            listOf(icon.background, icon.foreground).forEach { d -> d.setBounds(-72, -72, 504, 504); d.draw(c) }
+        }
+        render("launcher_masked") { c ->
+            icon.setBounds(0, 0, 432, 432)
+            icon.draw(c)
+        }
+        render("launcher_monochrome") { c ->
+            c.drawColor(android.graphics.Color.parseColor("#3A3F4A"))
+            icon.monochrome?.let { d -> d.setBounds(-72, -72, 504, 504); d.setTint(android.graphics.Color.parseColor("#D7E3FF")); d.draw(c) }
+        }
+    }
 }

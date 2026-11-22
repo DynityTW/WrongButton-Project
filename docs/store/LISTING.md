@@ -49,7 +49,7 @@ The Button 說謊的時候，眼睛會看向旁邊，一邊的嘴角會翹起來
 聯絡我們：support@luarvex.com
 ```
 
-## 版本資訊（0.8.0，上限 500 字）
+## 版本資訊（0.8.1，上限 500 字）
 
 ```
 Wrong Button 正式推出！
@@ -72,7 +72,9 @@ Wrong Button 正式推出！
 
 | 檔案 | 用途 | 規格 |
 |---|---|---|
-| `icon_512.png` | 應用程式圖示 | 512×512 PNG |
+| `icon_512.png` | 應用程式圖示（和 App 桌面圖示同一張） | 512×512 PNG |
+| `icon_512_dark.png` | 深色背景的備用圖示 | 512×512 PNG |
+| `logo_horizontal.png`、`logo_square.png` | 橫式／方形 Logo（透明背景，給官網、社群用） | 1200×400、1024×1024 PNG |
 | `feature_graphic_1024x500.png` | 主圖片 | 1024×500 PNG |
 | `screenshot_01` ～ `screenshot_07` | 手機螢幕截圖（依序上傳） | 1080×1920 PNG（9:16） |
 

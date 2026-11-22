@@ -1,4 +1,4 @@
-// 產生 Google Play 商店圖片：7 張附標題的手機截圖（1080×1920）、512 圖示、1024×500 主圖片。
+// 產生 Google Play 商店圖片：7 張附標題的手機截圖（1080×1920）、1024×500 主圖片（圖示與 Logo 見 build_logo.js）。
 //
 // 1. 先截原始畫面（存到 app/build/store/）：
 //      WB_STORE=1 WB_STORE_LEVELS=2,166,199,228 ./gradlew testDebugUnitTest --rerun --tests '*StoreScreenshotTool*'
@@ -46,15 +46,7 @@ const shots = [
       </div></body></html>`);
     await p.screenshot({ path: `docs/store/graphics/screenshot_${String(shots.findIndex(s => s[0] === name) + 1).padStart(2, '0')}_${name}.png` });
   }
-  // 2) 圖示 512×512（和 App 圖示相同的圖：108 的畫布滿版）
-  await p.setViewportSize({ width: 512, height: 512 });
-  await p.setContent(`<html lang="zh-Hant-TW"><body style="margin:0;background:${BG}"><svg width="512" height="512" viewBox="0 0 108 108">
-    <rect width="108" height="108" fill="${BG}"/>
-    <path fill="${BODY}" d="M42,30 H66 A12,12 0 0 1 78,42 V66 A12,12 0 0 1 66,78 H42 A12,12 0 0 1 30,66 V42 A12,12 0 0 1 42,30 Z"/>
-    <path fill="#FFFFFF" d="M41,48 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z M57,48 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 Z"/>
-    <path fill="${INK}" d="M43.5,48 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 Z M59.5,48 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 Z"/>
-    <path stroke="${INK}" stroke-width="3" stroke-linecap="round" fill="none" d="M46,62 Q54,68 62,62"/></svg></body></html>`);
-  await p.screenshot({ path: 'docs/store/graphics/icon_512.png' });
+  // 2) 圖示與 Logo 改由 tools/store/build_logo.js 產生。
   // 3) 主圖片 1024×500
   await p.setViewportSize({ width: 1024, height: 500 });
   await p.setContent(`<html lang="zh-Hant-TW"><body style="margin:0;width:1024px;height:500px;background:linear-gradient(120deg,${CONT},${BG} 70%);${FONT}overflow:hidden;position:relative">

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主題圖示（Android 13 起依桌布上色）：單色的方塊，眼睛和嘴是鏤空的。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#FFFFFF" android:fillType="evenOdd"
+        android:pathData="M43,28 H65 A15,15 0 0 1 80,43 V67 A15,15 0 0 1 65,82 H43 A15,15 0 0 1 28,67 V43 A15,15 0 0 1 43,28 Z
+            M37,48 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0 Z M57,48 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0 Z
+            M45.2,60.2 Q54,68.8 62.8,60.2 L60.2,61.8 Q54,64.8 47.8,61.8 Z" />
+</vector>

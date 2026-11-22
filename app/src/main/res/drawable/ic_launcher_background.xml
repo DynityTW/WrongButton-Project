@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 圖示背景：淡珊瑚色的放射漸層（中間偏上較亮）。和商店圖示一致。 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:pathData="M0,0 H108 V108 H0 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="radial"
+                android:centerX="54" android:centerY="41"
+                android:gradientRadius="81"
+                android:startColor="#FFF3EF"
+                android:endColor="#FFC9BF" />
+        </aapt:attr>
+    </path>
+</vector>
