@@ -113,6 +113,17 @@ fun ProScreen(
                     }
                 }
 
+                // 購買或恢復失敗時，顯示 Google Play 回傳的原因（小字），方便判斷是商品設定、帳號還是安裝來源的問題。
+                val storeError by store.lastError.collectAsStateWithLifecycle()
+                if (message == R.string.pro_line_store_failed && storeError != null) {
+                    Text(
+                        storeError.orEmpty(),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.fillMaxWidth().testTag("pro_error"),
+                    )
+                }
+
                 if (store.isMock) {
                     Surface(shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.tertiaryContainer, modifier = Modifier.fillMaxWidth()) {
                         Text(

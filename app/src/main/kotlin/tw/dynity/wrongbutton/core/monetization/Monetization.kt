@@ -70,6 +70,9 @@ interface Store {
     /** 模擬版：畫面上要標示「模擬購買」，並提供測試用的取消按鈕。 */
     val isMock: Boolean
 
+    /** 最近一次失敗的原因（Google Play 的回應代碼與說明），顯示在 Pro 頁方便找問題。沒有失敗時是 null。 */
+    val lastError: StateFlow<String?> get() = MutableStateFlow(null)
+
     suspend fun purchasePro(activity: android.app.Activity): PurchaseResult
 
     /** 恢復購買：向 Play 查詢這個 Google 帳號買過的東西。 */
@@ -80,6 +83,7 @@ interface Store {
 class UnavailableStore : Store {
     override val price: StateFlow<String?> = MutableStateFlow(null)
     override val isMock = false
+    override val lastError: StateFlow<String?> = MutableStateFlow("Google Play 結帳元件無法建立")
     override suspend fun purchasePro(activity: android.app.Activity): PurchaseResult = PurchaseResult.Failed
     override suspend fun restore(): RestoreResult = RestoreResult.Failed
 }

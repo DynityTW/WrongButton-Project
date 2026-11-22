@@ -72,6 +72,14 @@ class PlayBillingStore(
     private val _price = MutableStateFlow<String?>(null)
     override val price: StateFlow<String?> = _price.asStateFlow()
 
+    private val _lastError = MutableStateFlow<String?>(null)
+    override val lastError: StateFlow<String?> = _lastError.asStateFlow()
+
+    private fun fail(step: String, result: BillingResult?) {
+        _lastError.value = if (result == null) step else "$step：${codeName(result.responseCode)}（${result.responseCode}）" +
+            result.debugMessage.takeIf { it.isNotBlank() }?.let { "　$it" }.orEmpty()
+    }
+
     private val client: BillingClient = BillingClient.newBuilder(context.applicationContext)
         .setListener(this)
         .enablePendingPurchases(PendingPurchasesParams.newBuilder().enableOneTimeProducts().build())
@@ -110,11 +118,13 @@ class PlayBillingStore(
         suspendCancellableCoroutine { cont ->
             client.startConnection(object : BillingClientStateListener {
                 override fun onBillingSetupFinished(result: BillingResult) {
+                    if (result.responseCode != BillingResponseCode.OK) fail("連線 Google Play 失敗", result)
                     if (cont.isActive) cont.resume(result.responseCode == BillingResponseCode.OK)
                 }
 
                 override fun onBillingServiceDisconnected() {
                     // 已開啟自動重新連線；這裡只要確保等待中的呼叫不會永遠卡住。
+                    fail("和 Google Play 的連線中斷", null)
                     if (cont.isActive) cont.resume(false)
                 }
             })
@@ -136,8 +146,20 @@ class PlayBillingStore(
             )
             .build()
         val result = client.queryProductDetails(params)
-        if (result.billingResult.responseCode != BillingResponseCode.OK) return null
-        val found = result.productDetailsList?.firstOrNull { it.productId == ProProduct.PRODUCT_ID } ?: return null
+        if (result.billingResult.responseCode != BillingResponseCode.OK) {
+            fail("查詢商品失敗", result.billingResult)
+            return null
+        }
+        val found = result.productDetailsList?.firstOrNull { it.productId == ProProduct.PRODUCT_ID }
+        if (found == null) {
+            fail(
+                "找不到商品 ${ProProduct.PRODUCT_ID}：商品可能還沒啟用、剛建立還沒生效、這個國家沒有價格，" +
+                    "或這個 Google 帳號不是測試人員／App 不是從 Play 安裝的",
+                null,
+            )
+            return null
+        }
+        _lastError.value = null
         details = found
         val offer = found.oneTimePurchaseOfferDetails ?: found.oneTimePurchaseOfferDetailsList?.firstOrNull()
         _price.value = offer?.formattedPrice
@@ -173,6 +195,7 @@ class PlayBillingStore(
             }
             else -> {
                 waiting = null
+                fail("無法開啟付款畫面", launch)
                 return PurchaseResult.Failed
             }
         }
@@ -193,7 +216,10 @@ class PlayBillingStore(
             BillingResponseCode.ITEM_ALREADY_OWNED -> scope.launch(Dispatchers.Main) {
                 deferred?.complete(if (restore() == RestoreResult.Found) PurchaseResult.Purchased else PurchaseResult.Failed)
             }
-            else -> deferred?.complete(PurchaseResult.Failed)
+            else -> {
+                fail("付款沒有完成", result)
+                deferred?.complete(PurchaseResult.Failed)
+            }
         }
     }
 
@@ -218,5 +244,21 @@ class PlayBillingStore(
         PurchaseRules.needsAcknowledge(purchases).forEach { p ->
             safe(Unit) { client.acknowledgePurchase(AcknowledgePurchaseParams.newBuilder().setPurchaseToken(p.purchaseToken).build()) }
         }
+    }
+
+    private fun codeName(code: Int): String = when (code) {
+        BillingResponseCode.OK -> "OK"
+        BillingResponseCode.USER_CANCELED -> "使用者取消"
+        BillingResponseCode.SERVICE_UNAVAILABLE -> "Google Play 服務暫時無法使用（網路？）"
+        BillingResponseCode.BILLING_UNAVAILABLE -> "這個帳號或裝置不能用 Google Play 結帳（Play 商店版本、帳號或國家）"
+        BillingResponseCode.ITEM_UNAVAILABLE -> "商品無法購買（未啟用或這個國家沒有價格）"
+        BillingResponseCode.DEVELOPER_ERROR -> "App 設定錯誤（通常是 App 不是從 Play 安裝的，或簽名不符）"
+        BillingResponseCode.ERROR -> "Google Play 發生錯誤"
+        BillingResponseCode.ITEM_ALREADY_OWNED -> "已經擁有"
+        BillingResponseCode.ITEM_NOT_OWNED -> "沒有擁有這個商品"
+        BillingResponseCode.SERVICE_DISCONNECTED -> "和 Google Play 的連線中斷"
+        BillingResponseCode.FEATURE_NOT_SUPPORTED -> "這支手機不支援這項功能"
+        BillingResponseCode.NETWORK_ERROR -> "網路錯誤"
+        else -> "未知的回應"
     }
 }
