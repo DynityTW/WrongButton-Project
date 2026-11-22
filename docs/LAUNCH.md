@@ -1,8 +1,9 @@
-# 上架檢查清單（1.0.0）
+# 上架檢查清單（0.8.0）
 
 ## 已經完成（在程式裡）
 
-- [x] 套件名稱 `com.wrongbutton.app`，版本 1.0.0（versionCode 8）
+- [x] 套件名稱 `com.wrongbutton.app`，版本 0.8.0（versionCode 800）
+- [x] 強制更新：Play 上有主版本或次版本較新的版本時，蓋住遊戲並打開 Google Play 的更新畫面
 - [x] Google Play 結帳：商品 ID `wrongbutton-pro`，自動恢復購買、確認購買、退款收回、待付款處理
 - [x] AdMob：第 2、3 階提示的獎勵廣告、每 5 關一次的全版廣告、Google 同意表單、廣告隱私權選項
 - [x] 前 60 關免費，Pro 解鎖第 61–300 關並移除所有廣告

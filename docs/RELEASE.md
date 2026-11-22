@@ -42,8 +42,11 @@ Windows 的路徑用正斜線，例如 `storeFile=C:/keys/wrongbutton-upload.jks
 
 ## 三、每次發版
 
-1. **版本號加一**：打開 `app/build.gradle.kts`，把 `versionCode` 加 1（Play 不接受重複或比較小的數字），
-   `versionName` 改成玩家看到的版本，例如 `0.6.0`。
+1. **改版本號**：打開 `app/build.gradle.kts`，改最上面的 `VERSION_MAJOR`、`VERSION_MINOR`、`VERSION_PATCH`。
+   `versionName`（例如 0.8.1）和 `versionCode`（主 × 10000 ＋ 次 × 100 ＋ 修正，例如 801）會自動算出來，一定比上一版大。
+   - 只改**修正版**（0.8.0 → 0.8.1）：一般更新，不強制。
+   - 改了**主版本或次版本**（0.8.x → 0.9.0、0.x → 1.0.0）：舊版玩家打開遊戲時會被要求**強制更新**
+     （Google Play 的應用程式內更新；只對從 Play 安裝的版本有效）。
 2. **跑測試**：
    ```
    ./gradlew testDebugUnitTest

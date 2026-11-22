@@ -84,6 +84,16 @@ class AppContainer(context: Context) {
 
     val hintGate = tw.dynity.wrongbutton.core.monetization.AdHintGate(monetization, ads)
 
+    /** 強制更新檢查：只有正式版（從 Google Play 安裝）才會查；debug 版與自動測試不查。測試可以換成假的。 */
+    var updates: tw.dynity.wrongbutton.core.update.UpdateChecker =
+        if (tw.dynity.wrongbutton.BuildConfig.DEBUG) {
+            tw.dynity.wrongbutton.core.update.UpdateChecker.None
+        } else {
+            runCatching<tw.dynity.wrongbutton.core.update.UpdateChecker> {
+                tw.dynity.wrongbutton.core.update.PlayUpdateChecker(appContext, tw.dynity.wrongbutton.BuildConfig.VERSION_CODE)
+            }.getOrDefault(tw.dynity.wrongbutton.core.update.UpdateChecker.None)
+        }
+
     val signals = tw.dynity.wrongbutton.core.system.SystemSignals()
 
     /** 從桌面捷徑或小工具按下、還沒處理的來源。導覽層讀到後會清成 null，並決定要不要直接打開對應的關卡。 */

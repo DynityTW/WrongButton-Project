@@ -9,6 +9,9 @@ import tw.dynity.wrongbutton.core.settings.ThemeMode
 import tw.dynity.wrongbutton.core.system.ExternalPress
 import tw.dynity.wrongbutton.core.system.LocalSystemSignals
 import androidx.activity.ComponentActivity
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.CompositionLocalProvider
@@ -24,6 +27,9 @@ import tw.dynity.wrongbutton.ui.theme.WrongButtonTheme
 
 class MainActivity : ComponentActivity() {
     private val container get() = (application as WrongButtonApp).container
+
+    /** Google Play 的全螢幕更新畫面。玩家按返回離開的話，「需要更新」畫面還會留著。 */
+    private val updateLauncher = registerForActivityResult(androidx.activity.result.contract.ActivityResultContracts.StartIntentSenderForResult()) { }
     private var pronounResources: PronounResources? = null
 
     /** 所有文字都經過 [PronounResources]，依設定把「妳」換成「你」。 */
@@ -61,7 +67,17 @@ class MainActivity : ComponentActivity() {
             }
             WrongButtonTheme(reduceMotion = settings.reduceMotion || systemReduce, darkTheme = dark) {
                 CompositionLocalProvider(LocalFeedback provides container.feedback, LocalSystemSignals provides container.signals) {
-                    WrongButtonNavigation(container)
+                    androidx.compose.foundation.layout.Box(androidx.compose.ui.Modifier.fillMaxSize()) {
+                        WrongButtonNavigation(container)
+                        // 主版本或次版本有新版：蓋住整個遊戲，必須更新才能繼續。
+                        val mustUpdate by container.updates.required.collectAsStateWithLifecycle()
+                        if (mustUpdate) {
+                            tw.dynity.wrongbutton.core.update.ForcedUpdateScreen(
+                                onUpdate = { lifecycleScope.launch { container.updates.retry(this@MainActivity, updateLauncher) } },
+                                onBack = { moveTaskToBack(true) },
+                            )
+                        }
+                    }
                 }
             }
         }
@@ -70,6 +86,8 @@ class MainActivity : ComponentActivity() {
     override fun onResume() {
         super.onResume()
         container.adMob?.attach(this)
+        // 每次回到遊戲都檢查一次有沒有必須更新的新版本。
+        lifecycleScope.launch { container.updates.check(this@MainActivity, updateLauncher) }
     }
 
     override fun onNewIntent(intent: Intent) {

@@ -23,6 +23,16 @@ val uploadStore = signingValue("storeFile", "WB_UPLOAD_STORE_FILE")
  * TEST_* 是 Google 公開的測試 ID：只會顯示測試廣告、不會有收入，開發時一定要用它們（點自己的正式廣告會被停權）。
  * 拿到正式 ID 後，只要換掉下面三個 RELEASE_* 值；debug 版永遠用測試 ID。
  */
+/**
+ * 版本號：主版本.次版本.修正版（例如 0.8.0）。
+ * versionCode 由版本號算出：主 × 10000 + 次 × 100 + 修正（0.8.0 → 800）。
+ * 「主版本或次版本」變了，玩家會被要求強制更新（見 core/update/ForcedUpdate.kt）；只改修正版不會。
+ * 發新版時只改這三個數字。
+ */
+val VERSION_MAJOR = 0
+val VERSION_MINOR = 8
+val VERSION_PATCH = 0
+
 val ADMOB_TEST_APP_ID = "ca-app-pub-3940256099942544~3347511713"
 val ADMOB_TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
 val ADMOB_TEST_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712"
@@ -51,8 +61,8 @@ android {
         applicationId = "com.wrongbutton.app"
         minSdk = 26
         targetSdk = 37
-        versionCode = 8
-        versionName = "1.0.0"
+        versionCode = VERSION_MAJOR * 10000 + VERSION_MINOR * 100 + VERSION_PATCH
+        versionName = "$VERSION_MAJOR.$VERSION_MINOR.$VERSION_PATCH"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         manifestPlaceholders["admobAppId"] = ADMOB_TEST_APP_ID
         buildConfigField("String", "ADMOB_REWARDED_ID", "\"$ADMOB_TEST_REWARDED_ID\"")
@@ -130,6 +140,9 @@ dependencies {
     implementation(libs.play.billing.ktx)
     implementation(libs.play.services.ads)
     implementation(libs.ump)
+    implementation(libs.play.app.update.ktx)
+    // Google 的套件會帶進很舊的 androidx.fragment（1.1）；ActivityResult API（更新畫面）需要 1.3 以上。
+    implementation(libs.androidx.fragment)
     debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
 
