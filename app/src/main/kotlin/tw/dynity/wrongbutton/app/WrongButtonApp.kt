@@ -11,9 +11,10 @@ class WrongButtonApp : Application() {
     var crashedLastTime = false
         private set
 
-    override fun onCreate() {
+    /** 最早的時間點：在 Google 程式庫的自動初始化（ContentProvider）之前，就開始記錄閃退。 */
+    override fun attachBaseContext(base: android.content.Context) {
+        super.attachBaseContext(base)
         CrashReport.install(this, BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE)
         crashedLastTime = CrashReport.pending() != null
-        super.onCreate()
     }
 }
