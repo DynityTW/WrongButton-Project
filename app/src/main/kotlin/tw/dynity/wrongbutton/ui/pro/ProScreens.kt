@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.foundation.clickable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -89,13 +90,26 @@ fun ProScreen(
                 verticalArrangement = Arrangement.spacedBy(14.dp),
             ) {
                 val face = Expression(if (state.pro) Mood.Smug else Mood.Normal, Tell.Honest)
-                ButtonCharacter(face.mood, face.tell, 110.dp)
-                val line = when {
-                    message != 0 -> message
-                    state.pro -> R.string.pro_line_owned
-                    else -> R.string.pro_line_pitch
+                // 還沒買的時候，The Button 會說幾句（誠實的）推銷台詞；點它換下一句。
+                val pitches = pitchLines(offer, proLevels)
+                var pitchIndex by rememberSaveable { mutableIntStateOf(kotlin.random.Random.nextInt(0, 1_000)) }
+                ButtonCharacter(
+                    face.mood,
+                    face.tell,
+                    110.dp,
+                    Modifier
+                        .testTag("pro_character")
+                        .clickable(role = androidx.compose.ui.semantics.Role.Button) {
+                            pitchIndex++
+                            message = 0
+                        },
+                )
+                val text = when {
+                    message != 0 -> stringResource(message)
+                    state.pro -> stringResource(R.string.pro_line_owned)
+                    else -> pitches[pitchIndex % pitches.size]
                 }
-                SpeechBubbleView(Speech(stringResource(line), face, line.toLong()), Modifier.widthIn(max = 420.dp))
+                SpeechBubbleView(Speech(text, face, (text.hashCode().toLong() shl 8) + pitchIndex), Modifier.widthIn(max = 420.dp).testTag("pro_speech"))
 
                 Surface(shape = RoundedCornerShape(24.dp), color = MaterialTheme.colorScheme.surfaceContainer, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -276,4 +290,24 @@ internal tailrec fun android.content.Context.findActivity(): android.app.Activit
     is android.app.Activity -> this
     is android.content.ContextWrapper -> baseContext.findActivity()
     else -> null
+}
+
+/**
+ * Pro 頁的推銷台詞：幽默但誠實（不罪惡感綁架、不假倒數——這個遊戲整整一章都在笑那些手法）。
+ * 和價格有關的句子用 Google Play 上的實際價格算，優惠期間也會跟著變。
+ */
+@Composable
+private fun pitchLines(offer: tw.dynity.wrongbutton.core.monetization.ProOffer?, proLevels: Int): List<String> {
+    val lines = mutableListOf(stringResource(R.string.pro_line_pitch))
+    val twd = offer?.currency == "TWD"
+    if (offer != null) lines += stringResource(if (twd) R.string.pro_joke_bento else R.string.pro_joke_coffee)
+    val micros = offer?.priceMicros
+    if (twd && micros != null && micros > 0) {
+        lines += stringResource(R.string.pro_joke_per_level, tw.dynity.wrongbutton.core.monetization.ProPitch.perLevel(micros, proLevels))
+    }
+    lines += stringResource(R.string.pro_joke_levels, proLevels)
+    lines += stringResource(R.string.pro_joke_no_ads)
+    lines += stringResource(R.string.pro_joke_no_subscription)
+    lines += stringResource(R.string.pro_joke_caffeine)
+    return lines
 }

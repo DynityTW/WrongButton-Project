@@ -51,7 +51,24 @@ object ProProduct {
  * @param price Play 格式化好的價格（例如「NT$120.00」），已經是當地幣別。
  * @param percentOff 有優惠時的折扣百分比（例如 25 代表打 75 折）；沒有優惠時是 null。
  */
-data class ProOffer(val price: String, val percentOff: Int? = null)
+data class ProOffer(
+    val price: String,
+    val percentOff: Int? = null,
+    /** 實際價格（百萬分之一單位，例如 NT$120 ＝ 120_000_000），給 Pro 頁算「一關多少錢」。 */
+    val priceMicros: Long? = null,
+    /** 幣別（ISO 4217，例如 TWD、USD）。 */
+    val currency: String? = null,
+)
+
+/** Pro 頁 The Button 說的話裡，和價格有關的計算。 */
+object ProPitch {
+    /** 每一關多少錢（只算付費的關卡），四捨五入到小數一位，整數不顯示小數點：120 元 / 240 關 →「0.5」。 */
+    fun perLevel(priceMicros: Long, levels: Int): String {
+        val per = priceMicros / 1_000_000.0 / levels
+        val text = String.format(java.util.Locale.US, "%.1f", per)
+        return if (text.endsWith(".0")) text.dropLast(2) else text
+    }
+}
 
 /** 一個可以購買的方案（購買選項或優惠），用來挑出要結帳的那一個。純資料，方便測試。 */
 data class OfferCandidate(
@@ -60,6 +77,7 @@ data class OfferCandidate(
     val formattedPrice: String,
     val fullPriceMicros: Long?,
     val percentOff: Int?,
+    val currency: String? = null,
 )
 
 object OfferRules {

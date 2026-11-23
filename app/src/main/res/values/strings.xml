@@ -236,6 +236,13 @@
 付款由 Google Play 處理，沒有訂閱，不會自動續費。</string>
     <string name="pro_confirm_cancel">取消</string>
     <string name="pro_confirm_buy">購買</string>
+    <string name="pro_joke_bento">一個便當的錢，拯救爆肝的開發團隊。</string>
+    <string name="pro_joke_coffee">一杯咖啡的錢，拯救爆肝的開發團隊。</string>
+    <string name="pro_joke_per_level">買 Pro 之後，一關只要 %1$s 塊，不香嗎？</string>
+    <string name="pro_joke_levels">%1$d 關新謎題，比妳最近在追的劇還長。</string>
+    <string name="pro_joke_no_ads">買了就沒有廣告。說真的，每五關跳出來一次，我也很不好意思。</string>
+    <string name="pro_joke_no_subscription">一次買斷，沒有訂閱，不會偷偷續費。我們做了一整章在罵那種事。</string>
+    <string name="pro_joke_caffeine">開發團隊的咖啡因存量告急。這句是真的，妳看我的眼睛。</string>
     <string name="pro_line_pitch">這頁沒有陷阱。價錢寫在上面，不買也沒關係。</string>
     <string name="pro_line_owned">妳是 Pro 了。剩下的關卡都開著。</string>
     <string name="pro_line_thanks">謝謝妳。我會努力讓剩下的關卡都值得。</string>

@@ -11,7 +11,7 @@
     <string name="l92_version_label">版本</string>
     <string name="l92_version">0.2.0</string>
     <string name="l92_author_label">作者</string>
-    <string name="l92_author">Dynity</string>
+    <string name="l92_author">Luarvex</string>
     <string name="l92_license_label">授權</string>
     <string name="l92_license">僅供遊玩</string>
     <string name="l92_knock">再按 %1$d 下就能進入後台</string>

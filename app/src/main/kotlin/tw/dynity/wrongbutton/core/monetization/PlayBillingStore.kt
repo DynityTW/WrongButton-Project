@@ -176,11 +176,12 @@ class PlayBillingStore(
                 formattedPrice = it.formattedPrice,
                 fullPriceMicros = it.fullPriceMicros,
                 percentOff = it.discountDisplayInfo?.percentageDiscount,
+                currency = it.priceCurrencyCode,
             )
         }
         val best = OfferRules.pick(candidates)
         chosenToken = best?.token
-        _offer.value = best?.let { ProOffer(it.formattedPrice, OfferRules.percentOff(it)) }
+        _offer.value = best?.let { ProOffer(it.formattedPrice, OfferRules.percentOff(it), it.priceMicros, it.currency) }
         return found
     }
 

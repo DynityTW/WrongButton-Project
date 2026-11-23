@@ -137,4 +137,22 @@ class MonetizationFlowTest {
         rule.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED)
         rule.waitUntil(5_000) { container.monetization.state.value.pro }
     }
+
+    @Test
+    fun tappingTheButtonOnTheProPageCyclesHonestPitchLines() = with(Player(rule)) {
+        waitFor("menu_levels")
+        container.monetization.revokeProForTesting()
+        container.store = FakeStore(container.monetization)
+        tap("menu_pro")
+        waitFor("pro_character")
+        val seen = mutableSetOf<String>()
+        repeat(10) {
+            seen += speech()
+            press("pro_character")
+            rule.waitForIdle()
+        }
+        val all = seen.joinToString("|")
+        assertTrue("一關的價格用 Play 的價格算：$all", all.contains("0.5 塊"))
+        assertTrue(all.contains("便當"))
+    }
 }

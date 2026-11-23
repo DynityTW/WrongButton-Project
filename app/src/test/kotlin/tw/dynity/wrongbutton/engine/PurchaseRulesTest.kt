@@ -67,6 +67,14 @@ class OfferRulesTest {
     }
 
     @Test
+    fun perLevelPriceFollowsThePlayPrice() {
+        val pitch = tw.dynity.wrongbutton.core.monetization.ProPitch
+        assertEquals("0.5", pitch.perLevel(120_000_000, 240))
+        assertEquals("0.4", pitch.perLevel(90_000_000, 240))
+        assertEquals("1", pitch.perLevel(240_000_000, 240))
+    }
+
+    @Test
     fun noDiscountWithoutALowerPriceAndPlaysOwnPercentageWins() {
         assertEquals(null, OfferRules.percentOff(c("buy", 120_000_000)))
         assertEquals(null, OfferRules.percentOff(c("buy", 120_000_000, full = 120_000_000)))
