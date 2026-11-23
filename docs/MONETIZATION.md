@@ -82,3 +82,13 @@ AdMob 帶進來的 Privacy Sandbox 權限（`ACCESS_ADSERVICES_*`）已在 `Andr
   ```
   python3 -c "import hashlib,getpass;print(hashlib.sha256(('wrongbutton-review:'+getpass.getpass()).encode()).hexdigest())"
   ```
+
+## 六、促銷代碼（送 Pro 給團隊成員、合作對象、抽獎）
+
+1. Play Console → 營利 →「促銷代碼」→ 建立促銷活動。
+2. 類型選「一次性產品」，商品選 `wrongbutton_pro`，填數量與期限，產生代碼後下載 CSV。
+3. 收到代碼的人：Play 商店 → 頭像 →「付款和訂閱」→「兌換代碼」，輸入代碼。
+   也可以直接打開 `https://play.google.com/redeem?code=代碼`。
+4. 回到遊戲就會開通 Pro（App 每次回到前景都會向 Google Play 查購買紀錄），換手機或重裝也會自動恢復。
+
+每一季可以產生的代碼數量有上限，Play Console 會顯示剩餘數量。代碼兌換後就和正式購買一樣，不需要另外確認。

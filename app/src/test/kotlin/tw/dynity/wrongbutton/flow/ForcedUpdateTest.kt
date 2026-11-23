@@ -25,7 +25,7 @@ class ForcedUpdateTest {
 
     @Test
     fun onlyMajorOrMinorChangesForceAnUpdate() {
-        assertEquals(807, BuildConfig.VERSION_CODE)
+        assertEquals(808, BuildConfig.VERSION_CODE)
         assertEquals(BuildConfig.VERSION_NAME, VersionRules.name(BuildConfig.VERSION_CODE))
         assertFalse("0.8.0 → 0.8.1 不強制", VersionRules.mustUpdate(800, 801))
         assertFalse("0.8.0 → 0.8.99 不強制", VersionRules.mustUpdate(800, 899))

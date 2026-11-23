@@ -88,6 +88,9 @@ class MainActivity : ComponentActivity() {
         container.adMob?.attach(this)
         // 每次回到遊戲都檢查一次有沒有必須更新的新版本。
         lifecycleScope.launch { container.updates.check(this@MainActivity, updateLauncher) }
+        // 每次回到遊戲都向 Google Play 查一次購買紀錄：在 Play 商店兌換促銷代碼、或付款稍後才完成時，
+        // 切回遊戲就會開通 Pro（不用把遊戲完全關掉重開）。查詢失敗（離線）時不會動到現有狀態。
+        lifecycleScope.launch { container.store.restore() }
     }
 
     override fun onNewIntent(intent: Intent) {

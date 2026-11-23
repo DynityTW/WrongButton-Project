@@ -115,4 +115,26 @@ class MonetizationFlowTest {
         waitFor("l02_list")
         assertFalse(exists("mock_ad"))
     }
+
+    @Test
+    fun promoCodeRedeemedInThePlayStoreUnlocksProWhenReturningToTheGame() = with(Player(rule)) {
+        waitFor("menu_levels")
+        container.monetization.revokeProForTesting()
+        // 模擬「在 Play 商店兌換了促銷代碼」：Google Play 的購買紀錄裡多了 Pro，但 App 還不知道。
+        var playHasPro = false
+        container.store = object : tw.dynity.wrongbutton.core.monetization.Store {
+            override val offer = kotlinx.coroutines.flow.MutableStateFlow<tw.dynity.wrongbutton.core.monetization.ProOffer?>(null)
+            override suspend fun purchasePro(activity: android.app.Activity) = tw.dynity.wrongbutton.core.monetization.PurchaseResult.Failed
+            override suspend fun restore(): tw.dynity.wrongbutton.core.monetization.RestoreResult {
+                if (playHasPro) container.monetization.setPro(true)
+                return if (playHasPro) tw.dynity.wrongbutton.core.monetization.RestoreResult.Found else tw.dynity.wrongbutton.core.monetization.RestoreResult.NotFound
+            }
+        }
+        playHasPro = true
+        assertFalse(container.monetization.state.value.pro)
+        // 切到背景（去 Play 商店兌換）再回來。
+        rule.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED)
+        rule.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED)
+        rule.waitUntil(5_000) { container.monetization.state.value.pro }
+    }
 }
