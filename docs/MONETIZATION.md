@@ -2,10 +2,18 @@
 
 | 版本 | 付費 | 廣告 |
 |---|---|---|
-| debug（開發、自動測試） | 模擬（`MockStore`），不連網、不扣款，有「取消 Pro」按鈕 | 模擬畫面（`MockAdService`） |
+| debug（開發、自動測試） | Google Play 結帳（`PlayBillingStore`）；側載安裝買不了，開發時用解鎖碼開 Pro | 模擬畫面（`MockAdService`） |
 | release（上傳 Play 的 AAB） | Google Play 結帳（`PlayBillingStore`） | AdMob（`AdMobService`），先經過 Google 的同意表單 |
 
-切換由 `app/build.gradle.kts` 的 `REAL_MONETIZATION` 決定（debug＝false、release＝true）。
+App 沒有模擬付款。廣告的切換由 `app/build.gradle.kts` 的 `REAL_MONETIZATION` 決定（debug＝false、release＝true）。
+自動測試用只存在測試裡的 `FakeStore`（`ChapterTestBase.kt`）。
+
+## 價格與優惠
+
+- 價格完全由 Play Console 決定，App 不寫死價格：每次打開 Pro 頁都向 Google Play 重新查詢。
+- 要做優惠：在 Play Console 的商品 → 購買選項 `buy` →「新增優惠」，設定折扣與期間。
+  App 會挑這個帳號現在買得到、最便宜的方案結帳，並在價格旁顯示「限時優惠 −N%」。
+- 查不到價格時（離線、還沒生效）顯示「價格載入中…」，不會顯示錯的價格。
 
 ## 規則
 

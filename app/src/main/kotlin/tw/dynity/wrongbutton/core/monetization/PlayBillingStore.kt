@@ -67,10 +67,12 @@ class PlayBillingStore(
     private val cache: MonetizationRepository,
     private val scope: CoroutineScope,
 ) : Store, PurchasesUpdatedListener {
-    override val isMock = false
 
-    private val _price = MutableStateFlow<String?>(null)
-    override val price: StateFlow<String?> = _price.asStateFlow()
+    private val _offer = MutableStateFlow<ProOffer?>(null)
+    override val offer: StateFlow<ProOffer?> = _offer.asStateFlow()
+
+    /** 目前要結帳的方案（最便宜的購買選項或優惠）。 */
+    private var chosenToken: String? = null
 
     private val _lastError = MutableStateFlow<String?>(null)
     override val lastError: StateFlow<String?> = _lastError.asStateFlow()
@@ -133,8 +135,12 @@ class PlayBillingStore(
 
     private suspend fun loadProduct(): ProductDetails? = safe(null) { loadProductInner() }
 
+    /** 打開 Pro 頁時呼叫：每次都重新查，Play Console 改了價格或開了優惠，玩家馬上看得到。 */
+    override suspend fun refresh() {
+        if (connect()) loadProduct()
+    }
+
     private suspend fun loadProductInner(): ProductDetails? {
-        details?.let { return it }
         val params = QueryProductDetailsParams.newBuilder()
             .setProductList(
                 listOf(
@@ -161,8 +167,20 @@ class PlayBillingStore(
         }
         _lastError.value = null
         details = found
-        val offer = found.oneTimePurchaseOfferDetails ?: found.oneTimePurchaseOfferDetailsList?.firstOrNull()
-        _price.value = offer?.formattedPrice
+        // 一個商品可以有好幾個方案（購買選項、限時優惠）；只會列出這個帳號現在買得到的。挑最便宜的。
+        val offers = found.oneTimePurchaseOfferDetailsList ?: listOfNotNull(found.oneTimePurchaseOfferDetails)
+        val candidates = offers.map {
+            OfferCandidate(
+                token = it.offerToken,
+                priceMicros = it.priceAmountMicros,
+                formattedPrice = it.formattedPrice,
+                fullPriceMicros = it.fullPriceMicros,
+                percentOff = it.discountDisplayInfo?.percentageDiscount,
+            )
+        }
+        val best = OfferRules.pick(candidates)
+        chosenToken = best?.token
+        _offer.value = best?.let { ProOffer(it.formattedPrice, OfferRules.percentOff(it)) }
         return found
     }
 
@@ -170,9 +188,9 @@ class PlayBillingStore(
 
     private suspend fun purchaseInner(activity: Activity): PurchaseResult {
         if (!connect()) return PurchaseResult.Failed
+        // 結帳前再查一次，確保用的是現在的價格與優惠。
         val product = loadProduct() ?: return PurchaseResult.Failed
-        val offerToken = product.oneTimePurchaseOfferDetailsList?.firstOrNull()?.offerToken
-            ?: product.oneTimePurchaseOfferDetails?.offerToken
+        val offerToken = chosenToken
         val productParams = BillingFlowParams.ProductDetailsParams.newBuilder()
             .setProductDetails(product)
             .apply { if (offerToken != null) setOfferToken(offerToken) }

@@ -66,8 +66,9 @@ fun ProScreen(
     onTerms: () -> Unit = {},
 ) {
     val state by repo.state.collectAsStateWithLifecycle()
-    val livePrice by store.price.collectAsStateWithLifecycle()
-    val price = livePrice ?: ProProduct.PRICE_TEXT
+    val offer by store.offer.collectAsStateWithLifecycle()
+    // 每次打開都向 Google Play 查現在的價格與優惠（Play Console 改價或開優惠，這裡就會跟著變）。
+    androidx.compose.runtime.LaunchedEffect(store) { store.refresh() }
     val activity = androidx.compose.ui.platform.LocalContext.current.findActivity()
     val scope = androidx.compose.runtime.rememberCoroutineScope()
     var busy by rememberSaveable { mutableStateOf(false) }
@@ -98,12 +99,25 @@ fun ProScreen(
 
                 Surface(shape = RoundedCornerShape(24.dp), color = MaterialTheme.colorScheme.surfaceContainer, modifier = Modifier.fillMaxWidth()) {
                     Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                        Text(
-                            stringResource(R.string.pro_price, price),
-                            style = MaterialTheme.typography.headlineSmall,
-                            fontWeight = FontWeight.Bold,
-                            modifier = Modifier.semantics { heading() }.testTag("pro_price"),
-                        )
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                            Text(
+                                offer?.price ?: stringResource(R.string.pro_price_loading),
+                                style = if (offer != null) MaterialTheme.typography.headlineSmall else MaterialTheme.typography.titleMedium,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.semantics { heading() }.testTag("pro_price"),
+                            )
+                            offer?.percentOff?.let { pct ->
+                                Surface(shape = RoundedCornerShape(10.dp), color = MaterialTheme.colorScheme.primary) {
+                                    Text(
+                                        stringResource(R.string.pro_sale, pct),
+                                        style = MaterialTheme.typography.labelLarge,
+                                        fontWeight = FontWeight.Bold,
+                                        color = MaterialTheme.colorScheme.onPrimary,
+                                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp).testTag("pro_sale"),
+                                    )
+                                }
+                            }
+                        }
                         Text(stringResource(R.string.pro_once), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                         listOf(
                             stringResource(R.string.pro_benefit_levels, Levels.FREE_LEVELS + 1, Levels.all.size, proLevels),
@@ -124,32 +138,15 @@ fun ProScreen(
                     )
                 }
 
-                if (store.isMock) {
-                    Surface(shape = RoundedCornerShape(16.dp), color = MaterialTheme.colorScheme.tertiaryContainer, modifier = Modifier.fillMaxWidth()) {
-                        Text(
-                            stringResource(R.string.pro_mock_note),
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onTertiaryContainer,
-                            modifier = Modifier.padding(14.dp),
-                        )
-                    }
-                }
-
                 if (state.pro) {
                     Text(stringResource(R.string.pro_owned), style = MaterialTheme.typography.titleMedium, modifier = Modifier.testTag("pro_owned"))
-                    if (store.isMock) {
-                        OutlinedButton(
-                            onClick = { repo.revokeProForTesting(); message = R.string.pro_line_revoked },
-                            modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).testTag("pro_revoke"),
-                        ) { Text(stringResource(R.string.pro_revoke_mock)) }
-                    }
                 } else {
                     Button(
                         onClick = { confirming = true },
                         enabled = !busy,
                         modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp).testTag("pro_buy"),
                     ) {
-                        Text(stringResource(R.string.pro_buy, price))
+                        Text(offer?.let { stringResource(R.string.pro_buy, it.price) } ?: stringResource(R.string.pro_buy_plain))
                     }
                     Text(
                         stringResource(R.string.pro_terms_note),
@@ -184,7 +181,10 @@ fun ProScreen(
         if (confirming) {
             WbDialog(face = Expression(Mood.Normal, Tell.Honest)) {
                 Text(stringResource(R.string.pro_confirm_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
-                Text(stringResource(R.string.pro_confirm_body, price), style = MaterialTheme.typography.bodyLarge)
+                Text(
+                    offer?.let { stringResource(R.string.pro_confirm_body, it.price) } ?: stringResource(R.string.pro_confirm_body_plain),
+                    style = MaterialTheme.typography.bodyLarge,
+                )
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
                     TextButton(onClick = { confirming = false }, modifier = Modifier.heightIn(min = 48.dp).testTag("pro_confirm_cancel")) {
                         Text(stringResource(R.string.pro_confirm_cancel))

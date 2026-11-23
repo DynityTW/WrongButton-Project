@@ -16,8 +16,8 @@ import kotlinx.serialization.Serializable
 /**
  * 付費與廣告的狀態。**和 PlayerMemory 分開存**：「讓 The Button 忘記我」不會清掉 Pro，也不會清掉已經看過廣告換到的提示。
  *
- * 正式版（release）用 Google Play 結帳（[PlayBillingStore]）與 AdMob（[AdMobService]）；
- * 測試版（debug）與自動測試用模擬的 [MockStore] 與 [MockAdService]，不連網、不扣款。
+ * 付費一律用 Google Play 結帳（[PlayBillingStore]），沒有模擬付款；開發與審查時用解鎖碼（[ReviewAccess]）開 Pro。
+ * 廣告：正式版用 AdMob（[AdMobService]），debug 版與自動測試用模擬廣告（[MockAdService]）。
  * Pro 以 Play 查詢到的購買紀錄為準，這裡只當快取（離線時也能玩已經買的關卡）。
  */
 @Serializable
@@ -42,11 +42,39 @@ object AdRules {
 
 /** Pro 的商品資訊。 */
 object ProProduct {
-    /** Google Play Console 裡「應用程式內產品」的商品 ID。建立後永遠不能改。 */
+    /** Google Play Console 裡「一次性產品」的商品 ID。建立後永遠不能改。 */
     const val PRODUCT_ID = "wrongbutton_pro"
+}
 
-    /** 還沒從 Play 拿到價格時（離線、模擬版）顯示的價格。 */
-    const val PRICE_TEXT = "NT$120"
+/**
+ * Google Play 上目前的價格。價格與優惠都在 Play Console 設定，App 每次打開 Pro 頁都會重新查詢。
+ * @param price Play 格式化好的價格（例如「NT$120.00」），已經是當地幣別。
+ * @param percentOff 有優惠時的折扣百分比（例如 25 代表打 75 折）；沒有優惠時是 null。
+ */
+data class ProOffer(val price: String, val percentOff: Int? = null)
+
+/** 一個可以購買的方案（購買選項或優惠），用來挑出要結帳的那一個。純資料，方便測試。 */
+data class OfferCandidate(
+    val token: String?,
+    val priceMicros: Long,
+    val formattedPrice: String,
+    val fullPriceMicros: Long?,
+    val percentOff: Int?,
+)
+
+object OfferRules {
+    /** 挑最便宜的那一個（有優惠時就是優惠價）。 */
+    fun pick(candidates: List<OfferCandidate>): OfferCandidate? = candidates.minByOrNull { it.priceMicros }
+
+    /** 折扣百分比：Play 有給就用；沒給但原價比較高，就自己算。沒有折扣回傳 null。 */
+    fun percentOff(c: OfferCandidate): Int? {
+        c.percentOff?.takeIf { it in 1..99 }?.let { return it }
+        val full = c.fullPriceMicros ?: return null
+        if (full <= c.priceMicros || full <= 0) return null
+        return (((full - c.priceMicros) * 100.0) / full).roundToInt().takeIf { it in 1..99 }
+    }
+
+    private fun Double.roundToInt(): Int = kotlin.math.round(this).toInt()
 }
 
 sealed interface PurchaseResult {
@@ -62,16 +90,16 @@ sealed interface PurchaseResult {
 
 enum class RestoreResult { Found, NotFound, Failed }
 
-/** 付費介面。 */
+/** 付費介面：Google Play 結帳（[PlayBillingStore]）。測試可以換成假的。 */
 interface Store {
-    /** 要顯示的價格（Play 查到的當地價格；還沒查到時是 null）。 */
-    val price: StateFlow<String?>
-
-    /** 模擬版：畫面上要標示「模擬購買」，並提供測試用的取消按鈕。 */
-    val isMock: Boolean
+    /** Google Play 上目前的價格與優惠；還沒查到（或查不到）時是 null。 */
+    val offer: StateFlow<ProOffer?>
 
     /** 最近一次失敗的原因（Google Play 的回應代碼與說明），顯示在 Pro 頁方便找問題。沒有失敗時是 null。 */
     val lastError: StateFlow<String?> get() = MutableStateFlow(null)
+
+    /** 重新向 Google Play 查價格與優惠（打開 Pro 頁時呼叫）。 */
+    suspend fun refresh() {}
 
     suspend fun purchasePro(activity: android.app.Activity): PurchaseResult
 
@@ -81,24 +109,10 @@ interface Store {
 
 /** Google Play 結帳無法建立時（理論上不會發生）：不能買，但已經買過的快取照常有效，遊戲不會因此閃退。 */
 class UnavailableStore : Store {
-    override val price: StateFlow<String?> = MutableStateFlow(null)
-    override val isMock = false
+    override val offer: StateFlow<ProOffer?> = MutableStateFlow(null)
     override val lastError: StateFlow<String?> = MutableStateFlow("Google Play 結帳元件無法建立")
     override suspend fun purchasePro(activity: android.app.Activity): PurchaseResult = PurchaseResult.Failed
     override suspend fun restore(): RestoreResult = RestoreResult.Failed
-}
-
-/** 模擬的付費：直接改本機狀態，不連網、不扣款。 */
-class MockStore(private val cache: MonetizationRepository) : Store {
-    override val price: StateFlow<String?> = MutableStateFlow(ProProduct.PRICE_TEXT)
-    override val isMock = true
-
-    override suspend fun purchasePro(activity: android.app.Activity): PurchaseResult {
-        cache.setPro(true)
-        return PurchaseResult.Purchased
-    }
-
-    override suspend fun restore(): RestoreResult = if (cache.state.value.pro) RestoreResult.Found else RestoreResult.NotFound
 }
 
 class MonetizationRepository(
@@ -152,10 +166,10 @@ class MonetizationRepository(
         return true
     }
 
-    /** 測試與模擬版用：直接開通 Pro。 */
+    /** 自動測試用：直接開通 Pro。畫面上沒有這個功能。 */
     fun purchasePro() = setPro(true)
 
-    /** 模擬版用：取消 Pro，方便測試免費版的流程。正式版畫面上沒有這個按鈕。 */
+    /** 自動測試用：回到免費版。畫面上沒有這個功能。 */
     fun revokeProForTesting() = update { it.copy(pro = false, reviewAccess = false) }
 
     /** 過了一關。Pro 不計數。 */

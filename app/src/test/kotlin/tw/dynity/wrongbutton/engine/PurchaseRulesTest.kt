@@ -7,6 +7,8 @@ import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import tw.dynity.wrongbutton.core.monetization.OfferCandidate
+import tw.dynity.wrongbutton.core.monetization.OfferRules
 import tw.dynity.wrongbutton.core.monetization.PurchaseResult
 import tw.dynity.wrongbutton.core.monetization.PurchaseRules
 
@@ -47,5 +49,28 @@ class PurchaseRulesTest {
         assertTrue(PurchaseRules.owned(listOf(other)).isEmpty())
         assertFalse(PurchaseRules.pending(listOf(other)))
         assertEquals(PurchaseResult.Failed, PurchaseRules.result(emptyList()))
+    }
+}
+
+/** 價格與優惠：挑最便宜的方案，並算出折扣百分比。 */
+class OfferRulesTest {
+    private fun c(token: String, price: Long, full: Long? = null, pct: Int? = null) =
+        OfferCandidate(token, price, "NT\$" + price / 1_000_000, full, pct)
+
+    @Test
+    fun picksTheCheapestOfferAndShowsTheDiscount() {
+        val normal = c("buy", 120_000_000)
+        val sale = c("sale", 90_000_000, full = 120_000_000)
+        val best = OfferRules.pick(listOf(normal, sale))!!
+        assertEquals("sale", best.token)
+        assertEquals(25, OfferRules.percentOff(best))
+    }
+
+    @Test
+    fun noDiscountWithoutALowerPriceAndPlaysOwnPercentageWins() {
+        assertEquals(null, OfferRules.percentOff(c("buy", 120_000_000)))
+        assertEquals(null, OfferRules.percentOff(c("buy", 120_000_000, full = 120_000_000)))
+        assertEquals(30, OfferRules.percentOff(c("sale", 90_000_000, full = 120_000_000, pct = 30)))
+        assertEquals(null, OfferRules.pick(emptyList()))
     }
 }

@@ -51,7 +51,7 @@ class AppContainer(context: Context) {
         ),
         scope,
     )
-    /** true：Google Play 結帳與 AdMob（正式版）。false：模擬（debug 版與自動測試）。 */
+    /** true：AdMob 真的廣告（正式版）。false：模擬廣告（debug 版與自動測試）。付費一律是真的 Google Play 結帳。 */
     val realMonetization = tw.dynity.wrongbutton.BuildConfig.REAL_MONETIZATION
 
     /** 模擬廣告。畫面最上層的覆蓋層讀它；正式版不會用到（current 永遠是 null）。 */
@@ -71,15 +71,13 @@ class AppContainer(context: Context) {
 
     val ads: tw.dynity.wrongbutton.core.monetization.AdService = adMob ?: mockAds
 
-    val store: tw.dynity.wrongbutton.core.monetization.Store =
-        if (realMonetization) {
-            runCatching { tw.dynity.wrongbutton.core.monetization.PlayBillingStore(appContext, monetization, scope) }
-                .getOrElse { e ->
-                    tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
-                    tw.dynity.wrongbutton.core.monetization.UnavailableStore()
-                }
-        } else {
-            tw.dynity.wrongbutton.core.monetization.MockStore(monetization)
+    /** Google Play 結帳（所有版本都是真的，沒有模擬付款）。自動測試可以換成假的。 */
+    var store: tw.dynity.wrongbutton.core.monetization.Store =
+        runCatching<tw.dynity.wrongbutton.core.monetization.Store> {
+            tw.dynity.wrongbutton.core.monetization.PlayBillingStore(appContext, monetization, scope)
+        }.getOrElse { e ->
+            tw.dynity.wrongbutton.core.crash.CrashReport.recordNonFatal(e)
+            tw.dynity.wrongbutton.core.monetization.UnavailableStore()
         }
 
     val hintGate = tw.dynity.wrongbutton.core.monetization.AdHintGate(monetization, ads)

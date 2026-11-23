@@ -51,18 +51,22 @@ class MonetizationFlowTest {
     @Test
     fun proUnlocksLevel101AndRemovesAds() = with(Player(rule)) {
         waitFor("menu_levels")
+        val fake = FakeStore(container.monetization)
+        container.store = fake
         val first = Levels.all[Levels.FREE_LEVELS]
         container.memory.update { m -> Levels.all.take(Levels.FREE_LEVELS).fold(m) { acc, l -> MemoryOps.completeLevel(acc, l.id, RunResult(0, 0, 1, 0, false)) } }
         press("menu_levels")
         waitFor("select_grid")
         rule.onNodeWithTag("select_grid").performScrollToKey(first.id)
         rule.onNodeWithTag("select_level_${first.id}").performClick()
-        // 沒買 Pro：打開的是 Pro 頁，不是關卡。
+        // 沒買 Pro：打開的是 Pro 頁，不是關卡。價格來自 Google Play（這裡是測試用的假付費）。
         waitFor("pro_screen")
         assertTrue(exists("pro_price"))
+        assertFalse("App 沒有模擬付款的按鈕", exists("pro_revoke"))
         tap("pro_buy")
         tap("pro_confirm_buy")
         rule.waitUntil(5_000) { container.monetization.state.value.pro }
+        assertEquals(1, fake.purchases)
         waitFor("pro_owned")
         rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }
         waitFor("select_grid")

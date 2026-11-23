@@ -85,3 +85,21 @@ fun closeAdBreakIfShown(rule: AndroidComposeTestRule<ActivityScenarioRule<MainAc
     rule.onNodeWithTag("mock_ad_break_close").performClick()
     rule.waitUntil(5_000) { rule.onAllNodesWithTag("mock_ad").fetchSemanticsNodes().isEmpty() }
 }
+
+/** 自動測試用的假付費：不連 Google Play，按購買就開通。只存在測試裡，App 本身沒有模擬付款。 */
+class FakeStore(private val cache: tw.dynity.wrongbutton.core.monetization.MonetizationRepository) : tw.dynity.wrongbutton.core.monetization.Store {
+    override val offer = kotlinx.coroutines.flow.MutableStateFlow<tw.dynity.wrongbutton.core.monetization.ProOffer?>(
+        tw.dynity.wrongbutton.core.monetization.ProOffer("NT\$120.00"),
+    )
+    var purchases = 0
+
+    override suspend fun purchasePro(activity: android.app.Activity): tw.dynity.wrongbutton.core.monetization.PurchaseResult {
+        purchases++
+        cache.purchasePro()
+        return tw.dynity.wrongbutton.core.monetization.PurchaseResult.Purchased
+    }
+
+    override suspend fun restore() =
+        if (cache.state.value.pro) tw.dynity.wrongbutton.core.monetization.RestoreResult.Found
+        else tw.dynity.wrongbutton.core.monetization.RestoreResult.NotFound
+}

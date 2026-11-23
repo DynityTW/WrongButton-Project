@@ -216,22 +216,24 @@
     <string name="task_l115">什麼都不要按。</string>
     <string name="task_l116">告訴它，它拜託妳記住什麼。</string>
     <string name="task_l120">聽它念完。</string>
-    <!-- Pro（模擬購買）與模擬廣告 -->
+    <!-- Pro（Google Play 結帳）與模擬廣告（debug 版） -->
     <string name="pro_title">Wrong Button Pro</string>
-    <string name="pro_price">%1$s</string>
     <string name="pro_once">一次買斷。沒有訂閱，不會自動續費。</string>
     <string name="pro_benefit_levels">解鎖第 %1$d–%2$d 關（共 %3$d 關）</string>
     <string name="pro_benefit_hints">完全沒有廣告：提示直接看，過關之間也不會跳廣告</string>
     <string name="pro_benefit_free_stays">前 %1$d 關永遠免費，買不買都一樣能玩</string>
-    <string name="pro_mock_note">這是模擬購買：不會連線，也不會扣款。正式版會改成 Google Play 結帳。</string>
+    <string name="pro_price_loading">價格載入中…</string>
+    <string name="pro_sale">限時優惠 −%1$d%%</string>
+    <string name="pro_buy_plain">購買 Pro</string>
     <string name="pro_buy">購買 Pro（%1$s）</string>
     <string name="pro_restore">恢復購買</string>
     <string name="pro_later">以後再說</string>
     <string name="pro_owned">妳已經有 Pro 了。</string>
-    <string name="pro_revoke_mock">取消 Pro（模擬，測試用）</string>
     <string name="pro_confirm_title">確認購買</string>
     <string name="pro_confirm_body">購買 Wrong Button Pro，%1$s，一次付清。
-（模擬購買，不會扣款。）</string>
+付款由 Google Play 處理，沒有訂閱，不會自動續費。</string>
+    <string name="pro_confirm_body_plain">購買 Wrong Button Pro，一次付清。
+付款由 Google Play 處理，沒有訂閱，不會自動續費。</string>
     <string name="pro_confirm_cancel">取消</string>
     <string name="pro_confirm_buy">購買</string>
     <string name="pro_line_pitch">這頁沒有陷阱。價錢寫在上面，不買也沒關係。</string>
@@ -241,7 +243,6 @@
     <string name="pro_line_nothing_to_restore">找不到購買紀錄。Pro 跟著購買時的 Google 帳號走；如果妳用別的帳號買過，請在 Play 商店切換帳號後再試一次。</string>
     <string name="pro_line_pending">付款還在處理中。付款完成後，Pro 會自動開通，不用再按一次。</string>
     <string name="pro_line_store_failed">現在連不上 Google Play。請確認網路後再試一次；妳沒有被扣款。</string>
-    <string name="pro_line_revoked">好，回到免費版。這只是測試用的開關。</string>
     <string name="pro_locked">Pro</string>
     <string name="pro_locked_cd">需要 Pro</string>
     <string name="menu_pro">Pro</string>
