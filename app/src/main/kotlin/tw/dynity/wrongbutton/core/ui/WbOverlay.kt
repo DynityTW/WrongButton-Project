@@ -38,6 +38,8 @@ import tw.dynity.wrongbutton.core.character.Expression
 fun WbOverlay(
     modifier: Modifier = Modifier,
     maxWidth: Dp = 420.dp,
+    /** 固定在最上面、不跟著內容捲動的列（例如返回箭頭與標題）。 */
+    header: (@Composable () -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     Box(
@@ -60,13 +62,18 @@ fun WbOverlay(
                 .widthIn(max = maxWidth)
                 .fillMaxWidth(),
         ) {
-            Column(
-                Modifier
-                    .verticalScroll(rememberScrollState())
-                    .padding(24.dp),
-                verticalArrangement = Arrangement.spacedBy(12.dp),
-                content = content,
-            )
+            Column {
+                if (header != null) {
+                    Box(Modifier.fillMaxWidth().padding(start = 12.dp, end = 24.dp, top = 12.dp)) { header() }
+                }
+                Column(
+                    Modifier
+                        .verticalScroll(rememberScrollState())
+                        .padding(start = 24.dp, end = 24.dp, bottom = 24.dp, top = if (header != null) 8.dp else 24.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    content = content,
+                )
+            }
         }
     }
 }

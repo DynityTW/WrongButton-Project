@@ -176,10 +176,19 @@ fun PauseOverlay(
 
 @Composable
 fun RecordsOverlay(onBack: () -> Unit, content: @Composable () -> Unit) {
-    WbOverlay(maxWidth = 560.dp) {
-        Text(stringResource(R.string.records_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
+    // 返回放在最上面、固定不動（和主選單的紀錄頁一樣是箭頭），紀錄很長時不用捲到底。
+    WbOverlay(
+        maxWidth = 560.dp,
+        header = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = onBack, modifier = Modifier.testTag("records_back")) {
+                    Icon(WbIcons.Back, contentDescription = stringResource(R.string.records_back))
+                }
+                Text(stringResource(R.string.records_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
+            }
+        },
+    ) {
         content()
-        Button(onClick = onBack, modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp)) { Text(stringResource(R.string.records_back)) }
     }
 }
 

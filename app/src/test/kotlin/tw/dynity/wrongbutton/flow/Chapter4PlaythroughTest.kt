@@ -45,7 +45,7 @@ class Chapter4PlaythroughTest {
         waitFor("forget_l49_grudge")
         rule.onNodeWithTag("forget_l49_grudge").performScrollTo().performTouchInput { swipeLeft() }
         advance(500)
-        rule.onNodeWithText("返回").performScrollTo().performClick()
+        press("records_back")
         rule.onNodeWithText("繼續").performScrollTo().performClick()
         advance(500)
         press("the_button")
