@@ -309,5 +309,17 @@ private fun pitchLines(offer: tw.dynity.wrongbutton.core.monetization.ProOffer?,
     lines += stringResource(R.string.pro_joke_no_ads)
     lines += stringResource(R.string.pro_joke_no_subscription)
     lines += stringResource(R.string.pro_joke_caffeine)
+    lines += stringResource(R.string.pro_joke_still_lies)
+    lines += stringResource(R.string.pro_joke_look_at_me)
+    lines += stringResource(R.string.pro_joke_teaser)
+    lines += stringResource(R.string.pro_joke_sleep)
+    lines += stringResource(R.string.pro_joke_airplane, tw.dynity.wrongbutton.levels.Levels.FREE_LEVELS + 1)
+    lines += stringResource(R.string.pro_joke_hints)
+    lines += stringResource(R.string.pro_joke_unlimited)
+    lines += stringResource(R.string.pro_joke_remember)
+    lines += stringResource(R.string.pro_joke_once)
+    lines += stringResource(R.string.pro_joke_two_people)
+    // 有優惠時說是真的優惠；沒有優惠時才說「沒有限時倒數」，免得自相矛盾。
+    lines += stringResource(if (offer?.percentOff != null) R.string.pro_joke_real_sale else R.string.pro_joke_no_countdown)
     return lines
 }

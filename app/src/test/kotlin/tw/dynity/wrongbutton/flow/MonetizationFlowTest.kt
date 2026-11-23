@@ -146,7 +146,7 @@ class MonetizationFlowTest {
         tap("menu_pro")
         waitFor("pro_character")
         val seen = mutableSetOf<String>()
-        repeat(10) {
+        repeat(30) {
             seen += speech()
             press("pro_character")
             rule.waitForIdle()
