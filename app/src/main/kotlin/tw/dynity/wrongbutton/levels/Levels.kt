@@ -9,9 +9,15 @@ import tw.dynity.wrongbutton.core.memory.PlayerMemory
 /**
  * 一章。章內關卡依序排列。
  *
- * [standalone] 的章（第二季）各自獨立：第一季全部通關後，每一章的第一關都直接開放，章內再依序解鎖。
+ * [standalone] 的章（第二、三季）各自獨立：第一季全部通關後，每一章的第一關都直接開放，章內再依序解鎖。
  */
-data class Chapter(@StringRes val titleRes: Int, val levels: List<Level>, val standalone: Boolean = false)
+data class Chapter(
+    @StringRes val titleRes: Int,
+    val levels: List<Level>,
+    val standalone: Boolean = false,
+    /** 第幾季（選關畫面的分段標題）。第二、三季的章都是 [standalone]。 */
+    val season: Int = if (standalone) 2 else 1,
+)
 
 /**
  * 關卡註冊表。
@@ -162,6 +168,8 @@ object Levels {
         Chapter(R.string.chapter_18, tw.dynity.wrongbutton.levels.s2.Chapter18, standalone = true),
         Chapter(R.string.chapter_19, tw.dynity.wrongbutton.levels.s2.Chapter19, standalone = true),
         Chapter(R.string.chapter_20, tw.dynity.wrongbutton.levels.s2.Chapter20, standalone = true),
+        // ---- 第三季：每章 20 關，一樣在第一季通關後開放 ----
+        Chapter(R.string.chapter_21, tw.dynity.wrongbutton.levels.s3.Chapter21, standalone = true, season = 3),
     )
 
     val all: List<Level> = chapters.flatMap { it.levels }

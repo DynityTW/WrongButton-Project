@@ -1,0 +1,233 @@
+{
+ "301": {
+  "first": "B3",
+  "first_safe": true,
+  "steps": 2,
+  "hard": 0,
+  "lies": [],
+  "reported": {}
+ },
+ "302": {
+  "first": "A3",
+  "first_safe": true,
+  "steps": 7,
+  "hard": 0,
+  "lies": [],
+  "reported": {}
+ },
+ "303": {
+  "first": "C1",
+  "first_safe": true,
+  "steps": 4,
+  "hard": 0,
+  "lies": [],
+  "reported": {}
+ },
+ "304": {
+  "first": "D3",
+  "first_safe": true,
+  "steps": 14,
+  "hard": 3,
+  "lies": [],
+  "reported": {}
+ },
+ "305": {
+  "first": "C4",
+  "first_safe": true,
+  "steps": 13,
+  "hard": 3,
+  "lies": [],
+  "reported": {}
+ },
+ "306": {
+  "first": "C1",
+  "first_safe": true,
+  "steps": 5,
+  "hard": 0,
+  "lies": [
+   "C5"
+  ],
+  "reported": {
+   "C5": 0,
+   "B6": 1
+  }
+ },
+ "307": {
+  "first": "B3",
+  "first_safe": true,
+  "steps": 11,
+  "hard": 2,
+  "lies": [
+   "A3"
+  ],
+  "reported": {
+   "B6": 2,
+   "A3": 1,
+   "A2": 2
+  }
+ },
+ "308": {
+  "first": "E4",
+  "first_safe": true,
+  "steps": 5,
+  "hard": 2,
+  "lies": [],
+  "reported": {}
+ },
+ "309": {
+  "first": "A4",
+  "first_safe": true,
+  "steps": 9,
+  "hard": 4,
+  "lies": [],
+  "reported": {}
+ },
+ "310": {
+  "first": "C2",
+  "first_safe": true,
+  "steps": 11,
+  "hard": 2,
+  "lies": [
+   "G2",
+   "C7"
+  ],
+  "reported": {
+   "C7": 4,
+   "G2": 2,
+   "F2": 1
+  }
+ },
+ "311": {
+  "first": "B1",
+  "first_safe": true,
+  "steps": 5,
+  "hard": 2,
+  "lies": [],
+  "reported": {}
+ },
+ "312": {
+  "first": "E5",
+  "first_safe": true,
+  "steps": 9,
+  "hard": 2,
+  "lies": [
+   "C6",
+   "D6"
+  ],
+  "reported": {
+   "F6": 1,
+   "D6": 2,
+   "E7": 0,
+   "E6": 1,
+   "C6": 4
+  }
+ },
+ "313": {
+  "first": "C4",
+  "first_safe": true,
+  "steps": 13,
+  "hard": 3,
+  "lies": [
+   "A4"
+  ],
+  "reported": {
+   "A4": 0,
+   "G2": 1,
+   "F1": 1
+  }
+ },
+ "314": {
+  "first": "E3",
+  "first_safe": true,
+  "steps": 13,
+  "hard": 4,
+  "lies": [
+   "C5"
+  ],
+  "reported": {
+   "C5": 5,
+   "E1": 1,
+   "D5": 4,
+   "A6": 0
+  }
+ },
+ "315": {
+  "first": "C5",
+  "first_safe": true,
+  "steps": 13,
+  "hard": 4,
+  "lies": [],
+  "reported": {}
+ },
+ "316": {
+  "first": "E2",
+  "first_safe": true,
+  "steps": 9,
+  "hard": 2,
+  "lies": [
+   "B7"
+  ],
+  "reported": {
+   "E4": 1,
+   "C1": 1,
+   "B7": 0
+  }
+ },
+ "317": {
+  "first": "C4",
+  "first_safe": true,
+  "steps": 18,
+  "hard": 5,
+  "lies": [],
+  "reported": {}
+ },
+ "318": {
+  "first": "A2",
+  "first_safe": false,
+  "steps": 13,
+  "hard": 6,
+  "lies": [
+   "G3",
+   "C4"
+  ],
+  "reported": {
+   "C6": 1,
+   "C4": 1,
+   "B6": 2,
+   "G3": 2
+  }
+ },
+ "319": {
+  "first": "C3",
+  "first_safe": true,
+  "steps": 19,
+  "hard": 5,
+  "lies": [
+   "F3",
+   "H5"
+  ],
+  "reported": {
+   "H7": 1,
+   "F2": 2,
+   "E8": 2,
+   "H5": 0,
+   "F3": 0
+  }
+ },
+ "320": {
+  "first": "B6",
+  "first_safe": true,
+  "steps": 17,
+  "hard": 6,
+  "lies": [
+   "F1",
+   "A8"
+  ],
+  "reported": {
+   "G5": 1,
+   "A8": 0,
+   "F1": 2,
+   "D2": 2
+  }
+ }
+}

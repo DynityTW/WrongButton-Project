@@ -39,8 +39,17 @@ def esc(text: str) -> str:
     return t
 
 
+S3 = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "s3")
+
+
+def season3(ch: int) -> bool:
+    """第三季（第 21 章起）：每章 20 關，Kotlin 放在 levels/s3，規格放在 tools/s3。"""
+    return ch >= 21
+
+
 def load(ch: int):
-    path = os.path.join(os.path.dirname(__file__), f"ch{ch:02d}.py")
+    folder = S3 if season3(ch) else os.path.dirname(__file__)
+    path = os.path.join(folder, f"ch{ch:02d}.py")
     spec = importlib.util.spec_from_file_location(f"ch{ch:02d}", path)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
@@ -49,8 +58,9 @@ def load(ch: int):
 
 def check(mod):
     ids = [lv["id"] for lv in mod.LEVELS]
-    assert len(ids) == 15, f"第 {mod.CH} 章應有 15 關，現在有 {len(ids)}"
-    assert len(set(ids)) == 15, "關卡 id 重複"
+    n = 20 if season3(mod.CH) else 15
+    assert len(ids) == n, f"第 {mod.CH} 章應有 {n} 關，現在有 {len(ids)}"
+    assert len(set(ids)) == n, "關卡 id 重複"
     for ev in POOL_EVENTS:
         lines = mod.POOL[ev]
         assert len(lines) >= 2 and len(set(lines)) == len(lines), f"第 {mod.CH} 章台詞池 {ev} 至少 2 句且不重複"
@@ -116,9 +126,11 @@ def gen(ch: int):
         f.write("".join(out))
 
     # ---- Kotlin：S2Meta ----
+    pkg = "s3" if season3(ch) else "s2"
     kt = [
-        "package tw.dynity.wrongbutton.levels.s2\n\n",
+        f"package tw.dynity.wrongbutton.levels.{pkg}\n\n",
         "import tw.dynity.wrongbutton.R\n",
+        *(["import tw.dynity.wrongbutton.levels.s2.S2Meta\n"] if season3(ch) else []),
         "import tw.dynity.wrongbutton.levels.dialogue\n\n",
         f"// 由 tools/s2/gen.py 依 tools/s2/ch{nn}.py 產生，請改規格檔再重新產生。\n",
         f"internal object Ch{nn}Meta {{\n",
@@ -135,12 +147,12 @@ def gen(ch: int):
             f"    val l{i} = S2Meta({i}, R.string.l{i}_title, {task}, listOf(R.string.l{i}_hint_1, R.string.l{i}_hint_2, R.string.l{i}_hint_3), dialogue({d}))\n"
         )
     kt.append("}\n")
-    with open(os.path.join(KT, f"Ch{nn}Meta.kt"), "w") as f:
+    with open(os.path.join(KT.replace("/s2", "/s3") if season3(ch) else KT, f"Ch{nn}Meta.kt"), "w") as f:
         f.write("".join(kt))
 
     # ---- 設計文件 ----
     md = [f"# {mod.TITLE.replace('　', '　')}（{mod.LEVELS[0]['id']}–{mod.LEVELS[-1]['id']}）\n\n"]
-    md.append(f"> 由 `tools/s2/gen.py` 依 `tools/s2/ch{nn}.py` 產生。\n\n")
+    md.append(f"> 由 `tools/s2/gen.py` 依 `tools/{'s3' if season3(ch) else 's2'}/ch{nn}.py` 產生。\n\n")
     md.append(mod.INTRO.strip() + "\n\n---\n\n")
     for lv in mod.LEVELS:
         doc = lv["doc"]
@@ -160,8 +172,11 @@ def gen(ch: int):
 
 
 if __name__ == "__main__":
-    chapters = [int(a) for a in sys.argv[1:]] or [
-        int(m.group(1)) for m in (re.match(r"ch(\d+)\.py$", f) for f in sorted(os.listdir(os.path.dirname(__file__)))) if m
-    ]
+    chapters = [int(a) for a in sys.argv[1:]] or sorted(
+        int(m.group(1))
+        for d in (os.path.dirname(os.path.abspath(__file__)), S3)
+        for m in (re.match(r"ch(\d+)\.py$", f) for f in os.listdir(d))
+        if m
+    )
     for c in chapters:
         gen(c)

@@ -123,7 +123,7 @@ fun WrongButtonNavigation(container: AppContainer) {
             }
             entry<LevelSelectKey> {
                 LevelSelectScreen(
-                    chapters = Levels.chapters.map { Triple(it.titleRes, it.levels, it.standalone) },
+                    chapters = Levels.chapters.map { Triple(it.titleRes, it.levels, it.season) },
                     numberOf = Levels::numberOf,
                     isUnlocked = { Levels.isUnlocked(memory, it) },
                     needsPro = { Levels.requiresPro(it) && !shop.pro },

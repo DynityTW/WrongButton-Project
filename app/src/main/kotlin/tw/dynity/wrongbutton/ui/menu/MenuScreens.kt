@@ -191,6 +191,12 @@ fun TitleScreen(
     }
 }
 
+private fun seasonTitle(season: Int) = when (season) {
+    1 -> R.string.select_season_1
+    2 -> R.string.select_season_2
+    else -> R.string.select_season_3
+}
+
 /** 選關畫面上的一列：季標題、章標題或一關。 */
 private sealed interface SelectEntry {
     data class Season(val res: Int) : SelectEntry
@@ -200,8 +206,8 @@ private sealed interface SelectEntry {
 
 @Composable
 fun LevelSelectScreen(
-    /** （章名, 關卡, 是否第二季） */
-    chapters: List<Triple<Int, List<Level>, Boolean>>,
+    /** （章名, 關卡, 第幾季） */
+    chapters: List<Triple<Int, List<Level>, Int>>,
     numberOf: (Int) -> Int,
     isUnlocked: (Int) -> Boolean,
     memory: PlayerMemory,
@@ -221,11 +227,11 @@ fun LevelSelectScreen(
     // 目前要顯示的列（篩選後）。章節沒有待破關卡時，整章都不顯示。
     val entries = run {
         val list = mutableListOf<SelectEntry>()
-        var seasonShown = false
-        chapters.forEachIndexed { c, (_, levels, season2) ->
+        var seasonShown = 1
+        chapters.forEachIndexed { c, (_, levels, season) ->
             val shown = if (onlyTodo) levels.filter(::todo) else levels
             if (shown.isEmpty()) return@forEachIndexed
-            if (season2 && !seasonShown) { seasonShown = true; list += SelectEntry.Season(R.string.select_season_2) }
+            if (season > seasonShown) { seasonShown = season; list += SelectEntry.Season(seasonTitle(season)) }
             list += SelectEntry.Header(c)
             shown.forEach { list += SelectEntry.LevelItem(c, it) }
         }
@@ -245,13 +251,13 @@ fun LevelSelectScreen(
             // 切換篩選後，列表要先重組才知道新的位置。
             kotlinx.coroutines.yield()
             val index = run {
-                var seasonShown = false
+                var seasonShown = 1
                 var i = 0
                 for ((c, triple) in chapters.withIndex()) {
-                    val (_, levels, season2) = triple
+                    val (_, levels, season) = triple
                     val shown = if (onlyTodo) levels.filter(::todo) else levels
                     if (shown.isEmpty()) continue
-                    if (season2 && !seasonShown) { seasonShown = true; i++ }
+                    if (season > seasonShown) { seasonShown = season; i++ }
                     if (c == chapter) return@run i
                     i += 1 + shown.size
                 }
@@ -427,7 +433,7 @@ private fun LevelCard(
 /** 章節清單：每一章的進度條與待破關數，點了就跳過去。 */
 @Composable
 private fun ChapterPicker(
-    chapters: List<Triple<Int, List<Level>, Boolean>>,
+    chapters: List<Triple<Int, List<Level>, Int>>,
     memory: PlayerMemory,
     todoIn: (List<Level>) -> Int,
     current: Int,
@@ -447,16 +453,16 @@ private fun ChapterPicker(
             }
         },
     ) {
-        var seasonShown = false
-        var firstShown = false
-        chapters.forEachIndexed { c, (titleRes, levels, season2) ->
-            if (!season2 && !firstShown) {
-                firstShown = true
-                Text(stringResource(R.string.select_season_1), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.semantics { heading() })
-            }
-            if (season2 && !seasonShown) {
-                seasonShown = true
-                Text(stringResource(R.string.select_season_2), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp).semantics { heading() })
+        var seasonShown = 0
+        chapters.forEachIndexed { c, (titleRes, levels, season) ->
+            if (season > seasonShown) {
+                seasonShown = season
+                Text(
+                    stringResource(seasonTitle(season)),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.padding(top = if (season > 1) 8.dp else 0.dp).semantics { heading() },
+                )
             }
             val cleared = levels.count { memory.isCleared(it.id) }
             val left = todoIn(levels)

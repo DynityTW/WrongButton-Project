@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch21.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch21_mistakes_3">
+        <item>[guilty]妳是不是在用猜的？</item>
+        <item>[normal]每一步都想得出來，不用猜。</item>
+        <item>[normal]找一個數字，數數看它周圍還剩幾格。</item>
+    </string-array>
+    <string-array name="ch21_mistakes_6">
+        <item>[sad]這片地被妳炸得坑坑洞洞。</item>
+        <item>[normal]提示會告訴妳第一步。</item>
+        <item>[guilty]不用急，沒有計時。</item>
+    </string-array>
+    <string-array name="ch21_idle">
+        <item>[normal]慢慢想，雷不會跑。</item>
+        <item>[smug]我知道每一顆雷在哪裡。</item>
+        <item>[normal]把兩個相鄰的數字放在一起看。</item>
+    </string-array>
+    <string-array name="ch21_rapid_tap">
+        <item>[angry]踩地雷不是打地鼠！</item>
+        <item>[angry]一格一格想！</item>
+        <item>[angry]亂點會踩到雷。</item>
+    </string-array>
+    <string-array name="ch21_hint">
+        <item>[normal]好，我告訴妳從哪裡開始。</item>
+        <item>[smug]要我幫妳排雷嗎？</item>
+        <item>[normal]提示只會告訴妳第一步，後面要自己來。</item>
+    </string-array>
+    <string-array name="ch21_special">
+        <item>[guilty]一顆都沒踩到？</item>
+        <item>[normal]妳很適合當排雷兵。</item>
+        <item>[smug]妳的腦袋比金屬探測器還準。</item>
+    </string-array>
+    <string-array name="l301_enter">
+        <item>[normal]這次換我們玩踩地雷。</item>
+        <item>[smug]我把雷埋好了。</item>
+    </string-array>
+    <string-array name="l301_first_mistake">
+        <item>[guilty]碰！</item>
+        <item>[normal]數字會告訴妳周圍有幾顆雷。</item>
+    </string-array>
+    <string-array name="l301_clear">
+        <item>[normal]第一片雷區清乾淨了。</item>
+        <item>[smug]暖身而已。</item>
+    </string-array>
+    <string-array name="l302_enter">
+        <item>[normal]大一點的雷區。</item>
+        <item>[smug]這次有 4 顆。</item>
+    </string-array>
+    <string-array name="l302_first_mistake">
+        <item>[guilty]踩到了。</item>
+        <item>[normal]那顆其實推得出來。</item>
+    </string-array>
+    <string-array name="l302_clear">
+        <item>[normal]數字都看懂了。</item>
+        <item>[smug]妳開始像個排雷專家了。</item>
+    </string-array>
+    <string-array name="l303_enter">
+        <item>[normal]這次不用翻。</item>
+        <item>[smug]把雷全部找出來，插上旗。</item>
+    </string-array>
+    <string-array name="l303_first_mistake">
+        <item>[smug]那裡沒有雷。</item>
+        <item>[normal]只插確定的。</item>
+    </string-array>
+    <string-array name="l303_clear">
+        <item>[normal]四顆旗，四顆雷。</item>
+        <item>[smug]插得剛剛好。</item>
+    </string-array>
+    <string-array name="l304_enter">
+        <item>[normal]這片雷區比較密。</item>
+        <item>[smug]我埋了 7 顆。</item>
+    </string-array>
+    <string-array name="l304_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]兩個數字放在一起想。</item>
+    </string-array>
+    <string-array name="l304_clear">
+        <item>[normal]角落也清乾淨了。</item>
+        <item>[smug]妳學會「一二一」了嗎？</item>
+    </string-array>
+    <string-array name="l305_enter">
+        <item>[normal]這次我告訴妳一共幾顆雷。</item>
+        <item>[smug]最後會用到。</item>
+    </string-array>
+    <string-array name="l305_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]數一數還剩幾顆。</item>
+    </string-array>
+    <string-array name="l305_clear">
+        <item>[normal]總數也是線索。</item>
+        <item>[smug]妳連雷都會數了。</item>
+    </string-array>
+    <string-array name="l306_enter">
+        <item>[normal]有兩格的數字只有我知道。</item>
+        <item>[smug]點一下，我就告訴妳。</item>
+    </string-array>
+    <string-array name="l306_first_mistake">
+        <item>[guilty]妳相信了我說的數字？</item>
+        <item>[normal]說數字的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l306_clear">
+        <item>[normal]妳沒有被我騙。</item>
+        <item>[smug]下次我會說得更自然。</item>
+    </string-array>
+    <string-array name="l307_enter">
+        <item>[normal]三格要問我。</item>
+        <item>[smug]我只說了一句謊。</item>
+    </string-array>
+    <string-array name="l307_first_mistake">
+        <item>[guilty]那句是謊話。</item>
+        <item>[normal]再問一次，看清楚我的臉。</item>
+    </string-array>
+    <string-array name="l307_clear">
+        <item>[normal]一句謊話也沒騙到妳。</item>
+        <item>[smug]妳記性真好。</item>
+    </string-array>
+    <string-array name="l308_enter">
+        <item>[normal]換個規則。</item>
+        <item>[smug]這次斜角不算。</item>
+    </string-array>
+    <string-array name="l308_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]斜角不算，只算十字。</item>
+    </string-array>
+    <string-array name="l308_clear">
+        <item>[normal]十字也難不倒妳。</item>
+        <item>[smug]妳的眼睛轉得過來。</item>
+    </string-array>
+    <string-array name="l309_enter">
+        <item>[normal]又是插旗。</item>
+        <item>[smug]這次八顆。</item>
+    </string-array>
+    <string-array name="l309_first_mistake">
+        <item>[smug]那裡沒有雷。</item>
+        <item>[normal]確定了再插。</item>
+    </string-array>
+    <string-array name="l309_clear">
+        <item>[normal]八顆全中。</item>
+        <item>[smug]妳插旗的手很穩。</item>
+    </string-array>
+    <string-array name="l310_enter">
+        <item>[normal]今天太陽很大。</item>
+        <item>[smug]我戴了墨鏡。</item>
+    </string-array>
+    <string-array name="l310_first_mistake">
+        <item>[guilty]那句是謊話。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l310_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳讀嘴角的功夫一流。</item>
+    </string-array>
+    <string-array name="l311_enter">
+        <item>[normal]十字加插旗。</item>
+        <item>[smug]兩個規則一起來。</item>
+    </string-array>
+    <string-array name="l311_first_mistake">
+        <item>[smug]那裡沒有雷。</item>
+        <item>[normal]斜角不算。</item>
+    </string-array>
+    <string-array name="l311_clear">
+        <item>[normal]一顆都沒插錯。</item>
+        <item>[smug]十字是妳的了。</item>
+    </string-array>
+    <string-array name="l312_enter">
+        <item>[normal]這一片的數字，我來說。</item>
+        <item>[smug]妳只能聽我的。</item>
+    </string-array>
+    <string-array name="l312_first_mistake">
+        <item>[guilty]那句是謊話。</item>
+        <item>[normal]每一格都再問一次。</item>
+    </string-array>
+    <string-array name="l312_clear">
+        <item>[normal]五句話，兩句謊話，妳都分出來了。</item>
+        <item>[smug]我以為這次一定騙得到妳。</item>
+    </string-array>
+    <string-array name="l313_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]看不到嘴角了吧。</item>
+    </string-array>
+    <string-array name="l313_first_mistake">
+        <item>[guilty]那句是謊話。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l313_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l314_enter">
+        <item>[normal]我今天不想露臉。</item>
+        <item>[smug]數字寫在紙條上了。</item>
+    </string-array>
+    <string-array name="l314_first_mistake">
+        <item>[guilty]妳相信了假的那張。</item>
+        <item>[normal]先找出哪一張會造成矛盾。</item>
+    </string-array>
+    <string-array name="l314_clear">
+        <item>[normal]沒有臉也騙不了妳。</item>
+        <item>[smug]妳是偵探嗎？</item>
+    </string-array>
+    <string-array name="l315_enter">
+        <item>[normal]這次的最後一步很難。</item>
+        <item>[smug]要算數。</item>
+    </string-array>
+    <string-array name="l315_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]數一數還剩幾顆雷。</item>
+    </string-array>
+    <string-array name="l315_clear">
+        <item>[normal]算得剛剛好。</item>
+        <item>[smug]妳的數學比我好。</item>
+    </string-array>
+    <string-array name="l316_enter">
+        <item>[normal]十字地圖。</item>
+        <item>[smug]加上我說的話。</item>
+    </string-array>
+    <string-array name="l316_first_mistake">
+        <item>[guilty]那句是謊話。</item>
+        <item>[normal]斜角不算，也別相信每一句話。</item>
+    </string-array>
+    <string-array name="l316_clear">
+        <item>[normal]兩種陷阱都躲過了。</item>
+        <item>[smug]妳越來越難騙了。</item>
+    </string-array>
+    <string-array name="l317_enter">
+        <item>[normal]這是一張真正的雷區。</item>
+        <item>[smug]祝妳好運。</item>
+    </string-array>
+    <string-array name="l317_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]這張不用猜，一定推得出來。</item>
+    </string-array>
+    <string-array name="l317_clear">
+        <item>[normal]整張地圖都清乾淨了。</item>
+        <item>[smug]妳可以去參加踩地雷比賽了。</item>
+    </string-array>
+    <string-array name="l318_enter">
+        <item>[normal]最後一次插旗。</item>
+        <item>[smug]這次我也會說話。</item>
+    </string-array>
+    <string-array name="l318_first_mistake">
+        <item>[smug]那裡沒有雷。</item>
+        <item>[normal]先分出真話和謊話。</item>
+    </string-array>
+    <string-array name="l318_clear">
+        <item>[normal]全部插對了。</item>
+        <item>[smug]我服了。</item>
+    </string-array>
+    <string-array name="l319_enter">
+        <item>[normal]紙條又來了。</item>
+        <item>[smug]這次有兩張是假的。</item>
+    </string-array>
+    <string-array name="l319_first_mistake">
+        <item>[guilty]那張紙條是假的。</item>
+        <item>[normal]找會互相矛盾的紙條。</item>
+    </string-array>
+    <string-array name="l319_clear">
+        <item>[normal]兩張假紙條都被妳抓出來了。</item>
+        <item>[smug]妳真的是偵探。</item>
+    </string-array>
+    <string-array name="l320_enter">
+        <item>[normal]這是最後一片雷區。</item>
+        <item>[smug]也是最難的一片。</item>
+    </string-array>
+    <string-array name="l320_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]不要急，每一步都推得出來。</item>
+    </string-array>
+    <string-array name="l320_clear">
+        <item>[normal]整片雷區都是妳的了。</item>
+        <item>[smug]下一章，我們玩別的。</item>
+    </string-array>
+</resources>
