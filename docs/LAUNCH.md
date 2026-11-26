@@ -1,8 +1,8 @@
-# 上架檢查清單（0.9.0）
+# 上架檢查清單（0.9.1）
 
 ## 已經完成（在程式裡）
 
-- [x] 套件名稱 `com.wrongbutton.app`，版本 0.9.0（versionCode 900）
+- [x] 套件名稱 `com.wrongbutton.app`，版本 0.9.1（versionCode 901）
 - [x] 強制更新：Play 上有任何較新的版本時，蓋住遊戲並打開 Google Play 的更新畫面
 - [x] Google Play 結帳：商品 ID `wrongbutton_pro`，自動恢復購買、確認購買、退款收回、待付款處理
 - [x] AdMob：第 2、3 階提示的獎勵廣告、每 5 關一次的全版廣告、Google 同意表單、廣告隱私權選項

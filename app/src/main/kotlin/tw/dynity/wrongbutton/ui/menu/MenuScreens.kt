@@ -32,6 +32,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Surface
@@ -190,6 +191,13 @@ fun TitleScreen(
     }
 }
 
+/** 選關畫面上的一列：季標題、章標題或一關。 */
+private sealed interface SelectEntry {
+    data class Season(val res: Int) : SelectEntry
+    data class Header(val chapter: Int) : SelectEntry
+    data class LevelItem(val chapter: Int, val level: Level) : SelectEntry
+}
+
 @Composable
 fun LevelSelectScreen(
     /** （章名, 關卡, 是否第二季） */
@@ -203,126 +211,284 @@ fun LevelSelectScreen(
 ) {
     val gridState = androidx.compose.foundation.lazy.grid.rememberLazyGridState()
     val coroutine = androidx.compose.runtime.rememberCoroutineScope()
-    // 每一章標題在格狀清單裡的位置，給「跳到第 N 章」用。
-    val headerIndex = remember(chapters) {
-        var i = 0
+    // 「待破關」：已經解鎖、可以玩（不需要 Pro 或已經有 Pro）、但還沒通關的關卡。
+    fun todo(level: Level) = isUnlocked(level.id) && !needsPro(level.id) && !memory.isCleared(level.id)
+    var onlyTodo by rememberSaveable { mutableStateOf(false) }
+    var picking by rememberSaveable { mutableStateOf(false) }
+    val todoCount = chapters.sumOf { (_, levels) -> levels.count(::todo) }
+    val total = chapters.sumOf { it.second.size }
+
+    // 目前要顯示的列（篩選後）。章節沒有待破關卡時，整章都不顯示。
+    val entries = run {
+        val list = mutableListOf<SelectEntry>()
         var seasonShown = false
-        chapters.map { (_, levels, season2) ->
-            if (season2 && !seasonShown) { seasonShown = true; i++ } // 「第二季」標題也佔一格
-            val at = i
-            i += 1 + levels.size
-            at
+        chapters.forEachIndexed { c, (_, levels, season2) ->
+            val shown = if (onlyTodo) levels.filter(::todo) else levels
+            if (shown.isEmpty()) return@forEachIndexed
+            if (season2 && !seasonShown) { seasonShown = true; list += SelectEntry.Season(R.string.select_season_2) }
+            list += SelectEntry.Header(c)
+            shown.forEach { list += SelectEntry.LevelItem(c, it) }
+        }
+        list
+    }
+    val headerAt = entries.withIndex().filter { it.value is SelectEntry.Header }.associate { (i, e) -> (e as SelectEntry.Header).chapter to i }
+    // 捲到哪一章，上面的章節按鈕就顯示哪一章。
+    val currentChapter by androidx.compose.runtime.remember(entries) {
+        androidx.compose.runtime.derivedStateOf {
+            val first = gridState.firstVisibleItemIndex
+            headerAt.entries.filter { it.value <= first }.maxByOrNull { it.value }?.key ?: headerAt.keys.minOrNull() ?: 0
         }
     }
+    fun jumpTo(chapter: Int) {
+        if (onlyTodo && headerAt[chapter] == null) onlyTodo = false
+        coroutine.launch {
+            // 切換篩選後，列表要先重組才知道新的位置。
+            kotlinx.coroutines.yield()
+            val index = run {
+                var seasonShown = false
+                var i = 0
+                for ((c, triple) in chapters.withIndex()) {
+                    val (_, levels, season2) = triple
+                    val shown = if (onlyTodo) levels.filter(::todo) else levels
+                    if (shown.isEmpty()) continue
+                    if (season2 && !seasonShown) { seasonShown = true; i++ }
+                    if (c == chapter) return@run i
+                    i += 1 + shown.size
+                }
+                0
+            }
+            gridState.animateScrollToItem(index)
+        }
+    }
+
+    Box(Modifier.fillMaxSize()) {
     ScreenScaffold(title = stringResource(R.string.select_title), onBack = onBack) {
-        // 章節捷徑：300 關不用一路捲下去。
-        androidx.compose.foundation.lazy.LazyRow(
-            modifier = Modifier.fillMaxWidth().testTag("select_chapters"),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(horizontal = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(chapters.size) { c ->
-                val (titleRes, levels) = chapters[c]
-                val cleared = levels.count { memory.isCleared(it.id) }
-                val title = stringResource(titleRes)
-                val short = title.substringBefore('　')
-                val cd = stringResource(R.string.select_jump_cd, title)
-                androidx.compose.material3.AssistChip(
-                    onClick = { coroutine.launch { gridState.animateScrollToItem(headerIndex[c]) } },
-                    label = { Text("$short  " + stringResource(R.string.select_chapter_progress, cleared, levels.size)) },
-                    modifier = Modifier
-                        .heightIn(min = 48.dp)
-                        .testTag("select_jump_$c")
-                        .semantics { contentDescription = cd },
+        Column(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            // 章節切換：顯示目前捲到的章，點開可以跳到任何一章。
+            val (curTitle, curLevels) = chapters[currentChapter.coerceIn(0, chapters.lastIndex)]
+            val curCleared = curLevels.count { memory.isCleared(it.id) }
+            val pickerCd = stringResource(R.string.select_picker_cd, stringResource(curTitle))
+            Surface(
+                onClick = { picking = true },
+                shape = RoundedCornerShape(16.dp),
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp).testTag("select_chapter_picker").semantics { contentDescription = pickerCd },
+            ) {
+                Row(Modifier.padding(horizontal = 16.dp, vertical = 10.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Text(stringResource(curTitle), style = MaterialTheme.typography.titleSmall, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, modifier = Modifier.weight(1f))
+                    Text(stringResource(R.string.select_chapter_progress, curCleared, curLevels.size), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSecondaryContainer)
+                    Text("  ▾", style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSecondaryContainer)
+                }
+            }
+            // 篩選：全部／待破關。
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                androidx.compose.material3.FilterChip(
+                    selected = !onlyTodo,
+                    onClick = { onlyTodo = false; coroutine.launch { gridState.scrollToItem(0) } },
+                    label = { Text(stringResource(R.string.select_filter_all, total)) },
+                    modifier = Modifier.heightIn(min = 48.dp).testTag("select_filter_all"),
+                )
+                androidx.compose.material3.FilterChip(
+                    selected = onlyTodo,
+                    onClick = { onlyTodo = true; coroutine.launch { gridState.scrollToItem(0) } },
+                    label = { Text(stringResource(R.string.select_filter_todo, todoCount)) },
+                    modifier = Modifier.heightIn(min = 48.dp).testTag("select_filter_todo"),
                 )
             }
+        }
+        if (onlyTodo && entries.isEmpty()) {
+            val waitingForPro = chapters.any { (_, levels) -> levels.any { isUnlocked(it.id) && needsPro(it.id) && !memory.isCleared(it.id) } }
+            Text(
+                stringResource(if (waitingForPro) R.string.select_todo_empty_pro else R.string.select_todo_empty),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().padding(32.dp).testTag("select_todo_empty"),
+            )
         }
         LazyVerticalGrid(
             state = gridState,
             columns = GridCells.Adaptive(160.dp),
             modifier = Modifier.fillMaxSize().padding(horizontal = 12.dp).testTag("select_grid"),
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(top = 8.dp, bottom = 24.dp),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            var seasonHeaderShown = false
-            chapters.forEach { (chapterTitle, levels, season2) ->
-            if (season2 && !seasonHeaderShown) {
-                seasonHeaderShown = true
-                item(key = "season_2", span = { GridItemSpan(maxLineSpan) }) {
-                    Text(
-                        stringResource(R.string.select_season_2),
-                        style = MaterialTheme.typography.headlineSmall,
-                        modifier = Modifier.padding(top = 24.dp, start = 4.dp).semantics { heading() },
-                    )
-                }
-            }
-            item(key = "chapter_$chapterTitle", span = { GridItemSpan(maxLineSpan) }) {
-                val cleared = levels.count { memory.isCleared(it.id) }
-                Row(
-                    Modifier.padding(top = 12.dp, bottom = 4.dp, start = 4.dp, end = 4.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        stringResource(chapterTitle),
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.weight(1f).semantics { heading() },
-                    )
-                    Text(
-                        stringResource(R.string.select_chapter_progress, cleared, levels.size),
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
-            }
-            items(levels, key = { it.id }) { level ->
-                val unlocked = isUnlocked(level.id)
-                val pro = needsPro(level.id)
-                val number = numberOf(level.id)
-                val cleared = memory.isCleared(level.id)
-                val status = stringResource(
-                    when {
-                        cleared -> R.string.select_cleared
-                        unlocked && pro -> R.string.pro_locked_cd
-                        unlocked -> R.string.select_open
-                        else -> R.string.select_locked
-                    },
-                )
-                val title = stringResource(level.titleRes)
-                val cd = stringResource(R.string.select_card_cd, number, title, status)
-                Surface(
-                    onClick = { onPlay(level.id) },
-                    enabled = unlocked,
-                    shape = RoundedCornerShape(20.dp),
-                    color = if (unlocked) MaterialTheme.colorScheme.surfaceContainerHigh else MaterialTheme.colorScheme.surfaceVariant,
-                    modifier = Modifier
-                        .heightIn(min = 112.dp)
-                        .testTag("select_level_${level.id}")
-                        .semantics(mergeDescendants = true) { contentDescription = cd },
-                ) {
-                    Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
-                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                            Text(stringResource(R.string.select_number, number), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
-                            if (!unlocked) Icon(WbIcons.Lock, contentDescription = null, modifier = Modifier.size(16.dp))
-                            if (cleared) Icon(WbIcons.Check, contentDescription = null, modifier = Modifier.size(16.dp))
-                            if (pro && !cleared) {
-                                Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.tertiaryContainer) {
-                                    Text(
-                                        stringResource(R.string.pro_locked),
-                                        style = MaterialTheme.typography.labelSmall,
-                                        color = MaterialTheme.colorScheme.onTertiaryContainer,
-                                        modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
-                                    )
-                                }
-                            }
+            entries.forEach { entry ->
+                when (entry) {
+                    is SelectEntry.Season -> item(key = "season_${entry.res}", span = { GridItemSpan(maxLineSpan) }) {
+                        Text(
+                            stringResource(entry.res),
+                            style = MaterialTheme.typography.headlineSmall,
+                            modifier = Modifier.padding(top = 24.dp, start = 4.dp).semantics { heading() },
+                        )
+                    }
+                    is SelectEntry.Header -> item(key = "chapter_${entry.chapter}", span = { GridItemSpan(maxLineSpan) }) {
+                        val (chapterTitle, levels) = chapters[entry.chapter]
+                        val cleared = levels.count { memory.isCleared(it.id) }
+                        Row(
+                            Modifier.padding(top = 12.dp, bottom = 4.dp, start = 4.dp, end = 4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            Text(
+                                stringResource(chapterTitle),
+                                style = MaterialTheme.typography.titleMedium,
+                                color = MaterialTheme.colorScheme.primary,
+                                modifier = Modifier.weight(1f).semantics { heading() },
+                            )
+                            Text(
+                                stringResource(R.string.select_chapter_progress, cleared, levels.size),
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            )
                         }
-                        Text(title, style = MaterialTheme.typography.titleMedium)
-                        Text(status, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    is SelectEntry.LevelItem -> item(key = entry.level.id) {
+                        LevelCard(entry.level, numberOf, isUnlocked, needsPro, memory, onPlay, highlight = todo(entry.level))
                     }
                 }
             }
+        }
+    }
+    if (picking) {
+        ChapterPicker(
+            chapters = chapters,
+            memory = memory,
+            todoIn = { levels -> levels.count(::todo) },
+            current = currentChapter,
+            onPick = { c -> picking = false; jumpTo(c) },
+            onClose = { picking = false },
+        )
+    }
+    }
+}
+
+@Composable
+private fun LevelCard(
+    level: Level,
+    numberOf: (Int) -> Int,
+    isUnlocked: (Int) -> Boolean,
+    needsPro: (Int) -> Boolean,
+    memory: PlayerMemory,
+    onPlay: (Int) -> Unit,
+    highlight: Boolean,
+) {
+    val unlocked = isUnlocked(level.id)
+    val pro = needsPro(level.id)
+    val number = numberOf(level.id)
+    val cleared = memory.isCleared(level.id)
+    val status = stringResource(
+        when {
+            cleared -> R.string.select_cleared
+            unlocked && pro -> R.string.pro_locked_cd
+            unlocked -> R.string.select_open
+            else -> R.string.select_locked
+        },
+    )
+    val title = stringResource(level.titleRes)
+    val cd = stringResource(R.string.select_card_cd, number, title, status)
+    Surface(
+        onClick = { onPlay(level.id) },
+        enabled = unlocked,
+        shape = RoundedCornerShape(20.dp),
+        // 待破關的關卡用比較醒目的顏色，「全部」裡也一眼看得出來。
+        color = when {
+            highlight -> MaterialTheme.colorScheme.primaryContainer
+            unlocked -> MaterialTheme.colorScheme.surfaceContainerHigh
+            else -> MaterialTheme.colorScheme.surfaceVariant
+        },
+        modifier = Modifier
+            .heightIn(min = 112.dp)
+            .testTag("select_level_${level.id}")
+            .semantics(mergeDescendants = true) { contentDescription = cd },
+    ) {
+        Column(Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                Text(stringResource(R.string.select_number, number), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                if (!unlocked) Icon(WbIcons.Lock, contentDescription = null, modifier = Modifier.size(16.dp))
+                if (cleared) Icon(WbIcons.Check, contentDescription = null, modifier = Modifier.size(16.dp))
+                if (pro && !cleared) {
+                    Surface(shape = RoundedCornerShape(6.dp), color = MaterialTheme.colorScheme.tertiaryContainer) {
+                        Text(
+                            stringResource(R.string.pro_locked),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = MaterialTheme.colorScheme.onTertiaryContainer,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                        )
+                    }
+                }
             }
-            item(span = { GridItemSpan(maxLineSpan) }) { Spacer(Modifier.height(24.dp)) }
+            Text(title, style = MaterialTheme.typography.titleMedium)
+            Text(status, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+/** 章節清單：每一章的進度條與待破關數，點了就跳過去。 */
+@Composable
+private fun ChapterPicker(
+    chapters: List<Triple<Int, List<Level>, Boolean>>,
+    memory: PlayerMemory,
+    todoIn: (List<Level>) -> Int,
+    current: Int,
+    onPick: (Int) -> Unit,
+    onClose: () -> Unit,
+) {
+    androidx.activity.compose.BackHandler(onBack = onClose)
+    tw.dynity.wrongbutton.core.ui.WbOverlay(
+        maxWidth = 560.dp,
+        modifier = Modifier.testTag("select_picker"),
+        header = {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = onClose, modifier = Modifier.testTag("select_picker_close")) {
+                    Icon(WbIcons.Back, contentDescription = stringResource(R.string.records_back))
+                }
+                Text(stringResource(R.string.select_picker_title), style = MaterialTheme.typography.headlineSmall, modifier = Modifier.semantics { heading() })
+            }
+        },
+    ) {
+        var seasonShown = false
+        var firstShown = false
+        chapters.forEachIndexed { c, (titleRes, levels, season2) ->
+            if (!season2 && !firstShown) {
+                firstShown = true
+                Text(stringResource(R.string.select_season_1), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.semantics { heading() })
+            }
+            if (season2 && !seasonShown) {
+                seasonShown = true
+                Text(stringResource(R.string.select_season_2), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 8.dp).semantics { heading() })
+            }
+            val cleared = levels.count { memory.isCleared(it.id) }
+            val left = todoIn(levels)
+            val title = stringResource(titleRes)
+            val cd = stringResource(R.string.select_picker_row_cd, title, cleared, levels.size, left)
+            Surface(
+                onClick = { onPick(c) },
+                shape = RoundedCornerShape(14.dp),
+                color = if (c == current) MaterialTheme.colorScheme.secondaryContainer else MaterialTheme.colorScheme.surfaceContainerHighest,
+                modifier = Modifier.fillMaxWidth().heightIn(min = 56.dp).testTag("select_pick_$c").clearAndSetSemantics { contentDescription = cd },
+            ) {
+                Column(Modifier.padding(horizontal = 14.dp, vertical = 10.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        Text(title, style = MaterialTheme.typography.bodyLarge, fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, modifier = Modifier.weight(1f))
+                        if (left > 0) {
+                            Surface(shape = RoundedCornerShape(8.dp), color = MaterialTheme.colorScheme.primary) {
+                                Text(
+                                    stringResource(R.string.select_todo_badge, left),
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+                                )
+                            }
+                        }
+                        Text(stringResource(R.string.select_chapter_progress, cleared, levels.size), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
+                    androidx.compose.material3.LinearProgressIndicator(
+                        progress = { if (levels.isEmpty()) 0f else cleared / levels.size.toFloat() },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            }
         }
     }
 }

@@ -288,6 +288,15 @@
     <string name="select_chapter_progress">%1$d／%2$d</string>
     <string name="select_season_2">第二季</string>
     <string name="select_jump_cd">跳到%1$s</string>
+    <string name="select_season_1">第一季</string>
+    <string name="select_filter_all">全部（%1$d）</string>
+    <string name="select_filter_todo">待破關（%1$d）</string>
+    <string name="select_todo_empty">目前沒有待破關的關卡。往下一章前進，或回去挑戰還沒解開的特殊解吧。</string>
+    <string name="select_todo_empty_pro">免費關卡都破完了！接下來的關卡需要 Pro。</string>
+    <string name="select_todo_badge">待破 %1$d</string>
+    <string name="select_picker_title">選擇章節</string>
+    <string name="select_picker_cd">目前在%1$s，點兩下選擇其他章節</string>
+    <string name="select_picker_row_cd">%1$s，已通關 %2$d／%3$d，待破關 %4$d</string>
     <!-- 桌面捷徑與小工具 -->
     <string name="shortcut_press_short">按下 The Button</string>
     <string name="shortcut_press_long">從外面按下 The Button</string>

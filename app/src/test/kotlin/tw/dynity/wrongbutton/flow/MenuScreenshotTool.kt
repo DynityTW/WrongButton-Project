@@ -55,6 +55,11 @@ class MenuScreenshotTool {
             val proId = tw.dynity.wrongbutton.levels.Levels.all[tw.dynity.wrongbutton.levels.Levels.FREE_LEVELS].id
             rule.onNodeWithTag("select_grid").performScrollToKey(proId)
             shot("select")
+            tap("select_filter_todo"); shot("select_todo")
+            tap("select_chapter_picker"); waitFor("select_picker"); shot("select_picker")
+            rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }
+            tap("select_filter_all")
+            rule.onNodeWithTag("select_grid").performScrollToKey(proId)
             tap("select_level_$proId"); waitFor("pro_screen"); shot("pro")
             rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }
             waitFor("select_grid")
