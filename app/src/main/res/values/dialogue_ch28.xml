@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch28.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch28_mistakes_3">
+        <item>[guilty]妳是不是用猜的？</item>
+        <item>[normal]先找最能縮小範圍的那一條規則。</item>
+        <item>[normal]把每一位可能的數字寫下來。</item>
+    </string-array>
+    <string-array name="ch28_mistakes_6">
+        <item>[sad]這個帳號要被鎖住了。</item>
+        <item>[normal]提示會告訴妳答案。</item>
+        <item>[guilty]不用急，不會真的鎖住。</item>
+    </string-array>
+    <string-array name="ch28_idle">
+        <item>[normal]拿張紙算一算。</item>
+        <item>[smug]我的密碼很安全。</item>
+        <item>[normal]加起來、乘起來、比大小。</item>
+    </string-array>
+    <string-array name="ch28_rapid_tap">
+        <item>[angry]不要亂轉！</item>
+        <item>[angry]先算再轉。</item>
+        <item>[angry]轉盤會壞掉。</item>
+    </string-array>
+    <string-array name="ch28_hint">
+        <item>[normal]好，我偷偷告訴妳。</item>
+        <item>[smug]要我幫妳重設密碼嗎？</item>
+        <item>[normal]提示會告訴妳答案。</item>
+    </string-array>
+    <string-array name="ch28_special">
+        <item>[guilty]一次就設對？</item>
+        <item>[normal]妳是資安專家。</item>
+        <item>[smug]這個密碼很強。跟妳一樣。</item>
+    </string-array>
+    <string-array name="l441_enter">
+        <item>[normal]請設定密碼。</item>
+        <item>[smug]要符合我的規則。</item>
+    </string-array>
+    <string-array name="l441_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]每一條規則都要符合。</item>
+    </string-array>
+    <string-array name="l441_clear">
+        <item>[normal]密碼設好了。</item>
+        <item>[smug]這是暖身。</item>
+    </string-array>
+    <string-array name="l442_enter">
+        <item>[normal]換一組規則。</item>
+        <item>[smug]比剛才嚴格。</item>
+    </string-array>
+    <string-array name="l442_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先看大小關係。</item>
+    </string-array>
+    <string-array name="l442_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]妳的密碼越來越強。</item>
+    </string-array>
+    <string-array name="l443_enter">
+        <item>[normal]這次的規則很挑。</item>
+        <item>[smug]只要奇數。</item>
+    </string-array>
+    <string-array name="l443_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]每一位都要是奇數。</item>
+    </string-array>
+    <string-array name="l443_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]奇怪的密碼。</item>
+    </string-array>
+    <string-array name="l444_enter">
+        <item>[normal]這次有一條規則是我說的。</item>
+        <item>[smug]相信我。</item>
+    </string-array>
+    <string-array name="l444_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l444_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我只是想讓妳的密碼弱一點。</item>
+    </string-array>
+    <string-array name="l445_enter">
+        <item>[normal]三位數的最後一題。</item>
+        <item>[smug]下一題就四位數了。</item>
+    </string-array>
+    <string-array name="l445_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先找一定有的數字。</item>
+    </string-array>
+    <string-array name="l445_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]三位數畢業。</item>
+    </string-array>
+    <string-array name="l446_enter">
+        <item>[normal]四位數。</item>
+        <item>[smug]一萬種可能。</item>
+    </string-array>
+    <string-array name="l446_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先用總和。</item>
+    </string-array>
+    <string-array name="l446_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]妳的銀行密碼也這麼強嗎？</item>
+    </string-array>
+    <string-array name="l447_enter">
+        <item>[normal]這次有「最大的數字」。</item>
+        <item>[smug]還有「大幾」。</item>
+    </string-array>
+    <string-array name="l447_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]把綁在一起的兩位一起想。</item>
+    </string-array>
+    <string-array name="l447_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]妳很會算。</item>
+    </string-array>
+    <string-array name="l448_enter">
+        <item>[normal]這次全部聽我說。</item>
+        <item>[smug]五條。</item>
+    </string-array>
+    <string-array name="l448_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l448_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]妳很難騙。</item>
+    </string-array>
+    <string-array name="l449_enter">
+        <item>[normal]這次要用乘法。</item>
+        <item>[smug]妳會因數分解嗎？</item>
+    </string-array>
+    <string-array name="l449_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先分解。</item>
+    </string-array>
+    <string-array name="l449_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]數學老師會很驕傲。</item>
+    </string-array>
+    <string-array name="l450_enter">
+        <item>[normal]我不露臉。</item>
+        <item>[smug]有一條規則是假的。</item>
+    </string-array>
+    <string-array name="l450_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先找矛盾。</item>
+    </string-array>
+    <string-array name="l450_clear">
+        <item>[normal]妳找到假的那條了。</item>
+        <item>[smug]妳是駭客。</item>
+    </string-array>
+    <string-array name="l451_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]說謊的幅度很小。</item>
+    </string-array>
+    <string-array name="l451_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l451_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l452_enter">
+        <item>[normal]這次有倍數。</item>
+        <item>[smug]妳記得小學的規則嗎？</item>
+    </string-array>
+    <string-array name="l452_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]9 的倍數，數字加起來也是 9 的倍數。</item>
+    </string-array>
+    <string-array name="l452_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]小學數學很有用吧。</item>
+    </string-array>
+    <string-array name="l453_enter">
+        <item>[normal]十一的倍數。</item>
+        <item>[smug]這個比較難。</item>
+    </string-array>
+    <string-array name="l453_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]交錯相加相減。</item>
+    </string-array>
+    <string-array name="l453_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]妳的數學比我好。</item>
+    </string-array>
+    <string-array name="l454_enter">
+        <item>[normal]這次有回文。</item>
+        <item>[smug]有一條是假的。</item>
+    </string-array>
+    <string-array name="l454_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]找出矛盾。</item>
+    </string-array>
+    <string-array name="l454_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]妳倒過來也一樣厲害。</item>
+    </string-array>
+    <string-array name="l455_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]七條規則。</item>
+    </string-array>
+    <string-array name="l455_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l455_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l456_enter">
+        <item>[normal]五位數。</item>
+        <item>[smug]十萬種可能。</item>
+    </string-array>
+    <string-array name="l456_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先用最強的規則。</item>
+    </string-array>
+    <string-array name="l456_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]這個密碼連我都記不住。</item>
+    </string-array>
+    <string-array name="l457_enter">
+        <item>[normal]五位數，一個謊。</item>
+        <item>[smug]小心。</item>
+    </string-array>
+    <string-array name="l457_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l457_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我要換個方法了。</item>
+    </string-array>
+    <string-array name="l458_enter">
+        <item>[normal]我不露臉。</item>
+        <item>[smug]五位數。</item>
+    </string-array>
+    <string-array name="l458_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]找矛盾。</item>
+    </string-array>
+    <string-array name="l458_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]妳比防毒軟體還厲害。</item>
+    </string-array>
+    <string-array name="l459_enter">
+        <item>[normal]強密碼。</item>
+        <item>[smug]兩個謊。</item>
+    </string-array>
+    <string-array name="l459_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l459_clear">
+        <item>[normal]兩個謊都沒用。</item>
+        <item>[smug]我要去上表演課了。</item>
+    </string-array>
+    <string-array name="l460_enter">
+        <item>[normal]最後一個保險箱。</item>
+        <item>[smug]裡面有我的秘密。</item>
+    </string-array>
+    <string-array name="l460_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]先分出謊話。</item>
+    </string-array>
+    <string-array name="l460_clear">
+        <item>[normal]保險箱打開了。</item>
+        <item>[smug]裡面什麼都沒有。下一章，我們來照鏡子。</item>
+    </string-array>
+</resources>
