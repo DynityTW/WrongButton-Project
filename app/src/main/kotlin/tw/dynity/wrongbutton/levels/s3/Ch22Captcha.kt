@@ -268,7 +268,7 @@ private fun TileView(tile: Tile, i: Int, selected: Boolean, size: Dp, res: andro
     }
 }
 
-private fun DrawScope.drawTile(tile: Tile) {
+internal fun DrawScope.drawTile(tile: Tile) {
     val color = TileColors[tile.color]
     val slots = when (tile.count) {
         1 -> listOf(Offset(0.5f, 0.5f))

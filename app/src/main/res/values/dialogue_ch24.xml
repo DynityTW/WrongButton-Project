@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch24.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch24_mistakes_3">
+        <item>[guilty]妳是不是用猜的？</item>
+        <item>[normal]先找所有 ✓ 共同的地方。</item>
+        <item>[normal]一條一條規則試試看。</item>
+    </string-array>
+    <string-array name="ch24_mistakes_6">
+        <item>[sad]我的規則沒有那麼難吧。</item>
+        <item>[normal]提示會告訴妳答案。</item>
+        <item>[guilty]不用急，規則不會變。</item>
+    </string-array>
+    <string-array name="ch24_idle">
+        <item>[normal]慢慢想，規則不會跑。</item>
+        <item>[smug]我的規則很簡單。對我來說。</item>
+        <item>[normal]把 ✓ 和 ✗ 比一比。</item>
+    </string-array>
+    <string-array name="ch24_rapid_tap">
+        <item>[angry]不要亂點！</item>
+        <item>[angry]先想再選。</item>
+        <item>[angry]規則不是用點的。</item>
+    </string-array>
+    <string-array name="ch24_hint">
+        <item>[normal]好，我幫妳一下。</item>
+        <item>[smug]要我把規則說出來嗎？</item>
+        <item>[normal]提示會從最重要的地方開始。</item>
+    </string-array>
+    <string-array name="ch24_special">
+        <item>[guilty]一次就對？</item>
+        <item>[normal]妳讀得懂我的心。</item>
+        <item>[smug]妳是讀心術師嗎？</item>
+    </string-array>
+    <string-array name="l361_enter">
+        <item>[normal]我心裡有一條規則。</item>
+        <item>[smug]猜猜看。</item>
+    </string-array>
+    <string-array name="l361_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看 ✓ 的共同點。</item>
+    </string-array>
+    <string-array name="l361_clear">
+        <item>[normal]妳猜到了。</item>
+        <item>[smug]這是暖身。</item>
+    </string-array>
+    <string-array name="l362_enter">
+        <item>[normal]換一條規則。</item>
+        <item>[smug]跟剛才不一樣。</item>
+    </string-array>
+    <string-array name="l362_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看 ✗ 的例子。</item>
+    </string-array>
+    <string-array name="l362_clear">
+        <item>[normal]又猜到了。</item>
+        <item>[smug]妳很會看圖。</item>
+    </string-array>
+    <string-array name="l363_enter">
+        <item>[normal]這次的規則有點反骨。</item>
+        <item>[smug]像我一樣。</item>
+    </string-array>
+    <string-array name="l363_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看 ✗ 的共同點。</item>
+    </string-array>
+    <string-array name="l363_clear">
+        <item>[normal]「不是」也被妳看穿了。</item>
+        <item>[smug]妳很懂我。</item>
+    </string-array>
+    <string-array name="l364_enter">
+        <item>[normal]這次要符合兩件事。</item>
+        <item>[smug]兩件都要。</item>
+    </string-array>
+    <string-array name="l364_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]兩個條件都要符合。</item>
+    </string-array>
+    <string-array name="l364_clear">
+        <item>[normal]兩件事都被妳找到了。</item>
+        <item>[smug]妳很細心。</item>
+    </string-array>
+    <string-array name="l365_enter">
+        <item>[normal]這條規則有例外。</item>
+        <item>[smug]我最喜歡例外了。</item>
+    </string-array>
+    <string-array name="l365_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]找出例外。</item>
+    </string-array>
+    <string-array name="l365_clear">
+        <item>[normal]例外也被妳找到了。</item>
+        <item>[smug]妳比我還會挑毛病。</item>
+    </string-array>
+    <string-array name="l366_enter">
+        <item>[normal]這次有幾張是我來標。</item>
+        <item>[smug]相信我。</item>
+    </string-array>
+    <string-array name="l366_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l366_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我標錯一張，妳也看出來了。</item>
+    </string-array>
+    <string-array name="l367_enter">
+        <item>[normal]這次的規則比較寬鬆。</item>
+        <item>[smug]兩種都可以。</item>
+    </string-array>
+    <string-array name="l367_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]✓ 可能有兩種。</item>
+    </string-array>
+    <string-array name="l367_clear">
+        <item>[normal]兩種都被妳找到了。</item>
+        <item>[smug]妳很會分類。</item>
+    </string-array>
+    <string-array name="l368_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]這次說謊的幅度很小。</item>
+    </string-array>
+    <string-array name="l368_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l368_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳讀嘴角讀得很準。</item>
+    </string-array>
+    <string-array name="l369_enter">
+        <item>[normal]這次我會說兩次謊。</item>
+        <item>[smug]說得很自然。</item>
+    </string-array>
+    <string-array name="l369_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]兩張是反的。</item>
+    </string-array>
+    <string-array name="l369_clear">
+        <item>[normal]兩張都被妳抓到了。</item>
+        <item>[smug]我的謊越說越差了。</item>
+    </string-array>
+    <string-array name="l370_enter">
+        <item>[normal]最後一條規則。</item>
+        <item>[smug]我戴了口罩。</item>
+    </string-array>
+    <string-array name="l370_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l370_clear">
+        <item>[normal]妳是規則大師。</item>
+        <item>[smug]下一題，換猜密碼。</item>
+    </string-array>
+    <string-array name="l371_enter">
+        <item>[normal]我設了一個密碼。</item>
+        <item>[smug]三個顏色。</item>
+    </string-array>
+    <string-array name="l371_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]● 和 ○ 不一樣。</item>
+    </string-array>
+    <string-array name="l371_clear">
+        <item>[normal]解開了。</item>
+        <item>[smug]我的密碼太簡單了。</item>
+    </string-array>
+    <string-array name="l372_enter">
+        <item>[normal]五種顏色。</item>
+        <item>[smug]選擇變多了。</item>
+    </string-array>
+    <string-array name="l372_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先刪掉不可能的顏色。</item>
+    </string-array>
+    <string-array name="l372_clear">
+        <item>[normal]又解開了。</item>
+        <item>[smug]妳是駭客嗎？</item>
+    </string-array>
+    <string-array name="l373_enter">
+        <item>[normal]四格密碼。</item>
+        <item>[smug]更長了。</item>
+    </string-array>
+    <string-array name="l373_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]比較相似的兩行。</item>
+    </string-array>
+    <string-array name="l373_clear">
+        <item>[normal]四格也解開了。</item>
+        <item>[smug]我要換更長的密碼。</item>
+    </string-array>
+    <string-array name="l374_enter">
+        <item>[normal]六種顏色。</item>
+        <item>[smug]一千多種可能。</item>
+    </string-array>
+    <string-array name="l374_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先數每一行有幾個顏色是對的。</item>
+    </string-array>
+    <string-array name="l374_clear">
+        <item>[normal]這也解開了。</item>
+        <item>[smug]妳是保險箱大盜。</item>
+    </string-array>
+    <string-array name="l375_enter">
+        <item>[normal]這次顏色可以重複。</item>
+        <item>[smug]難多了吧。</item>
+    </string-array>
+    <string-array name="l375_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]顏色可以重複。</item>
+    </string-array>
+    <string-array name="l375_clear">
+        <item>[normal]重複也難不倒妳。</item>
+        <item>[smug]我服了。</item>
+    </string-array>
+    <string-array name="l376_enter">
+        <item>[normal]這次有幾行是我來說。</item>
+        <item>[smug]妳只能聽我的。</item>
+    </string-array>
+    <string-array name="l376_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l376_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]妳越來越難騙了。</item>
+    </string-array>
+    <string-array name="l377_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]這次是六種顏色。</item>
+    </string-array>
+    <string-array name="l377_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l377_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l378_enter">
+        <item>[normal]這次我不露臉。</item>
+        <item>[smug]有一行是假的。</item>
+    </string-array>
+    <string-array name="l378_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]一行一行假設它是假的。</item>
+    </string-array>
+    <string-array name="l378_clear">
+        <item>[normal]妳找到假的那一行了。</item>
+        <item>[smug]妳是偵探。</item>
+    </string-array>
+    <string-array name="l379_enter">
+        <item>[normal]重複加上謊話。</item>
+        <item>[smug]妳還撐得住嗎？</item>
+    </string-array>
+    <string-array name="l379_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]顏色可以重複，而且有一行是假的。</item>
+    </string-array>
+    <string-array name="l379_clear">
+        <item>[normal]撐住了。</item>
+        <item>[smug]妳比我想像的還強。</item>
+    </string-array>
+    <string-array name="l380_enter">
+        <item>[normal]最後一個密碼。</item>
+        <item>[smug]我戴了口罩。</item>
+    </string-array>
+    <string-array name="l380_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l380_clear">
+        <item>[normal]妳是密碼大師。</item>
+        <item>[smug]下一章，我們來接電線。</item>
+    </string-array>
+</resources>

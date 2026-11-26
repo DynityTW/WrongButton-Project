@@ -1,0 +1,35 @@
+package tw.dynity.wrongbutton.levels.s3
+
+// 由 tools/s3/rules.py 產生（不用猜、每一個線索都用得到、謊話有陷阱）。請改產生器再重新產生。
+internal object Ch24Puzzles {
+    // 規則：剛好 2 個圖形（和範例一致的規則還有 6 條，但它們對候選的判斷都一樣）
+    val l361 = RuleQuiz(listOf(Example(Tile(0, 3, 3), false), Example(Tile(2, 2, 1), false), Example(Tile(1, 2, 2), true), Example(Tile(2, 0, 3), false), Example(Tile(3, 1, 1), false), Example(Tile(0, 0, 2), true)), listOf(Tile(3, 0, 3), Tile(1, 0, 2), Tile(3, 2, 1), Tile(0, 0, 3)), answer = 1, spoken = setOf(), lies = setOf())
+    // 規則：剛好 1 個圖形（和範例一致的規則還有 7 條，但它們對候選的判斷都一樣）
+    val l362 = RuleQuiz(listOf(Example(Tile(1, 1, 2), false), Example(Tile(1, 3, 1), true), Example(Tile(2, 0, 3), false), Example(Tile(2, 0, 1), true), Example(Tile(3, 3, 2), false)), listOf(Tile(2, 3, 1), Tile(2, 1, 3), Tile(1, 3, 3), Tile(2, 3, 2)), answer = 0, spoken = setOf(), lies = setOf())
+    // 規則：不是剛好 1 個圖形（和範例一致的規則還有 6 條，但它們對候選的判斷都一樣）
+    val l363 = RuleQuiz(listOf(Example(Tile(3, 0, 3), true), Example(Tile(3, 2, 2), true), Example(Tile(3, 2, 1), false), Example(Tile(2, 1, 1), false), Example(Tile(0, 3, 3), true), Example(Tile(1, 3, 1), false)), listOf(Tile(2, 2, 1), Tile(1, 1, 1), Tile(0, 0, 2), Tile(3, 1, 1)), answer = 2, spoken = setOf(), lies = setOf())
+    // 規則：三角形而且 2 個以上圖形（和範例一致的規則還有 3 條，但它們對候選的判斷都一樣）
+    val l364 = RuleQuiz(listOf(Example(Tile(2, 2, 2), true), Example(Tile(1, 1, 2), false), Example(Tile(1, 3, 2), false), Example(Tile(2, 0, 3), false), Example(Tile(0, 2, 2), true), Example(Tile(1, 2, 1), false), Example(Tile(3, 2, 1), false)), listOf(Tile(3, 2, 2), Tile(1, 0, 2), Tile(2, 2, 1), Tile(2, 3, 1)), answer = 0, spoken = setOf(), lies = setOf())
+    // 規則：剛好 2 個圖形但不是三角形（和範例一致的規則還有 7 條，但它們對候選的判斷都一樣）
+    val l365 = RuleQuiz(listOf(Example(Tile(2, 1, 2), true), Example(Tile(0, 0, 1), false), Example(Tile(0, 2, 3), false), Example(Tile(3, 0, 2), true), Example(Tile(0, 3, 3), false), Example(Tile(2, 3, 1), false), Example(Tile(1, 3, 2), true)), listOf(Tile(0, 3, 1), Tile(2, 2, 1), Tile(0, 0, 3), Tile(2, 0, 2)), answer = 3, spoken = setOf(), lies = setOf())
+    // 規則：圓形（和範例一致的規則還有 4 條，但它們對候選的判斷都一樣）
+    val l366 = RuleQuiz(listOf(Example(Tile(2, 1, 3), false), Example(Tile(0, 2, 1), false), Example(Tile(1, 3, 3), false), Example(Tile(2, 3, 2), false), Example(Tile(1, 0, 2), true), Example(Tile(3, 2, 3), false), Example(Tile(2, 0, 1), true)), listOf(Tile(2, 0, 2), Tile(0, 3, 2), Tile(1, 1, 1), Tile(3, 3, 1)), answer = 0, spoken = setOf(2, 3, 6), lies = setOf(3))
+    // 規則：黃色或剛好 3 個圖形（和範例一致的規則還有 4 條，但它們對候選的判斷都一樣）
+    val l367 = RuleQuiz(listOf(Example(Tile(0, 1, 3), true), Example(Tile(0, 0, 2), false), Example(Tile(3, 0, 3), true), Example(Tile(1, 3, 1), false), Example(Tile(3, 3, 3), true), Example(Tile(2, 1, 1), false), Example(Tile(2, 1, 3), true), Example(Tile(0, 2, 1), false)), listOf(Tile(2, 3, 3), Tile(0, 2, 2), Tile(2, 3, 1), Tile(2, 2, 2)), answer = 0, spoken = setOf(), lies = setOf())
+    // 規則：綠色而且 2 個以上圖形（和範例一致的規則還有 4 條，但它們對候選的判斷都一樣）
+    val l368 = RuleQuiz(listOf(Example(Tile(2, 0, 2), true), Example(Tile(0, 1, 2), false), Example(Tile(0, 0, 1), false), Example(Tile(3, 2, 1), false), Example(Tile(1, 3, 2), false), Example(Tile(2, 3, 3), true), Example(Tile(1, 1, 3), false)), listOf(Tile(0, 3, 3), Tile(3, 2, 2), Tile(1, 0, 1), Tile(2, 3, 2)), answer = 3, spoken = setOf(1, 2, 3, 4), lies = setOf(4))
+    // 規則：剛好 1 個圖形但不是三角形（和範例一致的規則還有 5 條，但它們對候選的判斷都一樣）
+    val l369 = RuleQuiz(listOf(Example(Tile(3, 3, 2), false), Example(Tile(2, 1, 3), false), Example(Tile(0, 3, 2), false), Example(Tile(0, 1, 1), true), Example(Tile(1, 0, 3), false), Example(Tile(2, 2, 2), false), Example(Tile(3, 3, 1), true)), listOf(Tile(0, 0, 3), Tile(3, 1, 2), Tile(1, 2, 3), Tile(0, 3, 1)), answer = 3, spoken = setOf(0, 1, 3, 4, 5), lies = setOf(3, 4))
+    // 規則：剛好 3 個圖形但不是圓形（和範例一致的規則還有 4 條，但它們對候選的判斷都一樣）
+    val l370 = RuleQuiz(listOf(Example(Tile(0, 0, 2), false), Example(Tile(2, 1, 1), false), Example(Tile(1, 1, 1), false), Example(Tile(0, 3, 2), false), Example(Tile(3, 1, 3), true), Example(Tile(0, 3, 3), true), Example(Tile(2, 2, 3), true), Example(Tile(3, 3, 1), false)), listOf(Tile(3, 3, 2), Tile(2, 0, 2), Tile(2, 1, 3), Tile(1, 0, 1)), answer = 2, spoken = setOf(0, 2, 3, 7), lies = setOf(0, 7))
+    val l371 = CodeQuiz(4, listOf(3, 0, 1), listOf(Guess(listOf(0, 1, 2), 0, 2), Guess(listOf(0, 2, 3), 0, 2), Guess(listOf(2, 3, 0), 0, 2)), lies = setOf(), hiddenLies = 0, spoken = false, dup = false)
+    val l372 = CodeQuiz(5, listOf(0, 3, 2), listOf(Guess(listOf(3, 4, 0), 0, 2), Guess(listOf(4, 1, 3), 0, 1), Guess(listOf(3, 4, 2), 1, 1)), lies = setOf(), hiddenLies = 0, spoken = false, dup = false)
+    val l373 = CodeQuiz(5, listOf(0, 1, 4, 2), listOf(Guess(listOf(0, 3, 2, 1), 1, 2), Guess(listOf(4, 2, 3, 0), 0, 3), Guess(listOf(3, 4, 2, 1), 0, 3), Guess(listOf(4, 0, 3, 1), 0, 3)), lies = setOf(), hiddenLies = 0, spoken = false, dup = false)
+    val l374 = CodeQuiz(6, listOf(0, 1, 5, 2), listOf(Guess(listOf(2, 3, 1, 5), 0, 3), Guess(listOf(1, 3, 2, 4), 0, 2), Guess(listOf(5, 0, 4, 1), 0, 3), Guess(listOf(3, 0, 1, 5), 0, 3)), lies = setOf(), hiddenLies = 0, spoken = false, dup = false)
+    val l375 = CodeQuiz(4, listOf(3, 0, 2, 2), listOf(Guess(listOf(0, 2, 3, 1), 0, 3), Guess(listOf(1, 1, 2, 2), 2, 0), Guess(listOf(2, 1, 0, 0), 0, 2), Guess(listOf(2, 2, 1, 0), 0, 3)), lies = setOf(), hiddenLies = 0, spoken = false, dup = true)
+    val l376 = CodeQuiz(5, listOf(3, 2, 1), listOf(Guess(listOf(3, 4, 1), 2, 0), Guess(listOf(2, 0, 3), 0, 2), Guess(listOf(1, 3, 0), 0, 2), Guess(listOf(2, 1, 0), 0, 1)), lies = setOf(3), hiddenLies = 0, spoken = true, dup = false)
+    val l377 = CodeQuiz(6, listOf(4, 1, 0, 5), listOf(Guess(listOf(5, 2, 1, 0), 0, 3), Guess(listOf(1, 3, 4, 0), 0, 3), Guess(listOf(4, 2, 5, 1), 1, 2), Guess(listOf(0, 2, 4, 3), 0, 2), Guess(listOf(4, 5, 2, 0), 0, 0)), lies = setOf(4), hiddenLies = 0, spoken = true, dup = false)
+    val l378 = CodeQuiz(5, listOf(0, 1, 3, 2), listOf(Guess(listOf(3, 4, 0, 1), 0, 3), Guess(listOf(4, 3, 1, 0), 0, 4), Guess(listOf(2, 0, 3, 4), 1, 2), Guess(listOf(3, 2, 4, 1), 0, 3), Guess(listOf(2, 1, 4, 0), 1, 2)), lies = setOf(1), hiddenLies = 1, spoken = false, dup = false)
+    val l379 = CodeQuiz(5, listOf(0, 4, 3, 4), listOf(Guess(listOf(3, 2, 1, 1), 0, 1), Guess(listOf(3, 0, 1, 1), 0, 2), Guess(listOf(2, 3, 2, 3), 0, 1), Guess(listOf(3, 0, 0, 3), 0, 3), Guess(listOf(1, 4, 4, 4), 2, 0)), lies = setOf(3), hiddenLies = 0, spoken = true, dup = true)
+    val l380 = CodeQuiz(6, listOf(1, 0, 4, 3), listOf(Guess(listOf(3, 2, 1, 4), 0, 3), Guess(listOf(4, 3, 1, 2), 0, 3), Guess(listOf(3, 1, 2, 4), 2, 1), Guess(listOf(3, 4, 2, 5), 0, 2), Guess(listOf(1, 5, 3, 2), 1, 1), Guess(listOf(3, 5, 1, 2), 1, 0)), lies = setOf(2, 5), hiddenLies = 0, spoken = true, dup = false)
+}
