@@ -37,6 +37,8 @@ class ScreenshotTool {
                 container.memory.update { m -> tw.dynity.wrongbutton.levels.Levels.all.takeWhile { it.id != id }.fold(m) { acc, l -> tw.dynity.wrongbutton.core.memory.MemoryOps.completeLevel(acc, l.id, tw.dynity.wrongbutton.core.memory.RunResult(0, 0, 1, 0, false)) } }
                 openLevel(id)
                 advance(2_500)
+                // 第 22 章：先打開驗證框，截圖才看得到題目。
+                if (exists("cap_check")) { tap("cap_check"); rule.waitForIdle(); if (exists("cap_say_1")) { tap("cap_say_1"); rule.waitForIdle() } }
                 rule.waitForIdle()
                 val bmp = rule.onRoot().captureToImage().asAndroidBitmap()
                 File(out, "level_$id.png").outputStream().use { bmp.compress(Bitmap.CompressFormat.PNG, 100, it) }

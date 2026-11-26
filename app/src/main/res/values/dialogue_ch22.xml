@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch22.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch22_mistakes_3">
+        <item>[guilty]機器人也會選錯，但妳不是機器人吧？</item>
+        <item>[normal]一句一句檢查妳選的格子。</item>
+        <item>[normal]先找最確定的那一句。</item>
+    </string-array>
+    <string-array name="ch22_mistakes_6">
+        <item>[sad]系統開始懷疑妳是機器人了。</item>
+        <item>[normal]提示會告訴妳答案的一部分。</item>
+        <item>[guilty]不用急，驗證不會過期。</item>
+    </string-array>
+    <string-array name="ch22_idle">
+        <item>[normal]慢慢想，驗證碼不會跑。</item>
+        <item>[smug]我知道答案。</item>
+        <item>[normal]先把每一句話都讀一遍。</item>
+    </string-array>
+    <string-array name="ch22_rapid_tap">
+        <item>[angry]亂點只會讓妳更像機器人！</item>
+        <item>[angry]一格一格想！</item>
+        <item>[angry]機器人才點這麼快。</item>
+    </string-array>
+    <string-array name="ch22_hint">
+        <item>[normal]好，我幫妳看一下。</item>
+        <item>[smug]要我幫妳證明妳是人類嗎？</item>
+        <item>[normal]提示會從最確定的地方開始。</item>
+    </string-array>
+    <string-array name="ch22_special">
+        <item>[guilty]一次就過？</item>
+        <item>[normal]妳絕對是人類。</item>
+        <item>[smug]機器人做不到這樣。</item>
+    </string-array>
+    <string-array name="l321_enter">
+        <item>[normal]妳要先證明妳不是機器人。</item>
+        <item>[smug]我是按鈕，所以我不用。</item>
+    </string-array>
+    <string-array name="l321_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]每一格都看清楚。</item>
+    </string-array>
+    <string-array name="l321_clear">
+        <item>[normal]妳是人類。</item>
+        <item>[smug]恭喜，妳通過了最基本的考驗。</item>
+    </string-array>
+    <string-array name="l322_enter">
+        <item>[normal]一題不夠，系統要兩題。</item>
+        <item>[smug]跟真的一樣。</item>
+    </string-array>
+    <string-array name="l322_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]注意「不是」。</item>
+    </string-array>
+    <string-array name="l322_clear">
+        <item>[normal]兩題都過了。</item>
+        <item>[smug]妳很像人類。</item>
+    </string-array>
+    <string-array name="l323_enter">
+        <item>[normal]這次有兩句話。</item>
+        <item>[smug]兩句都要對。</item>
+    </string-array>
+    <string-array name="l323_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]兩句話都要符合。</item>
+    </string-array>
+    <string-array name="l323_clear">
+        <item>[normal]上限和下限都對了。</item>
+        <item>[smug]妳讀得很仔細。</item>
+    </string-array>
+    <string-array name="l324_enter">
+        <item>[normal]三題。</item>
+        <item>[smug]我很嚴格。</item>
+    </string-array>
+    <string-array name="l324_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]數一數妳選了幾格。</item>
+    </string-array>
+    <string-array name="l324_clear">
+        <item>[normal]三題都過了。</item>
+        <item>[smug]系統開始相信妳了。</item>
+    </string-array>
+    <string-array name="l325_enter">
+        <item>[normal]這次我念題目給妳聽。</item>
+        <item>[smug]不一定念對。</item>
+    </string-array>
+    <string-array name="l325_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]我說題目的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l325_clear">
+        <item>[normal]妳沒有被我騙。</item>
+        <item>[smug]我念錯了，妳也選對了。</item>
+    </string-array>
+    <string-array name="l326_enter">
+        <item>[normal]三句話。</item>
+        <item>[smug]每一句都有用。</item>
+    </string-array>
+    <string-array name="l326_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]每一句都檢查一次。</item>
+    </string-array>
+    <string-array name="l326_clear">
+        <item>[normal]三句話都對上了。</item>
+        <item>[smug]妳是很有耐心的人類。</item>
+    </string-array>
+    <string-array name="l327_enter">
+        <item>[normal]這次要算數。</item>
+        <item>[smug]機器人最會算數了。</item>
+    </string-array>
+    <string-array name="l327_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]把圖形數量加起來看看。</item>
+    </string-array>
+    <string-array name="l327_clear">
+        <item>[normal]算對了。</item>
+        <item>[smug]妳比計算機還慢，但是答對了。</item>
+    </string-array>
+    <string-array name="l328_enter">
+        <item>[normal]這次有格子的規則。</item>
+        <item>[smug]像數獨。</item>
+    </string-array>
+    <string-array name="l328_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]每一列、每一行都只能一格。</item>
+    </string-array>
+    <string-array name="l328_clear">
+        <item>[normal]排得剛剛好。</item>
+        <item>[smug]妳玩過數獨吧。</item>
+    </string-array>
+    <string-array name="l329_enter">
+        <item>[normal]今天我來出題。</item>
+        <item>[smug]我戴了墨鏡。</item>
+    </string-array>
+    <string-array name="l329_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l329_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l330_enter">
+        <item>[normal]這次不用看臉。</item>
+        <item>[smug]三句話只有一句是真的。</item>
+    </string-array>
+    <string-array name="l330_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]假設某一句是真的，另外兩句都是假的。</item>
+    </string-array>
+    <string-array name="l330_clear">
+        <item>[normal]妳找到那句真話了。</item>
+        <item>[smug]妳是邏輯學家嗎？</item>
+    </string-array>
+    <string-array name="l331_enter">
+        <item>[normal]這次的格子會互相排擠。</item>
+        <item>[smug]跟我一樣不合群。</item>
+    </string-array>
+    <string-array name="l331_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]上下左右不能相鄰。</item>
+    </string-array>
+    <string-array name="l331_clear">
+        <item>[normal]保持距離，做得好。</item>
+        <item>[smug]妳很懂社交距離。</item>
+    </string-array>
+    <string-array name="l332_enter">
+        <item>[normal]升級成十六格。</item>
+        <item>[smug]句子也變多了。</item>
+    </string-array>
+    <string-array name="l332_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]一句一句檢查。</item>
+    </string-array>
+    <string-array name="l332_clear">
+        <item>[normal]十六格也過了。</item>
+        <item>[smug]系統開始怕妳了。</item>
+    </string-array>
+    <string-array name="l333_enter">
+        <item>[normal]四句話。</item>
+        <item>[smug]有兩句是騙妳的。</item>
+    </string-array>
+    <string-array name="l333_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]謊話也是線索。</item>
+    </string-array>
+    <string-array name="l333_clear">
+        <item>[normal]兩句謊話都沒騙到妳。</item>
+        <item>[smug]我要換個方法了。</item>
+    </string-array>
+    <string-array name="l334_enter">
+        <item>[normal]四句話，兩句真。</item>
+        <item>[smug]猜猜是哪兩句。</item>
+    </string-array>
+    <string-array name="l334_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]先找互相矛盾的兩句。</item>
+    </string-array>
+    <string-array name="l334_clear">
+        <item>[normal]妳找到那兩句了。</item>
+        <item>[smug]妳真的是邏輯學家。</item>
+    </string-array>
+    <string-array name="l335_enter">
+        <item>[normal]這次連編號都要算。</item>
+        <item>[smug]機器人最喜歡編號了。</item>
+    </string-array>
+    <string-array name="l335_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]把選的格子編號加起來。</item>
+    </string-array>
+    <string-array name="l335_clear">
+        <item>[normal]數字都對了。</item>
+        <item>[smug]妳不是機器人，但是很會算。</item>
+    </string-array>
+    <string-array name="l336_enter">
+        <item>[normal]十六格的數獨。</item>
+        <item>[smug]二十四種排法，只有一種對。</item>
+    </string-array>
+    <string-array name="l336_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]每一列、每一行都只能一格。</item>
+    </string-array>
+    <string-array name="l336_clear">
+        <item>[normal]排得剛剛好。</item>
+        <item>[smug]妳可以去下西洋棋了。</item>
+    </string-array>
+    <string-array name="l337_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]看不到嘴角了。</item>
+    </string-array>
+    <string-array name="l337_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l337_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l338_enter">
+        <item>[normal]我今天不露臉。</item>
+        <item>[smug]妳只能靠邏輯。</item>
+    </string-array>
+    <string-array name="l338_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]列出所有組合。</item>
+    </string-array>
+    <string-array name="l338_clear">
+        <item>[normal]沒有臉也騙不了妳。</item>
+        <item>[smug]我不得不承認，妳很厲害。</item>
+    </string-array>
+    <string-array name="l339_enter">
+        <item>[normal]三題十六格。</item>
+        <item>[smug]最後的考驗之前的考驗。</item>
+    </string-array>
+    <string-array name="l339_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]一題一題來。</item>
+    </string-array>
+    <string-array name="l339_clear">
+        <item>[normal]三題都過了。</item>
+        <item>[smug]系統已經完全相信妳了。</item>
+    </string-array>
+    <string-array name="l340_enter">
+        <item>[normal]最後一次驗證。</item>
+        <item>[smug]這次是我出的題。</item>
+    </string-array>
+    <string-array name="l340_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]不要急，每一句都想過。</item>
+    </string-array>
+    <string-array name="l340_clear">
+        <item>[normal]妳是人類。我一直都知道。</item>
+        <item>[smug]下一章，我們來玩真正的邏輯題。</item>
+    </string-array>
+</resources>

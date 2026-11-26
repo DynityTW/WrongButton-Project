@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch22.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string name="chapter_22">第 22 章　我不是機器人</string>
+    <string name="l321_title">我不是機器人</string>
+    <string name="l321_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l321_hint_1">先勾「我不是機器人」。</string>
+    <string name="l321_hint_2">照著藍色框裡那一句選，選好按「驗證」。</string>
+    <string name="l321_hint_3">答案：選 2、7、8、9。</string>
+    <string name="l322_title">兩題</string>
+    <string name="l322_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l322_hint_1">兩題，都是一句「選出所有……」。</string>
+    <string name="l322_hint_2">「不是……的格子」要選的是剩下的全部。</string>
+    <string name="l322_hint_3">答案：第 1 題選 1、2、3、4、6、7、8、9；第 2 題選 4、9。</string>
+    <string name="l323_title">每一格</string>
+    <string name="l323_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l323_hint_1">這次有兩句話，答案要同時符合兩句。</string>
+    <string name="l323_hint_2">「選的每一格都是 X」是上限；「所有 X 都要選」是下限。</string>
+    <string name="l323_hint_3">答案：第 1 題選 7、8；第 2 題選 1、2、3、4、6、8。</string>
+    <string name="l324_title">再一次</string>
+    <string name="l324_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l324_hint_1">三題，一題比一題多一句。</string>
+    <string name="l324_hint_2">「剛好選幾格」可以幫妳決定那些「可選可不選」的格子。</string>
+    <string name="l324_hint_3">答案：第 1 題選 2、6；第 2 題選 3、4、7；第 3 題選 3、4、6、8。</string>
+    <string name="l325_title">念給妳聽</string>
+    <string name="l325_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l325_hint_1">這關的指示要聽我說。說謊時我的眼睛會看旁邊、一邊嘴角翹起。</string>
+    <string name="l325_hint_2">說謊的時候，要選的剛好是相反的那些格子。</string>
+    <string name="l325_hint_3">第 1 題的第 1 句、第 3 題的第 1 句是謊話。答案：第 1 題選 2、3、4、5、7、9；第 2 題選 1、2、4、5、6、7、9；第 3 題選 1、2、3、4、5、7、8、9。</string>
+    <string name="l326_title">三句話</string>
+    <string name="l326_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l326_hint_1">三句話，答案要全部符合。</string>
+    <string name="l326_hint_2">先用「第幾格要選／不要選」固定幾格，再用其他句子推剩下的。</string>
+    <string name="l326_hint_3">第 1 題的答案有 2 格，包括第 1 格。答案：第 1 題選 1、5；第 2 題選 5、9。</string>
+    <string name="l327_title">加起來</string>
+    <string name="l327_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l327_hint_1">「圖形加起來」是把選的格子裡的圖形數量加總。</string>
+    <string name="l327_hint_2">先列出可能的組合，再用其他句子刪掉。</string>
+    <string name="l327_hint_3">第 1 題的答案有 4 格，包括第 3 格。答案：第 1 題選 3、4、7、9；第 2 題選 1、3、7、9。</string>
+    <string name="l328_title">每一列</string>
+    <string name="l328_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l328_hint_1">每一列、每一行都剛好選一格：總共選三格，而且不同列、不同行。</string>
+    <string name="l328_hint_2">只有六種選法，用第三句刪到剩一種。</string>
+    <string name="l328_hint_3">答案：第 1 題選 1、5、9；第 2 題選 1、5、9。</string>
+    <string name="l329_title">墨鏡</string>
+    <string name="l329_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l329_hint_1">我戴墨鏡，只看得到嘴角。每一句都要點一下聽我說。</string>
+    <string name="l329_hint_2">每題有一句是謊話：那句話是假的。用另外兩句和「那句是假的」一起推。</string>
+    <string name="l329_hint_3">第 1 題的第 2 句、第 2 題的第 1 句是謊話。答案：第 1 題選 2、4、9；第 2 題選 2、3。</string>
+    <string name="l330_title">只有一句真話</string>
+    <string name="l330_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l330_hint_1">三句話裡只有一句是真的。看不到我的臉。</string>
+    <string name="l330_hint_2">一句一句假設它是那句真話，看能不能剛好得到一個答案。</string>
+    <string name="l330_hint_3">答案：選 1、2、3、4、6、7、8、9。</string>
+    <string name="l331_title">不能相鄰</string>
+    <string name="l331_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l331_hint_1">選的格子不能上下或左右相鄰（斜的可以）。</string>
+    <string name="l331_hint_2">先列出不相鄰的選法，再用數字的條件刪掉。</string>
+    <string name="l331_hint_3">第 1 題的答案有 3 格，包括第 4 格。答案：第 1 題選 4、6、8；第 2 題選 1、3、9。</string>
+    <string name="l332_title">十六格</string>
+    <string name="l332_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l332_hint_1">4×4，四句話。</string>
+    <string name="l332_hint_2">先用最強的句子（例如「編號加起來」「圖形加起來」）縮小範圍。</string>
+    <string name="l332_hint_3">第 1 題的答案有 3 格，包括第 2 格。答案：第 1 題選 2、5、7；第 2 題選 5、13。</string>
+    <string name="l333_title">兩句謊話</string>
+    <string name="l333_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l333_hint_1">四句話都要聽我說，其中兩句是謊話。</string>
+    <string name="l333_hint_2">謊話不是「不用管」，而是「那句話是假的」——它也是條件。</string>
+    <string name="l333_hint_3">第 1 句、第 2 句是謊話。答案：選 1、5、7。</string>
+    <string name="l334_title">剛好兩句</string>
+    <string name="l334_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l334_hint_1">四句話裡剛好兩句是真的。看不到臉。</string>
+    <string name="l334_hint_2">有六種「哪兩句是真的」組合，大部分會矛盾或答案不只一個。</string>
+    <string name="l334_hint_3">答案：選 4、5。</string>
+    <string name="l335_title">編號</string>
+    <string name="l335_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l335_hint_1">格子左上角的數字是編號。「編號加起來」就是選的格子的編號總和。</string>
+    <string name="l335_hint_2">編號總和很小時，選的格子一定很少；先列出加起來剛好的組合。</string>
+    <string name="l335_hint_3">答案：第 1 題選 2、6；第 2 題選 5、9。</string>
+    <string name="l336_title">每一列每一行</string>
+    <string name="l336_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l336_hint_1">4×4，每一列、每一行都剛好一格：選四格，像西洋棋的四個城堡互不相見。</string>
+    <string name="l336_hint_2">有 24 種排法，先用「沒有……」「每一格都不是……」把格子刪掉。</string>
+    <string name="l336_hint_3">答案：第 1 題選 3、8、9、14；第 2 題選 3、6、12、13。</string>
+    <string name="l337_title">口罩</string>
+    <string name="l337_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l337_hint_1">我戴口罩，只看得到眼睛。四句話，兩句謊話。</string>
+    <string name="l337_hint_2">看我的眼睛：說謊時看旁邊。</string>
+    <string name="l337_hint_3">第 2 句、第 4 句是謊話。答案：選 4、5、9。</string>
+    <string name="l338_title">看不到臉</string>
+    <string name="l338_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l338_hint_1">兩題都看不到臉。第一題剛好一句真話，第二題剛好兩句。</string>
+    <string name="l338_hint_2">每一種「哪幾句是真的」都試一次，只有一種組合剛好得到一個答案。</string>
+    <string name="l338_hint_3">答案：第 1 題選 2、7；第 2 題選 1、3、7、9。</string>
+    <string name="l339_title">三題十六格</string>
+    <string name="l339_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l339_hint_1">三題 4×4，全部是真話。</string>
+    <string name="l339_hint_2">每一題都先找出「最強」的那一句，再用其他句子收尾。</string>
+    <string name="l339_hint_3">第 1 題的答案有 6 格，包括第 1 格。答案：第 1 題選 1、3、6、8、9、14；第 2 題選 3、8、9、14；第 3 題選 1、3、5、10。</string>
+    <string name="l340_title">人類</string>
+    <string name="l340_task">通過「我不是機器人」驗證，再按我。</string>
+    <string name="l340_hint_1">第一題要聽我說，五句話裡兩句是謊話，而且說得很自然。第二題看不到臉，五句話裡剛好三句是真的。</string>
+    <string name="l340_hint_2">第一題先找「每一列、每一行」那兩句是不是真的。</string>
+    <string name="l340_hint_3">第 1 題的第 4 句、第 5 句是謊話。答案：第 1 題選 2、7、12、13；第 2 題選 3、4、5。</string>
+    <string name="ch22_not_robot">我不是機器人</string>
+    <string name="ch22_check_cd">我不是機器人，勾選框，還沒勾</string>
+    <string name="ch22_checked_cd">我不是機器人，已勾選</string>
+    <string name="ch22_ready">驗證通過。妳不是機器人。可以按我了。</string>
+    <string name="ch22_not_ready">還沒通過驗證。</string>
+    <string name="ch22_wrong">請再試一次。</string>
+    <string name="ch22_next">下一題。</string>
+    <string name="ch22_listen_first">每一句都要先聽我說。</string>
+    <string name="ch22_round">第 %1$d／%2$d 題</string>
+    <string name="ch22_header_one">照著做：</string>
+    <string name="ch22_header_all">選出符合下面每一句話的格子：</string>
+    <string name="ch22_header_spoken">點每一句，聽 The Button 說。選出符合「真話」的格子：</string>
+    <string name="ch22_header_exactly">下面 %1$d 句話裡，剛好 %2$d 句是真的。選出唯一可能的答案：</string>
+    <string name="ch22_header_complement">點下面那一句，聽 The Button 說。它說謊的時候，要選的剛好是相反的那些格子：</string>
+    <string name="ch22_ask">第 %1$d 句：點一下聽它說</string>
+    <string name="ch22_heard">第 %1$d 句（它說）：%2$s</string>
+    <string name="ch22_line">%1$d. %2$s</string>
+    <string name="ch22_verify">驗證</string>
+    <string name="ch22_tile_cd">第 %1$d 格：%2$d 個%3$s%4$s</string>
+    <string name="ch22_selected">，已選取</string>
+    <string-array name="ch22_colors">
+        <item>紅色</item>
+        <item>藍色</item>
+        <item>綠色</item>
+        <item>黃色</item>
+    </string-array>
+    <string-array name="ch22_shapes">
+        <item>圓形</item>
+        <item>方形</item>
+        <item>三角形</item>
+        <item>星星</item>
+    </string-array>
+</resources>
