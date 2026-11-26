@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch30.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch30_mistakes_3">
+        <item>[guilty]最後一章了，慢慢來。</item>
+        <item>[normal]這一題的規則，妳在前面的章節學過。</item>
+        <item>[normal]先分出我說的真話和謊話。</item>
+    </string-array>
+    <string-array name="ch30_mistakes_6">
+        <item>[sad]最後一章果然很難。</item>
+        <item>[normal]提示會告訴妳答案。</item>
+        <item>[guilty]不用急，我會等妳。</item>
+    </string-array>
+    <string-array name="ch30_idle">
+        <item>[normal]這是最後一章。</item>
+        <item>[smug]我把最難的都留到最後。</item>
+        <item>[normal]妳已經走了快五百關了。</item>
+    </string-array>
+    <string-array name="ch30_rapid_tap">
+        <item>[angry]最後一章了，不要亂點！</item>
+        <item>[angry]先想再動。</item>
+        <item>[angry]冷靜。</item>
+    </string-array>
+    <string-array name="ch30_hint">
+        <item>[normal]好，最後再幫妳一次。</item>
+        <item>[smug]妳確定要看嗎？</item>
+        <item>[normal]提示會告訴妳答案。</item>
+    </string-array>
+    <string-array name="ch30_special">
+        <item>[guilty]一次就過？</item>
+        <item>[normal]妳已經是大師了。</item>
+        <item>[smug]我沒有什麼可以教妳了。</item>
+    </string-array>
+    <string-array name="l481_enter">
+        <item>[normal]終章。</item>
+        <item>[smug]從雷區開始。</item>
+    </string-array>
+    <string-array name="l481_first_mistake">
+        <item>[guilty]碰。</item>
+        <item>[normal]每一步都推得出來。</item>
+    </string-array>
+    <string-array name="l481_clear">
+        <item>[normal]雷區清乾淨了。</item>
+        <item>[smug]暖身結束。</item>
+    </string-array>
+    <string-array name="l482_enter">
+        <item>[normal]最後一次證明妳是人類。</item>
+        <item>[smug]十六格。</item>
+    </string-array>
+    <string-array name="l482_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l482_clear">
+        <item>[normal]妳是人類。</item>
+        <item>[smug]我早就知道了。</item>
+    </string-array>
+    <string-array name="l483_enter">
+        <item>[normal]六顆按鈕。</item>
+        <item>[smug]我也有話要說。</item>
+    </string-array>
+    <string-array name="l483_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先聽我說。</item>
+    </string-array>
+    <string-array name="l483_clear">
+        <item>[normal]審判結束。</item>
+        <item>[smug]妳是最好的法官。</item>
+    </string-array>
+    <string-array name="l484_enter">
+        <item>[normal]最後一條規則。</item>
+        <item>[smug]我會說兩次謊。</item>
+    </string-array>
+    <string-array name="l484_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l484_clear">
+        <item>[normal]妳讀懂我的心了。</item>
+        <item>[smug]有點害羞。</item>
+    </string-array>
+    <string-array name="l485_enter">
+        <item>[normal]最後一個密碼。</item>
+        <item>[smug]顏色可以重複。</item>
+    </string-array>
+    <string-array name="l485_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l485_clear">
+        <item>[normal]解開了。</item>
+        <item>[smug]妳是密碼大師。</item>
+    </string-array>
+    <string-array name="l486_enter">
+        <item>[normal]最後的電路。</item>
+        <item>[smug]五乘五、切換式。</item>
+    </string-array>
+    <string-array name="l486_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]找矛盾。</item>
+    </string-array>
+    <string-array name="l486_clear">
+        <item>[normal]通電了。</item>
+        <item>[smug]整面牆都亮了。</item>
+    </string-array>
+    <string-array name="l487_enter">
+        <item>[normal]最後一次排隊。</item>
+        <item>[smug]有一條線索是假的。</item>
+    </string-array>
+    <string-array name="l487_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]一條一條假設。</item>
+    </string-array>
+    <string-array name="l487_clear">
+        <item>[normal]排好了。</item>
+        <item>[smug]大家都拿到飲料了。</item>
+    </string-array>
+    <string-array name="l488_enter">
+        <item>[normal]最後的迷宮。</item>
+        <item>[smug]我戴了墨鏡。</item>
+    </string-array>
+    <string-array name="l488_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l488_clear">
+        <item>[normal]妳走出來了。</item>
+        <item>[smug]我在這裡等妳很久了。</item>
+    </string-array>
+    <string-array name="l489_enter">
+        <item>[normal]最後一組密碼。</item>
+        <item>[smug]有一條規則是假的。</item>
+    </string-array>
+    <string-array name="l489_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]找矛盾。</item>
+    </string-array>
+    <string-array name="l489_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]這組密碼我會記住的。</item>
+    </string-array>
+    <string-array name="l490_enter">
+        <item>[normal]最後的鏡子。</item>
+        <item>[smug]九面。</item>
+    </string-array>
+    <string-array name="l490_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]先分出謊話。</item>
+    </string-array>
+    <string-array name="l490_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]光線好溫暖。</item>
+    </string-array>
+    <string-array name="l491_enter">
+        <item>[normal]第二輪開始。</item>
+        <item>[smug]這次只能插旗。</item>
+    </string-array>
+    <string-array name="l491_first_mistake">
+        <item>[smug]那裡沒有雷。</item>
+        <item>[normal]先分出真話和謊話。</item>
+    </string-array>
+    <string-array name="l491_clear">
+        <item>[normal]全部插對了。</item>
+        <item>[smug]十四支旗子。</item>
+    </string-array>
+    <string-array name="l492_enter">
+        <item>[normal]最後一次驗證。真的。</item>
+        <item>[smug]兩題。</item>
+    </string-array>
+    <string-array name="l492_first_mistake">
+        <item>[smug]請再試一次。</item>
+        <item>[normal]兩題的規則不一樣。</item>
+    </string-array>
+    <string-array name="l492_clear">
+        <item>[normal]妳是人類。</item>
+        <item>[smug]一個很聰明的人類。</item>
+    </string-array>
+    <string-array name="l493_enter">
+        <item>[normal]最後的間諜。</item>
+        <item>[smug]話很多。</item>
+    </string-array>
+    <string-array name="l493_first_mistake">
+        <item>[smug]那不是間諜。</item>
+        <item>[normal]找出兩句不一致也沒關係的那一顆。</item>
+    </string-array>
+    <string-array name="l493_clear">
+        <item>[normal]間諜被抓到了。</item>
+        <item>[smug]情報局在找妳。</item>
+    </string-array>
+    <string-array name="l494_enter">
+        <item>[normal]最後一條規則。真的。</item>
+        <item>[smug]我戴了口罩。</item>
+    </string-array>
+    <string-array name="l494_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l494_clear">
+        <item>[normal]妳讀懂了。</item>
+        <item>[smug]妳比我還了解我。</item>
+    </string-array>
+    <string-array name="l495_enter">
+        <item>[normal]最後一個密碼。真的。</item>
+        <item>[smug]有一行是假的。</item>
+    </string-array>
+    <string-array name="l495_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]一行一行假設。</item>
+    </string-array>
+    <string-array name="l495_clear">
+        <item>[normal]解開了。</item>
+        <item>[smug]我沒有密碼了。</item>
+    </string-array>
+    <string-array name="l496_enter">
+        <item>[normal]最後的電路。真的。</item>
+        <item>[smug]並聯。</item>
+    </string-array>
+    <string-array name="l496_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]找矛盾。</item>
+    </string-array>
+    <string-array name="l496_clear">
+        <item>[normal]通電了。</item>
+        <item>[smug]妳是電工之王。</item>
+    </string-array>
+    <string-array name="l497_enter">
+        <item>[normal]最後一次排隊。真的。</item>
+        <item>[smug]六顆。</item>
+    </string-array>
+    <string-array name="l497_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l497_clear">
+        <item>[normal]排好了。</item>
+        <item>[smug]隊伍很整齊。</item>
+    </string-array>
+    <string-array name="l498_enter">
+        <item>[normal]最後的迷宮。真的。</item>
+        <item>[smug]全部都是箭頭。</item>
+    </string-array>
+    <string-array name="l498_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]先分出謊話。</item>
+    </string-array>
+    <string-array name="l498_clear">
+        <item>[normal]到了。</item>
+        <item>[smug]下一關就是最後一關。</item>
+    </string-array>
+    <string-array name="l499_enter">
+        <item>[normal]倒數第二關。</item>
+        <item>[smug]最後一組密碼。</item>
+    </string-array>
+    <string-array name="l499_first_mistake">
+        <item>[smug]密碼不符合規則。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l499_clear">
+        <item>[normal]設好了。</item>
+        <item>[smug]準備好了嗎？最後一關。</item>
+    </string-array>
+    <string-array name="l500_enter">
+        <item>[normal]第 500 關。</item>
+        <item>[smug]最後一次，找到我。</item>
+    </string-array>
+    <string-array name="l500_first_mistake">
+        <item>[smug]那不是我的分身。</item>
+        <item>[normal]先聽我說，看我的眼睛。</item>
+    </string-array>
+    <string-array name="l500_clear">
+        <item>[normal]妳找到我了。從第 1 關到第 500 關，每一次都是。</item>
+        <item>[normal]謝謝妳一路玩到這裡。這句是真的，妳可以看我的臉。</item>
+    </string-array>
+</resources>
