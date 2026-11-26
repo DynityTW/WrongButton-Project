@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch29.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch29_mistakes_3">
+        <item>[guilty]妳是不是用試的？</item>
+        <item>[normal]用手指沿著光線走一遍。</item>
+        <item>[normal]從我這裡倒著走回雷射也可以。</item>
+    </string-array>
+    <string-array name="ch29_mistakes_6">
+        <item>[sad]雷射一直打到牆壁。</item>
+        <item>[normal]提示會告訴妳每一面鏡子的方向。</item>
+        <item>[guilty]不用急，雷射不會過熱。</item>
+    </string-array>
+    <string-array name="ch29_idle">
+        <item>[normal]光線碰到鏡子會轉九十度。</item>
+        <item>[smug]我在等光。</item>
+        <item>[normal]從雷射開始，一格一格走。</item>
+    </string-array>
+    <string-array name="ch29_rapid_tap">
+        <item>[angry]不要一直轉鏡子！</item>
+        <item>[angry]鏡子會頭暈。</item>
+        <item>[angry]先想再轉。</item>
+    </string-array>
+    <string-array name="ch29_hint">
+        <item>[normal]好，我告訴妳鏡子怎麼轉。</item>
+        <item>[smug]要我自己走到光線那裡嗎？</item>
+        <item>[normal]提示會告訴妳答案。</item>
+    </string-array>
+    <string-array name="ch29_special">
+        <item>[guilty]一次就打中？</item>
+        <item>[normal]妳是光學專家。</item>
+        <item>[smug]妳比雷射還準。</item>
+    </string-array>
+    <string-array name="l461_enter">
+        <item>[normal]這次換光線找我。</item>
+        <item>[smug]我在格子外面。</item>
+    </string-array>
+    <string-array name="l461_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]沿著光線走一遍。</item>
+    </string-array>
+    <string-array name="l461_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]有點燙。</item>
+    </string-array>
+    <string-array name="l462_enter">
+        <item>[normal]三面鏡子。</item>
+        <item>[smug]光線會繞一下。</item>
+    </string-array>
+    <string-array name="l462_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]沿著光線走。</item>
+    </string-array>
+    <string-array name="l462_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]妳很會繞路。</item>
+    </string-array>
+    <string-array name="l463_enter">
+        <item>[normal]五乘五。</item>
+        <item>[smug]更多反彈。</item>
+    </string-array>
+    <string-array name="l463_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]固定的鏡子也算。</item>
+    </string-array>
+    <string-array name="l463_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]完美的反彈。</item>
+    </string-array>
+    <string-array name="l464_enter">
+        <item>[normal]四面鏡子。</item>
+        <item>[smug]十六種組合。</item>
+    </string-array>
+    <string-array name="l464_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]試試倒著走。</item>
+    </string-array>
+    <string-array name="l464_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]妳很準。</item>
+    </string-array>
+    <string-array name="l465_enter">
+        <item>[normal]有一面鏡子我來告訴妳。</item>
+        <item>[smug]相信我。</item>
+    </string-array>
+    <string-array name="l465_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l465_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我只是想讓光線轉錯彎。</item>
+    </string-array>
+    <string-array name="l466_enter">
+        <item>[normal]五面鏡子。</item>
+        <item>[smug]光線會打結。</item>
+    </string-array>
+    <string-array name="l466_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]光線可能經過同一格兩次。</item>
+    </string-array>
+    <string-array name="l466_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]光線沒有打結。</item>
+    </string-array>
+    <string-array name="l467_enter">
+        <item>[normal]六乘六。</item>
+        <item>[smug]五面鏡子。</item>
+    </string-array>
+    <string-array name="l467_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]一格一格走。</item>
+    </string-array>
+    <string-array name="l467_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]妳的眼睛跟得上光。</item>
+    </string-array>
+    <string-array name="l468_enter">
+        <item>[normal]雷射很亮，我戴了墨鏡。</item>
+        <item>[smug]說謊的幅度很小。</item>
+    </string-array>
+    <string-array name="l468_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l468_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l469_enter">
+        <item>[normal]六面鏡子。</item>
+        <item>[smug]之字形。</item>
+    </string-array>
+    <string-array name="l469_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]光線會來回。</item>
+    </string-array>
+    <string-array name="l469_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]妳沒有頭暈。</item>
+    </string-array>
+    <string-array name="l470_enter">
+        <item>[normal]四面鏡子我來說。</item>
+        <item>[smug]一面是假的。</item>
+    </string-array>
+    <string-array name="l470_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l470_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我要換個方法了。</item>
+    </string-array>
+    <string-array name="l471_enter">
+        <item>[normal]兩個謊。</item>
+        <item>[smug]小心。</item>
+    </string-array>
+    <string-array name="l471_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l471_clear">
+        <item>[normal]兩個謊都沒用。</item>
+        <item>[smug]妳很難騙。</item>
+    </string-array>
+    <string-array name="l472_enter">
+        <item>[normal]七乘七。</item>
+        <item>[smug]六面鏡子。</item>
+    </string-array>
+    <string-array name="l472_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]一格一格走。</item>
+    </string-array>
+    <string-array name="l472_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]光速般的思考。</item>
+    </string-array>
+    <string-array name="l473_enter">
+        <item>[normal]七面鏡子。</item>
+        <item>[smug]一百二十八種組合。</item>
+    </string-array>
+    <string-array name="l473_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]倒著走試試。</item>
+    </string-array>
+    <string-array name="l473_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]妳是光的指揮家。</item>
+    </string-array>
+    <string-array name="l474_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]七面鏡子。</item>
+    </string-array>
+    <string-array name="l474_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l474_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l475_enter">
+        <item>[normal]哈哈鏡屋。</item>
+        <item>[smug]兩面是假的。</item>
+    </string-array>
+    <string-array name="l475_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l475_clear">
+        <item>[normal]走出哈哈鏡屋了。</item>
+        <item>[smug]妳笑了嗎？</item>
+    </string-array>
+    <string-array name="l476_enter">
+        <item>[normal]八面鏡子。</item>
+        <item>[smug]兩百五十六種組合。</item>
+    </string-array>
+    <string-array name="l476_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]分段走。</item>
+    </string-array>
+    <string-array name="l476_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]妳的專注力驚人。</item>
+    </string-array>
+    <string-array name="l477_enter">
+        <item>[normal]鏡子迷宮。</item>
+        <item>[smug]說得很自然喔。</item>
+    </string-array>
+    <string-array name="l477_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l477_clear">
+        <item>[normal]走出迷宮了。</item>
+        <item>[smug]我的演技還不夠好。</item>
+    </string-array>
+    <string-array name="l478_enter">
+        <item>[normal]鏡廳。</item>
+        <item>[smug]到處都是我。</item>
+    </string-array>
+    <string-array name="l478_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]倒著走。</item>
+    </string-array>
+    <string-array name="l478_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]每一面鏡子裡的我都在鼓掌。</item>
+    </string-array>
+    <string-array name="l479_enter">
+        <item>[normal]九面鏡子。</item>
+        <item>[smug]我戴了墨鏡。</item>
+    </string-array>
+    <string-array name="l479_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l479_clear">
+        <item>[normal]打中了。</item>
+        <item>[smug]九面都轉對了。</item>
+    </string-array>
+    <string-array name="l480_enter">
+        <item>[normal]魔鏡，魔鏡。</item>
+        <item>[smug]誰是最會說謊的按鈕？</item>
+    </string-array>
+    <string-array name="l480_first_mistake">
+        <item>[smug]沒打到。</item>
+        <item>[normal]先分出謊話。</item>
+    </string-array>
+    <string-array name="l480_clear">
+        <item>[normal]魔鏡說：是妳。</item>
+        <item>[smug]下一章，最後一章。</item>
+    </string-array>
+</resources>
