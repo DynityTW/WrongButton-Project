@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch23.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string name="chapter_23">第 23 章　誰在說謊</string>
+    <string name="l341_title">兩顆</string>
+    <string name="l341_task">找出說謊的按鈕。</string>
+    <string name="l341_hint_1">說真話的說的話一定是真的；說謊的說的話一定是假的。</string>
+    <string name="l341_hint_2">假設紅鈕說真話，看藍鈕的話對不對得上；再假設紅鈕說謊試一次。</string>
+    <string name="l341_hint_3">答案：紅鈕。</string>
+    <string name="l342_title">三顆</string>
+    <string name="l342_task">找出說謊的按鈕。</string>
+    <string name="l342_hint_1">三顆，一顆一句。說謊的可能不只一顆。</string>
+    <string name="l342_hint_2">從說「X 和 Y 是同一種」的那句開始：它說真話時，X、Y 同種。</string>
+    <string name="l342_hint_3">答案：紅鈕、藍鈕。</string>
+    <string name="l343_title">誰</string>
+    <string name="l343_task">找出說謊的按鈕。</string>
+    <string name="l343_hint_1">兩顆按鈕說的話互相衝突時，至少一顆在說謊。</string>
+    <string name="l343_hint_2">紅鈕和藍鈕對綠鈕的說法相反：它們一定不是同一種。</string>
+    <string name="l343_hint_3">答案：藍鈕。</string>
+    <string name="l344_title">分身</string>
+    <string name="l344_task">找出 The Button 的分身。</string>
+    <string name="l344_hint_1">我的分身混在這三顆裡。它跟其他按鈕一樣，不是說真話就是說謊。</string>
+    <string name="l344_hint_2">先決定誰說真話、誰說謊，再看「分身是……」那句能不能信。</string>
+    <string name="l344_hint_3">答案：藍鈕。</string>
+    <string name="l345_title">同一種</string>
+    <string name="l345_task">找出說謊的按鈕。</string>
+    <string name="l345_hint_1">這次每一句都在說「誰和誰是不是同一種」。</string>
+    <string name="l345_hint_2">說謊的人說「X 和 Y 是同一種」，代表 X、Y 其實不同。</string>
+    <string name="l345_hint_3">答案：綠鈕、黃鈕。</string>
+    <string name="l346_title">數一數</string>
+    <string name="l346_task">找出說謊的按鈕。</string>
+    <string name="l346_hint_1">四顆，有「我們之中剛好有幾個說謊的」這種句子。</string>
+    <string name="l346_hint_2">數量的句子很強：先假設說謊的有幾個，再看誰的話對不上。</string>
+    <string name="l346_hint_3">答案：藍鈕、綠鈕。</string>
+    <string name="l347_title">如果</string>
+    <string name="l347_task">找出說謊的按鈕。</string>
+    <string name="l347_hint_1">「如果 X 說真話，那 Y 也說真話」只有一種情況是假的：X 說真話、Y 說謊。</string>
+    <string name="l347_hint_2">所以說謊的人說這句話時，X 一定說真話、Y 一定說謊。</string>
+    <string name="l347_hint_3">答案：紅鈕、綠鈕、黃鈕。</string>
+    <string name="l348_title">一人兩句</string>
+    <string name="l348_task">找出說謊的按鈕。</string>
+    <string name="l348_hint_1">每一顆說兩句。同一顆說的兩句，不是都真就是都假。</string>
+    <string name="l348_hint_2">只要其中一句明顯是假的，另一句也是假的。</string>
+    <string name="l348_hint_3">答案：藍鈕。</string>
+    <string name="l349_title">間諜</string>
+    <string name="l349_task">找出間諜。</string>
+    <string name="l349_hint_1">有一顆是間諜：它的話可真可假，不能當線索。</string>
+    <string name="l349_hint_2">分別假設每一顆是間諜，把另外兩顆當成普通的說真話／說謊的，看會不會矛盾。</string>
+    <string name="l349_hint_3">答案：藍鈕。</string>
+    <string name="l350_title">它也說了</string>
+    <string name="l350_task">找出說謊的按鈕。</string>
+    <string name="l350_hint_1">這關我也說一句。說謊的時候我的眼睛會看旁邊、一邊嘴角翹起。</string>
+    <string name="l350_hint_2">我的那句如果是謊話，它的相反才是真的，也是一條線索。</string>
+    <string name="l350_hint_3">我那句是謊話。答案：藍鈕、綠鈕、黃鈕。</string>
+    <string name="l351_title">排成一列</string>
+    <string name="l351_task">找出說謊的按鈕。</string>
+    <string name="l351_hint_1">它們排成一列：紅、藍、綠、黃、紫。「我旁邊」是左右相鄰的。</string>
+    <string name="l351_hint_2">最旁邊的只有一個鄰居。從兩端開始想。</string>
+    <string name="l351_hint_3">答案：藍鈕、綠鈕、黃鈕、紫鈕。</string>
+    <string name="l352_title">它會怎麼說</string>
+    <string name="l352_task">找出說謊的按鈕。</string>
+    <string name="l352_hint_1">「如果你問 X，它會說我是說謊的」：不管誰說真話，這句話都代表說話的和 X 不是同一種。</string>
+    <string name="l352_hint_2">想想看：說真話的被誠實地指控，或說謊的被說謊者指控……</string>
+    <string name="l352_hint_3">答案：藍鈕、綠鈕。</string>
+    <string name="l353_title">找分身</string>
+    <string name="l353_task">找出 The Button 的分身。</string>
+    <string name="l353_hint_1">五顆，分身混在裡面。</string>
+    <string name="l353_hint_2">先算出誰說謊，再用「分身不是……」那句排除。</string>
+    <string name="l353_hint_3">答案：黃鈕。</string>
+    <string name="l354_title">間諜與分身</string>
+    <string name="l354_task">找出 The Button 的分身。</string>
+    <string name="l354_hint_1">有一顆是間諜，分身也混在裡面。間諜可能就是分身。</string>
+    <string name="l354_hint_2">先找間諜：假設每一顆是間諜，只有一種情況不矛盾。</string>
+    <string name="l354_hint_3">答案：紅鈕。</string>
+    <string name="l355_title">五顆</string>
+    <string name="l355_task">找出說謊的按鈕。</string>
+    <string name="l355_hint_1">五顆，有數量、有「至少一個說謊」、有「同一種」。</string>
+    <string name="l355_hint_2">「X 和 Y 之中至少一個說謊」是假的時，X、Y 都說真話。</string>
+    <string name="l355_hint_3">答案：藍鈕、綠鈕。</string>
+    <string name="l356_title">兩句兩句</string>
+    <string name="l356_task">找出說謊的按鈕。</string>
+    <string name="l356_hint_1">四顆，每一顆說兩句。</string>
+    <string name="l356_hint_2">同一顆的兩句真假相同：找一顆兩句話互相衝突的，它一定說謊。</string>
+    <string name="l356_hint_3">答案：綠鈕。</string>
+    <string name="l357_title">墨鏡</string>
+    <string name="l357_task">找出說謊的按鈕。</string>
+    <string name="l357_hint_1">我戴墨鏡，只看得到嘴角。這次說謊的幅度很小。</string>
+    <string name="l357_hint_2">我那句是謊話時，相反的才是真的。</string>
+    <string name="l357_hint_3">我那句是謊話。答案：紅鈕、黃鈕、紫鈕。</string>
+    <string name="l358_title">間諜說兩句</string>
+    <string name="l358_task">找出間諜。</string>
+    <string name="l358_hint_1">四顆，每一顆說兩句，有一顆是間諜。</string>
+    <string name="l358_hint_2">間諜的兩句可以一真一假；其他人的兩句真假相同。</string>
+    <string name="l358_hint_3">答案：紅鈕。</string>
+    <string name="l359_title">六顆</string>
+    <string name="l359_task">找出說謊的按鈕。</string>
+    <string name="l359_hint_1">六顆排成一列，各說一句。</string>
+    <string name="l359_hint_2">數量的句子和「旁邊」的句子一起用：先假設說謊的有幾個。</string>
+    <string name="l359_hint_3">答案：紅鈕、藍鈕、黃鈕、灰鈕。</string>
+    <string name="l360_title">誰在說謊</string>
+    <string name="l360_task">找出 The Button 的分身。</string>
+    <string name="l360_hint_1">全部都來了：間諜、分身、而且我戴口罩說了一句。</string>
+    <string name="l360_hint_2">先讀我的眼睛，再找間諜，最後找分身。</string>
+    <string name="l360_hint_3">我那句是謊話。答案：紅鈕。</string>
+    <string-array name="ch23_names">
+        <item>紅鈕</item>
+        <item>藍鈕</item>
+        <item>綠鈕</item>
+        <item>黃鈕</item>
+        <item>紫鈕</item>
+        <item>灰鈕</item>
+    </string-array>
+    <string name="ch23_rule_basic">每一顆按鈕不是永遠說真話，就是永遠說謊。</string>
+    <string name="ch23_rule_spy">其中一顆是間諜：想說什麼就說什麼。</string>
+    <string name="ch23_rule_double">The Button 的分身混在裡面。</string>
+    <string name="ch23_goal_liars">標記所有說謊的，按「確定」。</string>
+    <string name="ch23_goal_double">標記分身，按「確定」。</string>
+    <string name="ch23_goal_spy">標記間諜，按「確定」。</string>
+    <string name="ch23_confirm">確定</string>
+    <string name="ch23_wrong">不對。</string>
+    <string name="ch23_listen_first">先聽我說一句。</string>
+    <string name="ch23_narrator_ask">The Button 也有話要說：點一下聽它說</string>
+    <string name="ch23_narrator_heard">The Button 說：%1$s</string>
+    <string name="ch23_marked_liar">說謊</string>
+    <string name="ch23_marked">就是它</string>
+    <string name="ch23_card_cd">%1$s說：「%2$s」</string>
+</resources>

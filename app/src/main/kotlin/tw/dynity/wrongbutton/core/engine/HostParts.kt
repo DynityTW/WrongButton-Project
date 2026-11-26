@@ -276,7 +276,7 @@ fun ResultScreen(
                 }
             }
             if (!hasNext) {
-                Text(stringResource(R.string.result_thanks), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center)
+                Text(stringResource(R.string.result_thanks, tw.dynity.wrongbutton.levels.Levels.all.size), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center)
             }
             Spacer(Modifier.size(4.dp))
             if (hasNext) {

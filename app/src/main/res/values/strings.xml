@@ -36,7 +36,7 @@
     <string name="result_special">特殊解</string>
     <string name="result_next">下一關</string>
     <string name="result_select">回到選關</string>
-    <string name="result_thanks">目前的關卡就到這裡。謝謝妳一路玩到第 300 關。</string>
+    <string name="result_thanks">目前的關卡就到這裡。謝謝妳一路玩到第 %1$d 關。</string>
     <string name="records_title">紀錄</string>
     <string name="records_back">返回</string>
     <string name="records_intro">以下是 The Button 記得的事。這些資料只存在妳的裝置上。</string>
@@ -245,7 +245,7 @@
     <string name="pro_joke_caffeine">開發團隊的咖啡因存量告急。這句是真的，妳看我的眼睛。</string>
     <string name="pro_joke_still_lies">Pro 版的我一樣會說謊，只是不會再叫妳看廣告。</string>
     <string name="pro_joke_look_at_me">我說「買了不會後悔」的時候，眼睛有看旁邊嗎？妳自己檢查。</string>
-    <string name="pro_joke_teaser">後面還有會說謊的開關、只會說按鈕語的我，和一整章的試算表。</string>
+    <string name="pro_joke_teaser">後面還有會說謊的開關、只會說按鈕語的我、一整章的試算表，還有會說謊的踩地雷。</string>
     <string name="pro_joke_sleep">工程師說，每多一個人買 Pro，他就能多睡一小時。這句我沒辦法證實。</string>
     <string name="pro_joke_airplane">從第 %1$d 關開始全部打開——包括要妳把手機切成飛航模式的那一章。</string>
     <string name="pro_joke_hints">Pro 不會幫妳解謎，但第 2、3 階提示會直接給，不用先看廣告。</string>

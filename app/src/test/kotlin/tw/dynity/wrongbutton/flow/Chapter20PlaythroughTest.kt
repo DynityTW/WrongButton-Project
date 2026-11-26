@@ -53,8 +53,7 @@ class Chapter20PlaythroughTest {
         t("article_link", "nav_back", "the_button")
         rule.waitUntil(15_000) { exists("result_title") }
         assertTrue(memory.isCleared(300))
-        assertFalse("第 300 關是目前最後一關", exists("result_next"))
-        assertEquals(300, Levels.all.size)
+        assertEquals("第 300 關是第二季最後一關", 300, Levels.chapters.filter { it.season == 2 }.last().levels.last().id)
         assertEquals("只有故意按登入那一次算錯", start + 1, memory.totalMistakes)
     }
 }

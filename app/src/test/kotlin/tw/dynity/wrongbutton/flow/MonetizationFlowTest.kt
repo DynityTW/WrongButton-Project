@@ -152,7 +152,7 @@ class MonetizationFlowTest {
             rule.waitForIdle()
         }
         val all = seen.joinToString("|")
-        assertTrue("一關的價格用 Play 的價格算：$all", all.contains("0.5 塊"))
+        assertTrue("一關的價格用 Play 的價格算：$all", Regex("一關只要 0\\.\\d+ 塊").containsMatchIn(all))
         assertTrue(all.contains("便當"))
     }
 }

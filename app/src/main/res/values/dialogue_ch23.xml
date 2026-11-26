@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch23.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch23_mistakes_3">
+        <item>[guilty]妳是不是用猜的？</item>
+        <item>[normal]先假設其中一顆說真話，看會不會矛盾。</item>
+        <item>[normal]說謊的人說的話，反過來才是真的。</item>
+    </string-array>
+    <string-array name="ch23_mistakes_6">
+        <item>[sad]它們都在笑妳。</item>
+        <item>[normal]提示會告訴妳從哪一顆開始想。</item>
+        <item>[guilty]不用急，它們不會跑。</item>
+    </string-array>
+    <string-array name="ch23_idle">
+        <item>[normal]拿張紙出來畫表格也可以。</item>
+        <item>[smug]我知道誰在說謊。</item>
+        <item>[normal]一顆一顆假設看看。</item>
+    </string-array>
+    <string-array name="ch23_rapid_tap">
+        <item>[angry]不要亂點！</item>
+        <item>[angry]先想再標記。</item>
+        <item>[angry]它們會被妳戳痛。</item>
+    </string-array>
+    <string-array name="ch23_hint">
+        <item>[normal]好，我幫妳起個頭。</item>
+        <item>[smug]要我出賣它們嗎？</item>
+        <item>[normal]提示會從最關鍵的那一句開始。</item>
+    </string-array>
+    <string-array name="ch23_special">
+        <item>[guilty]一次就對？</item>
+        <item>[normal]妳是天生的偵探。</item>
+        <item>[smug]它們騙不了妳。</item>
+    </string-array>
+    <string-array name="l341_enter">
+        <item>[normal]這兩顆有一顆會說謊。</item>
+        <item>[smug]可能吧。</item>
+    </string-array>
+    <string-array name="l341_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]一顆一顆假設看看。</item>
+    </string-array>
+    <string-array name="l341_clear">
+        <item>[normal]妳抓到了。</item>
+        <item>[smug]說謊的人總會露出馬腳。</item>
+    </string-array>
+    <string-array name="l342_enter">
+        <item>[normal]三顆按鈕。</item>
+        <item>[smug]它們都說自己是好人。</item>
+    </string-array>
+    <string-array name="l342_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]檢查每一句話對不對得上。</item>
+    </string-array>
+    <string-array name="l342_clear">
+        <item>[normal]三顆都看穿了。</item>
+        <item>[smug]妳很會審問。</item>
+    </string-array>
+    <string-array name="l343_enter">
+        <item>[normal]又是三顆。</item>
+        <item>[smug]這次它們吵起來了。</item>
+    </string-array>
+    <string-array name="l343_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]找出互相衝突的兩句。</item>
+    </string-array>
+    <string-array name="l343_clear">
+        <item>[normal]吵架的那兩顆，妳分清楚了。</item>
+        <item>[smug]妳可以去當法官。</item>
+    </string-array>
+    <string-array name="l344_enter">
+        <item>[normal]我做了一個分身。</item>
+        <item>[smug]它混在裡面，妳找得到嗎？</item>
+    </string-array>
+    <string-array name="l344_first_mistake">
+        <item>[smug]那不是我的分身。</item>
+        <item>[normal]先分出誰說真話。</item>
+    </string-array>
+    <string-array name="l344_clear">
+        <item>[normal]那就是我的分身。</item>
+        <item>[smug]它跟我一樣帥。</item>
+    </string-array>
+    <string-array name="l345_enter">
+        <item>[normal]它們只會說誰跟誰一樣。</item>
+        <item>[smug]聽起來像八卦。</item>
+    </string-array>
+    <string-array name="l345_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]把「同一種」「不同種」畫成線。</item>
+    </string-array>
+    <string-array name="l345_clear">
+        <item>[normal]八卦都被妳拆穿了。</item>
+        <item>[smug]妳很會整理人際關係。</item>
+    </string-array>
+    <string-array name="l346_enter">
+        <item>[normal]這次有人會數數。</item>
+        <item>[smug]數錯也算說謊。</item>
+    </string-array>
+    <string-array name="l346_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]數一數妳標了幾個。</item>
+    </string-array>
+    <string-array name="l346_clear">
+        <item>[normal]數字對上了。</item>
+        <item>[smug]妳的算術比它們好。</item>
+    </string-array>
+    <string-array name="l347_enter">
+        <item>[normal]這次有人說「如果」。</item>
+        <item>[smug]如果妳猜對的話。</item>
+    </string-array>
+    <string-array name="l347_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]「如果」那句，什麼時候是假的？</item>
+    </string-array>
+    <string-array name="l347_clear">
+        <item>[normal]邏輯課可以畢業了。</item>
+        <item>[smug]如果妳通關，那妳很厲害。這句是真的。</item>
+    </string-array>
+    <string-array name="l348_enter">
+        <item>[normal]這次每一顆說兩句。</item>
+        <item>[smug]說謊的人兩句都是假的。</item>
+    </string-array>
+    <string-array name="l348_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]兩句一起看。</item>
+    </string-array>
+    <string-array name="l348_clear">
+        <item>[normal]六句話都被妳看穿了。</item>
+        <item>[smug]話多的人比較容易露餡。</item>
+    </string-array>
+    <string-array name="l349_enter">
+        <item>[normal]這次混進了間諜。</item>
+        <item>[smug]間諜說的話完全沒有意義。</item>
+    </string-array>
+    <string-array name="l349_first_mistake">
+        <item>[smug]那不是間諜。</item>
+        <item>[normal]一顆一顆假設它是間諜。</item>
+    </string-array>
+    <string-array name="l349_clear">
+        <item>[normal]間諜被妳抓到了。</item>
+        <item>[smug]妳該去情報局上班。</item>
+    </string-array>
+    <string-array name="l350_enter">
+        <item>[normal]這次我也要說話。</item>
+        <item>[smug]聽我的就對了。</item>
+    </string-array>
+    <string-array name="l350_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]我說話的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l350_clear">
+        <item>[normal]連我都沒騙到妳。</item>
+        <item>[smug]我只是想參與一下。</item>
+    </string-array>
+    <string-array name="l351_enter">
+        <item>[normal]它們排好隊了。</item>
+        <item>[smug]會說旁邊的壞話。</item>
+    </string-array>
+    <string-array name="l351_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]「旁邊」是左右兩顆。</item>
+    </string-array>
+    <string-array name="l351_clear">
+        <item>[normal]整排都被妳看穿了。</item>
+        <item>[smug]排隊的時候也不能說謊。</item>
+    </string-array>
+    <string-array name="l352_enter">
+        <item>[normal]它們會轉述別人的話。</item>
+        <item>[smug]轉述也可以說謊。</item>
+    </string-array>
+    <string-array name="l352_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]把「它會說」那句翻譯成「我和 X 不同種」。</item>
+    </string-array>
+    <string-array name="l352_clear">
+        <item>[normal]繞口令也難不倒妳。</item>
+        <item>[smug]妳的腦袋轉得比我快。</item>
+    </string-array>
+    <string-array name="l353_enter">
+        <item>[normal]這次有五顆。</item>
+        <item>[smug]我的分身躲得更好了。</item>
+    </string-array>
+    <string-array name="l353_first_mistake">
+        <item>[smug]那不是我的分身。</item>
+        <item>[normal]先分出誰說真話。</item>
+    </string-array>
+    <string-array name="l353_clear">
+        <item>[normal]找到了。</item>
+        <item>[smug]它跟我真的很像吧。</item>
+    </string-array>
+    <string-array name="l354_enter">
+        <item>[normal]間諜和分身。</item>
+        <item>[smug]誰才是誰？</item>
+    </string-array>
+    <string-array name="l354_first_mistake">
+        <item>[smug]那不是我的分身。</item>
+        <item>[normal]先找間諜。</item>
+    </string-array>
+    <string-array name="l354_clear">
+        <item>[normal]兩個秘密都被妳揭穿了。</item>
+        <item>[smug]我的分身要去整形了。</item>
+    </string-array>
+    <string-array name="l355_enter">
+        <item>[normal]五顆按鈕。</item>
+        <item>[smug]越來越熱鬧了。</item>
+    </string-array>
+    <string-array name="l355_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]從「至少一個說謊」那句開始。</item>
+    </string-array>
+    <string-array name="l355_clear">
+        <item>[normal]五顆都看穿了。</item>
+        <item>[smug]妳是測謊機嗎？</item>
+    </string-array>
+    <string-array name="l356_enter">
+        <item>[normal]這次每一顆都很多話。</item>
+        <item>[smug]八句話，慢慢聽。</item>
+    </string-array>
+    <string-array name="l356_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]同一顆的兩句要一起看。</item>
+    </string-array>
+    <string-array name="l356_clear">
+        <item>[normal]八句話都分清楚了。</item>
+        <item>[smug]妳的耐心比我好。</item>
+    </string-array>
+    <string-array name="l357_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]五顆按鈕加上我。</item>
+    </string-array>
+    <string-array name="l357_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l357_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l358_enter">
+        <item>[normal]間諜又來了。</item>
+        <item>[smug]這次它話很多。</item>
+    </string-array>
+    <string-array name="l358_first_mistake">
+        <item>[smug]那不是間諜。</item>
+        <item>[normal]間諜的兩句可以一真一假。</item>
+    </string-array>
+    <string-array name="l358_clear">
+        <item>[normal]間諜被妳抓到了。</item>
+        <item>[smug]話多的間諜不是好間諜。</item>
+    </string-array>
+    <string-array name="l359_enter">
+        <item>[normal]六顆按鈕。</item>
+        <item>[smug]這是一場審判。</item>
+    </string-array>
+    <string-array name="l359_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先猜說謊的有幾個，再檢查。</item>
+    </string-array>
+    <string-array name="l359_clear">
+        <item>[normal]六顆都看穿了。</item>
+        <item>[smug]妳可以當法官了。</item>
+    </string-array>
+    <string-array name="l360_enter">
+        <item>[normal]最後一場審判。</item>
+        <item>[smug]我戴了口罩。</item>
+    </string-array>
+    <string-array name="l360_first_mistake">
+        <item>[smug]那不是我的分身。</item>
+        <item>[normal]先聽我說，看我的眼睛。</item>
+    </string-array>
+    <string-array name="l360_clear">
+        <item>[normal]妳找到我的分身了。</item>
+        <item>[smug]下一章，我們來猜規則。</item>
+    </string-array>
+</resources>

@@ -30,8 +30,8 @@ val uploadStore = signingValue("storeFile", "WB_UPLOAD_STORE_FILE")
  * 發新版時只改這三個數字。
  */
 val VERSION_MAJOR = 0
-val VERSION_MINOR = 9
-val VERSION_PATCH = 1
+val VERSION_MINOR = 10
+val VERSION_PATCH = 0
 
 val ADMOB_TEST_APP_ID = "ca-app-pub-3940256099942544~3347511713"
 val ADMOB_TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"
