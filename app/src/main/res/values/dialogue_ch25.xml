@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch25.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch25_mistakes_3">
+        <item>[guilty]妳是不是用試的？</item>
+        <item>[normal]一盞燈一盞燈想：它接了哪些開關？</item>
+        <item>[normal]比較兩次實驗：差一個開關，燈差在哪裡？</item>
+    </string-array>
+    <string-array name="ch25_mistakes_6">
+        <item>[sad]保險絲要燒掉了。</item>
+        <item>[normal]提示會告訴妳答案。</item>
+        <item>[guilty]不用急，電不會跑。</item>
+    </string-array>
+    <string-array name="ch25_idle">
+        <item>[normal]拿張紙畫表格也可以。</item>
+        <item>[smug]我知道每一條電線接在哪裡。</item>
+        <item>[normal]先看每一盞燈，再看每一個開關。</item>
+    </string-array>
+    <string-array name="ch25_rapid_tap">
+        <item>[angry]不要亂扳開關！</item>
+        <item>[angry]會跳電！</item>
+        <item>[angry]先想再扳。</item>
+    </string-array>
+    <string-array name="ch25_hint">
+        <item>[normal]好，我幫妳看一下線路。</item>
+        <item>[smug]要我把電線拉出來給妳看嗎？</item>
+        <item>[normal]提示會從最關鍵的那盞燈開始。</item>
+    </string-array>
+    <string-array name="ch25_special">
+        <item>[guilty]一次就通電？</item>
+        <item>[normal]妳是水電師傅嗎？</item>
+        <item>[smug]妳比我還懂我的線路。</item>
+    </string-array>
+    <string-array name="l381_enter">
+        <item>[normal]這裡有幾條看不到的電線。</item>
+        <item>[smug]接法是秘密。</item>
+    </string-array>
+    <string-array name="l381_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]燈暗的那幾次實驗最有用。</item>
+    </string-array>
+    <string-array name="l381_clear">
+        <item>[normal]燈亮了。</item>
+        <item>[smug]妳是天生的水電師傅。</item>
+    </string-array>
+    <string-array name="l382_enter">
+        <item>[normal]換一組電線。</item>
+        <item>[smug]跟剛才不一樣喔。</item>
+    </string-array>
+    <string-array name="l382_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]不能讓別的燈亮。</item>
+    </string-array>
+    <string-array name="l382_clear">
+        <item>[normal]又亮了。</item>
+        <item>[smug]妳很會接電線。</item>
+    </string-array>
+    <string-array name="l383_enter">
+        <item>[normal]開關變多了。</item>
+        <item>[smug]四個。</item>
+    </string-array>
+    <string-array name="l383_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]先刪掉不能開的開關。</item>
+    </string-array>
+    <string-array name="l383_clear">
+        <item>[normal]沒問題。</item>
+        <item>[smug]妳越來越熟練了。</item>
+    </string-array>
+    <string-array name="l384_enter">
+        <item>[normal]四盞燈。</item>
+        <item>[smug]要同時點亮好幾盞。</item>
+    </string-array>
+    <string-array name="l384_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]每盞目標燈都要有開關接到。</item>
+    </string-array>
+    <string-array name="l384_clear">
+        <item>[normal]全亮了。</item>
+        <item>[smug]聖誕節快到了嗎？</item>
+    </string-array>
+    <string-array name="l385_enter">
+        <item>[normal]有幾盞燈我來告訴妳。</item>
+        <item>[smug]相信我。</item>
+    </string-array>
+    <string-array name="l385_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l385_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]妳看穿了我的電路。</item>
+    </string-array>
+    <string-array name="l386_enter">
+        <item>[normal]這次的電線不一樣。</item>
+        <item>[smug]開關會互相抵消。</item>
+    </string-array>
+    <string-array name="l386_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]兩個開關可能互相抵消。</item>
+    </string-array>
+    <string-array name="l386_clear">
+        <item>[normal]抵消也被妳算出來了。</item>
+        <item>[smug]妳懂奇數和偶數。</item>
+    </string-array>
+    <string-array name="l387_enter">
+        <item>[normal]切換式，四盞燈。</item>
+        <item>[smug]更亂了。</item>
+    </string-array>
+    <string-array name="l387_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]把兩次實驗疊起來看。</item>
+    </string-array>
+    <string-array name="l387_clear">
+        <item>[normal]亮對了。</item>
+        <item>[smug]妳是電路天才。</item>
+    </string-array>
+    <string-array name="l388_enter">
+        <item>[normal]四個切換開關。</item>
+        <item>[smug]組合很多。</item>
+    </string-array>
+    <string-array name="l388_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]先推出每個開關單獨的效果。</item>
+    </string-array>
+    <string-array name="l388_clear">
+        <item>[normal]全對。</item>
+        <item>[smug]妳把我的電路拆光了。</item>
+    </string-array>
+    <string-array name="l389_enter">
+        <item>[normal]五個開關。</item>
+        <item>[smug]有一些妳永遠不會知道接到哪裡。</item>
+    </string-array>
+    <string-array name="l389_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]不知道接法的開關，最好不要開。</item>
+    </string-array>
+    <string-array name="l389_clear">
+        <item>[normal]不需要知道全部，也能點亮。</item>
+        <item>[smug]妳很懂取捨。</item>
+    </string-array>
+    <string-array name="l390_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]說謊的幅度很小喔。</item>
+    </string-array>
+    <string-array name="l390_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l390_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l391_enter">
+        <item>[normal]切換式加上我說的話。</item>
+        <item>[smug]兩種陷阱。</item>
+    </string-array>
+    <string-array name="l391_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l391_clear">
+        <item>[normal]兩種陷阱都躲過了。</item>
+        <item>[smug]妳很難騙。</item>
+    </string-array>
+    <string-array name="l392_enter">
+        <item>[normal]五個開關、五盞燈。</item>
+        <item>[smug]整面牆的開關。</item>
+    </string-array>
+    <string-array name="l392_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]從燈最少的那次實驗開始。</item>
+    </string-array>
+    <string-array name="l392_clear">
+        <item>[normal]整面牆都被妳搞定了。</item>
+        <item>[smug]妳可以去當電工了。</item>
+    </string-array>
+    <string-array name="l393_enter">
+        <item>[normal]四個切換開關、五盞燈。</item>
+        <item>[smug]要算很多次奇偶。</item>
+    </string-array>
+    <string-array name="l393_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]疊加兩次實驗試試。</item>
+    </string-array>
+    <string-array name="l393_clear">
+        <item>[normal]算對了。</item>
+        <item>[smug]妳的心算真快。</item>
+    </string-array>
+    <string-array name="l394_enter">
+        <item>[normal]我的筆記有一格寫錯了。</item>
+        <item>[smug]我不告訴妳是哪一格。</item>
+    </string-array>
+    <string-array name="l394_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]先找出矛盾的那一格。</item>
+    </string-array>
+    <string-array name="l394_clear">
+        <item>[normal]妳找到寫錯的那一格了。</item>
+        <item>[smug]妳可以幫我改作業。</item>
+    </string-array>
+    <string-array name="l395_enter">
+        <item>[normal]切換式的筆記也寫錯了。</item>
+        <item>[smug]一格而已。</item>
+    </string-array>
+    <string-array name="l395_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]找出那一格。</item>
+    </string-array>
+    <string-array name="l395_clear">
+        <item>[normal]又找到了。</item>
+        <item>[smug]妳的眼睛比我的筆記可靠。</item>
+    </string-array>
+    <string-array name="l396_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]五乘五的電路。</item>
+    </string-array>
+    <string-array name="l396_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l396_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l397_enter">
+        <item>[normal]五個切換開關。</item>
+        <item>[smug]三十一種組合。</item>
+    </string-array>
+    <string-array name="l397_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]先推每個開關的效果。</item>
+    </string-array>
+    <string-array name="l397_clear">
+        <item>[normal]全對。</item>
+        <item>[smug]妳的腦袋裡有一台電腦。</item>
+    </string-array>
+    <string-array name="l398_enter">
+        <item>[normal]切換式，兩個謊。</item>
+        <item>[smug]說得很自然。</item>
+    </string-array>
+    <string-array name="l398_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l398_clear">
+        <item>[normal]兩個謊都沒用。</item>
+        <item>[smug]我要去上表演課了。</item>
+    </string-array>
+    <string-array name="l399_enter">
+        <item>[normal]筆記又寫錯了。</item>
+        <item>[smug]這次是五乘五。</item>
+    </string-array>
+    <string-array name="l399_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]找出矛盾。</item>
+    </string-array>
+    <string-array name="l399_clear">
+        <item>[normal]電來了。</item>
+        <item>[smug]妳是英雄。</item>
+    </string-array>
+    <string-array name="l400_enter">
+        <item>[normal]第 400 關。</item>
+        <item>[smug]最難的電路。</item>
+    </string-array>
+    <string-array name="l400_first_mistake">
+        <item>[smug]燈不對。</item>
+        <item>[normal]先推大部分，再找錯的那格。</item>
+    </string-array>
+    <string-array name="l400_clear">
+        <item>[normal]第 400 關，通電。</item>
+        <item>[smug]下一章，我們來排隊。</item>
+    </string-array>
+</resources>
