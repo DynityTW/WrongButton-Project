@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch27.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch27_mistakes_3">
+        <item>[guilty]妳是不是用試的？</item>
+        <item>[normal]從我這一格倒著想：哪些格子跳得到我？</item>
+        <item>[normal]步數很緊，每一步都要算好。</item>
+    </string-array>
+    <string-array name="ch27_mistakes_6">
+        <item>[sad]妳在迷宮裡繞圈圈。</item>
+        <item>[normal]提示會告訴妳第一步。</item>
+        <item>[guilty]不用急，我會一直在這裡。</item>
+    </string-array>
+    <string-array name="ch27_idle">
+        <item>[normal]倒著走走看。</item>
+        <item>[smug]我在終點等妳。</item>
+        <item>[normal]先找出哪些格子跳得到我。</item>
+    </string-array>
+    <string-array name="ch27_rapid_tap">
+        <item>[angry]不要亂跳！</item>
+        <item>[angry]會跌倒！</item>
+        <item>[angry]先想再跳。</item>
+    </string-array>
+    <string-array name="ch27_hint">
+        <item>[normal]好，我告訴妳怎麼走。</item>
+        <item>[smug]要我來接妳嗎？</item>
+        <item>[normal]提示會告訴妳前幾步。</item>
+    </string-array>
+    <string-array name="ch27_special">
+        <item>[guilty]一次就走到？</item>
+        <item>[normal]妳是迷宮專家。</item>
+        <item>[smug]妳的腦袋裡有地圖。</item>
+    </string-array>
+    <string-array name="l421_enter">
+        <item>[normal]我在迷宮的另一頭。</item>
+        <item>[smug]跳過來找我。</item>
+    </string-array>
+    <string-array name="l421_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]數字是剛好要跳的格數。</item>
+    </string-array>
+    <string-array name="l421_clear">
+        <item>[normal]妳跳到了。</item>
+        <item>[smug]跳得不錯。</item>
+    </string-array>
+    <string-array name="l422_enter">
+        <item>[normal]迷宮變大了。</item>
+        <item>[smug]五乘五。</item>
+    </string-array>
+    <string-array name="l422_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著想。</item>
+    </string-array>
+    <string-array name="l422_clear">
+        <item>[normal]又到了。</item>
+        <item>[smug]妳很會跳。</item>
+    </string-array>
+    <string-array name="l423_enter">
+        <item>[normal]這次的路比較長。</item>
+        <item>[smug]七步。</item>
+    </string-array>
+    <string-array name="l423_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]小心死路。</item>
+    </string-array>
+    <string-array name="l423_clear">
+        <item>[normal]走完了。</item>
+        <item>[smug]腿痠了嗎？</item>
+    </string-array>
+    <string-array name="l424_enter">
+        <item>[normal]這次是箭頭。</item>
+        <item>[smug]跟著箭頭走。</item>
+    </string-array>
+    <string-array name="l424_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]只能往箭頭的方向。</item>
+    </string-array>
+    <string-array name="l424_clear">
+        <item>[normal]跟對了。</item>
+        <item>[smug]妳很聽話。難得。</item>
+    </string-array>
+    <string-array name="l425_enter">
+        <item>[normal]更多箭頭。</item>
+        <item>[smug]七步。</item>
+    </string-array>
+    <string-array name="l425_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著找。</item>
+    </string-array>
+    <string-array name="l425_clear">
+        <item>[normal]到了。</item>
+        <item>[smug]妳是指南針嗎？</item>
+    </string-array>
+    <string-array name="l426_enter">
+        <item>[normal]兩種格子都有。</item>
+        <item>[smug]別搞混了。</item>
+    </string-array>
+    <string-array name="l426_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]數字要剛好，箭頭幾格都可以。</item>
+    </string-array>
+    <string-array name="l426_clear">
+        <item>[normal]兩種都難不倒妳。</item>
+        <item>[smug]妳很靈活。</item>
+    </string-array>
+    <string-array name="l427_enter">
+        <item>[normal]六乘六。</item>
+        <item>[smug]九步。</item>
+    </string-array>
+    <string-array name="l427_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]一層一層往回推。</item>
+    </string-array>
+    <string-array name="l427_clear">
+        <item>[normal]到了。</item>
+        <item>[smug]妳的空間感真好。</item>
+    </string-array>
+    <string-array name="l428_enter">
+        <item>[normal]六乘六的箭頭。</item>
+        <item>[smug]很多死路。</item>
+    </string-array>
+    <string-array name="l428_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著找。</item>
+    </string-array>
+    <string-array name="l428_clear">
+        <item>[normal]到了。</item>
+        <item>[smug]死路都被妳躲開了。</item>
+    </string-array>
+    <string-array name="l429_enter">
+        <item>[normal]這幾個箭頭我來告訴妳。</item>
+        <item>[smug]相信我。</item>
+    </string-array>
+    <string-array name="l429_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l429_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我只是想讓妳多走幾步。</item>
+    </string-array>
+    <string-array name="l430_enter">
+        <item>[normal]十步。</item>
+        <item>[smug]混合迷宮。</item>
+    </string-array>
+    <string-array name="l430_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著想。</item>
+    </string-array>
+    <string-array name="l430_clear">
+        <item>[normal]到了。</item>
+        <item>[smug]妳越來越快了。</item>
+    </string-array>
+    <string-array name="l431_enter">
+        <item>[normal]這次很遠。</item>
+        <item>[smug]十二步。</item>
+    </string-array>
+    <string-array name="l431_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]路線會來回跳。</item>
+    </string-array>
+    <string-array name="l431_clear">
+        <item>[normal]跳完了。</item>
+        <item>[smug]妳可以去參加跳遠比賽。</item>
+    </string-array>
+    <string-array name="l432_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]幫妳指路。</item>
+    </string-array>
+    <string-array name="l432_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l432_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l433_enter">
+        <item>[normal]七乘七。</item>
+        <item>[smug]迷宮越來越大。</item>
+    </string-array>
+    <string-array name="l433_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著想。</item>
+    </string-array>
+    <string-array name="l433_clear">
+        <item>[normal]到了。</item>
+        <item>[smug]妳是迷宮之王。</item>
+    </string-array>
+    <string-array name="l434_enter">
+        <item>[normal]箭頭森林。</item>
+        <item>[smug]小心迷路。</item>
+    </string-array>
+    <string-array name="l434_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著找。</item>
+    </string-array>
+    <string-array name="l434_clear">
+        <item>[normal]走出森林了。</item>
+        <item>[smug]妳沒有迷路。</item>
+    </string-array>
+    <string-array name="l435_enter">
+        <item>[normal]數字森林。</item>
+        <item>[smug]十二步。</item>
+    </string-array>
+    <string-array name="l435_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]倒著想。</item>
+    </string-array>
+    <string-array name="l435_clear">
+        <item>[normal]走出來了。</item>
+        <item>[smug]妳的算術很好。</item>
+    </string-array>
+    <string-array name="l436_enter">
+        <item>[normal]這次我說兩個謊。</item>
+        <item>[smug]小心。</item>
+    </string-array>
+    <string-array name="l436_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l436_clear">
+        <item>[normal]兩個謊都沒用。</item>
+        <item>[smug]我要換個方法了。</item>
+    </string-array>
+    <string-array name="l437_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]七乘七的箭頭。</item>
+    </string-array>
+    <string-array name="l437_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l437_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l438_enter">
+        <item>[normal]馬拉松。</item>
+        <item>[smug]十五步。</item>
+    </string-array>
+    <string-array name="l438_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]分段倒推。</item>
+    </string-array>
+    <string-array name="l438_clear">
+        <item>[normal]跑完了。</item>
+        <item>[smug]要喝水嗎？</item>
+    </string-array>
+    <string-array name="l439_enter">
+        <item>[normal]這次的謊很小。</item>
+        <item>[smug]妳看得出來嗎？</item>
+    </string-array>
+    <string-array name="l439_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l439_clear">
+        <item>[normal]看出來了。</item>
+        <item>[smug]我的演技還不夠好。</item>
+    </string-array>
+    <string-array name="l440_enter">
+        <item>[normal]最後一座迷宮。</item>
+        <item>[smug]也是最大的一座。</item>
+    </string-array>
+    <string-array name="l440_first_mistake">
+        <item>[smug]跳不到那裡。</item>
+        <item>[normal]先分出謊話。</item>
+    </string-array>
+    <string-array name="l440_clear">
+        <item>[normal]妳走出來了。</item>
+        <item>[smug]下一章，我們來設密碼。</item>
+    </string-array>
+</resources>

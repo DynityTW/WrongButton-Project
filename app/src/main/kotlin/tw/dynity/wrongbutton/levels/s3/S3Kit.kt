@@ -74,3 +74,13 @@ val AskTextColor = Color(0xFF6D3B00)
 
 /** 第三季的按鈕顏色：紅、藍、綠、黃、紫、橘。 */
 val S3Colors = listOf(Color(0xFFE53935), Color(0xFF1E88E5), Color(0xFF43A047), Color(0xFFFDD835), Color(0xFF8E24AA), Color(0xFFFB8C00))
+
+/** 比 [AskBar] 小的「聽它說」按鈕，可以好幾個排成一行。 */
+@Composable
+fun AskChip(text: String, tag: String, onClick: () -> Unit) {
+    Surface(onClick = onClick, shape = RoundedCornerShape(16.dp), color = AskColor, modifier = Modifier.heightIn(min = 48.dp).testTag(tag)) {
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.heightIn(min = 48.dp).padding(horizontal = 12.dp)) {
+            Text(text, color = AskTextColor, style = MaterialTheme.typography.labelLarge)
+        }
+    }
+}
