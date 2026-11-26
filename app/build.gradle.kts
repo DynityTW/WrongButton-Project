@@ -24,14 +24,14 @@ val uploadStore = signingValue("storeFile", "WB_UPLOAD_STORE_FILE")
  * 拿到正式 ID 後，只要換掉下面三個 RELEASE_* 值；debug 版永遠用測試 ID。
  */
 /**
- * 版本號：主版本.次版本.修正版（例如 0.8.0）。
- * versionCode 由版本號算出：主 × 10000 + 次 × 100 + 修正（0.8.0 → 800）。
- * 「主版本或次版本」變了，玩家會被要求強制更新（見 core/update/ForcedUpdate.kt）；只改修正版不會。
+ * 版本號：主版本.次版本.修正版（例如 0.9.0）。
+ * versionCode 由版本號算出：主 × 10000 + 次 × 100 + 修正（0.9.0 → 900）。
+ * Google Play 上有任何較新的版本，玩家都會被要求強制更新（見 core/update/ForcedUpdate.kt）。
  * 發新版時只改這三個數字。
  */
 val VERSION_MAJOR = 0
-val VERSION_MINOR = 8
-val VERSION_PATCH = 10
+val VERSION_MINOR = 9
+val VERSION_PATCH = 0
 
 val ADMOB_TEST_APP_ID = "ca-app-pub-3940256099942544~3347511713"
 val ADMOB_TEST_REWARDED_ID = "ca-app-pub-3940256099942544/5224354917"

@@ -17,13 +17,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 /**
- * 版本號規則：versionCode ＝ 主 × 10000 ＋ 次 × 100 ＋ 修正（0.8.0 → 800，見 app/build.gradle.kts）。
- * Google Play 上的新版本，只要「主版本或次版本」比現在的大，就要求強制更新；只差修正版不強制。
+ * 版本號規則：versionCode ＝ 主 × 10000 ＋ 次 × 100 ＋ 修正（0.9.0 → 900，見 app/build.gradle.kts）。
+ * Google Play 上只要有比現在新的版本（不論改的是哪一碼），就要求強制更新。
+ * （0.8.x 以前的版本只有「主版本或次版本」變了才強制；所以 0.9.0 用次版本號升級，讓舊版也會被要求更新。）
  */
 object VersionRules {
     fun majorMinor(versionCode: Int): Int = versionCode / 100
 
-    fun mustUpdate(currentCode: Int, availableCode: Int): Boolean = majorMinor(availableCode) > majorMinor(currentCode)
+    fun mustUpdate(currentCode: Int, availableCode: Int): Boolean = availableCode > currentCode
 
     fun name(versionCode: Int): String = "${versionCode / 10000}.${versionCode / 100 % 100}.${versionCode % 100}"
 }

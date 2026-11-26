@@ -17,7 +17,8 @@ App 沒有模擬付款。廣告的切換由 `app/build.gradle.kts` 的 `REAL_MON
 
 ## 規則
 
-- 前 60 關免費，第 61–300 關需要 Pro（`Levels.FREE_LEVELS`）。
+- 前 75 關免費，第 76–300 關需要 Pro（`Levels.FREE_LEVELS`）。
+- 強制更新：Google Play 上有任何比較新的版本，玩家打開遊戲就會被要求更新（`VersionRules`）。
 - 提示：第 1 階免費；第 2、3 階第一次看要先看一則獎勵廣告，看過就記住（`AdRules.FIRST_AD_HINT_TIER`）。
 - 全版廣告：免費版每過 5 關，在離開結算畫面時播（`AdRules.CLEARS_PER_AD_BREAK`）；關卡進行中不插播。
 - Pro：沒有任何廣告。
@@ -29,7 +30,7 @@ App 沒有模擬付款。廣告的切換由 `app/build.gradle.kts` 的 `REAL_MON
    Play Console 要先看到含有結帳功能的版本，才會開放建立商品。
 2. Play Console → 營利 → 產品 → 應用程式內產品 → 建立產品：
    - 產品 ID：**`wrongbutton_pro`**（必須和 `ProProduct.PRODUCT_ID` 一樣，建立後不能改）
-   - 一次性購買，價格 NT$120（其他國家可以讓 Play 自動換算）
+   - 一次性購買，價格 NT$150；美國 US$4.99（其他國家可以讓 Play 自動換算）
    - 啟用
 3. Play Console → 設定 → 授權測試：加入測試者的 Gmail。授權測試人員購買不會真的扣款。
 4. 測試者從內部測試連結安裝（一定要從 Play 安裝，側載的 APK 不能結帳），在 Pro 頁購買。
@@ -72,7 +73,7 @@ AdMob 帶進來的 Privacy Sandbox 權限（`ACCESS_ADSERVICES_*`）已在 `Andr
 
 ## 五、給 Google Play 審查員的解鎖碼
 
-審查員不會自己付款，要能不付錢看到第 61–300 關。
+審查員不會自己付款，要能不付錢看到第 76–300 關。
 
 - 入口：設定 → 連點最下面的「版本 x.y.z」7 下 → 輸入解鎖碼。
 - 解鎖碼的**明碼只寫在 Play Console →「應用程式存取權」**，不寫進這個公開 repo；

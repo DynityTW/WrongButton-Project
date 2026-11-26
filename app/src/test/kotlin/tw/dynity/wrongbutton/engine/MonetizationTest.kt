@@ -106,8 +106,8 @@ class UnlockRulesTest {
     private fun clear(m: PlayerMemory, id: Int) = MemoryOps.completeLevel(m, id, RunResult(0, 0, 1, 0, false))
 
     @Test
-    fun firstSixtyAreFreeAndTheRestNeedPro() {
-        assertEquals(60, Levels.FREE_LEVELS)
+    fun firstSeventyFiveAreFreeAndTheRestNeedPro() {
+        assertEquals(75, Levels.FREE_LEVELS)
         val all = Levels.all
         assertFalse(Levels.requiresPro(all[Levels.FREE_LEVELS - 1].id))
         all.drop(Levels.FREE_LEVELS).forEach { assertTrue(Levels.requiresPro(it.id)) }

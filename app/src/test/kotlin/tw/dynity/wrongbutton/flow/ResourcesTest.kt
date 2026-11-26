@@ -55,7 +55,7 @@ class ResourcesTest {
         assertEquals("第一季最後一關是〈相信我〉", 10, seasonOne.last().id)
         Levels.chapters.filter { it.standalone }.forEach { assertEquals("第二季每章 15 關", 15, it.levels.size) }
         assertEquals("全部 300 關", 300, Levels.all.size)
-        assertEquals("其中 240 關需要 Pro", 240, Levels.all.count { Levels.requiresPro(it.id) })
+        assertEquals("免費關卡以外都需要 Pro", Levels.all.size - Levels.FREE_LEVELS, Levels.all.count { Levels.requiresPro(it.id) })
         // 第二季的 id 和顯示編號相同（121 起）。
         Levels.all.drop(120).forEach { assertEquals("第二季 id 應等於顯示編號", Levels.numberOf(it.id), it.id) }
         assertEquals("關卡 id 不可重複", Levels.all.size, Levels.all.map { it.id }.toSet().size)
