@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 由 tools/s2/gen.py 依 tools/s2/ch26.py 產生，請改規格檔再重新產生。台灣繁體中文。 -->
+<resources>
+    <string-array name="ch26_mistakes_3">
+        <item>[guilty]妳是不是用猜的？</item>
+        <item>[normal]先找最確定的那一條線索。</item>
+        <item>[normal]把可能的位置一個一個寫下來。</item>
+    </string-array>
+    <string-array name="ch26_mistakes_6">
+        <item>[sad]隊伍越排越亂了。</item>
+        <item>[normal]提示會告訴妳答案。</item>
+        <item>[guilty]不用急，大家都很有耐心。</item>
+    </string-array>
+    <string-array name="ch26_idle">
+        <item>[normal]拿張紙畫格子也可以。</item>
+        <item>[smug]我知道誰排第幾個。</item>
+        <item>[normal]先排最確定的那一顆。</item>
+    </string-array>
+    <string-array name="ch26_rapid_tap">
+        <item>[angry]不要一直換人！</item>
+        <item>[angry]隊伍會打架。</item>
+        <item>[angry]先想再排。</item>
+    </string-array>
+    <string-array name="ch26_hint">
+        <item>[normal]好，我幫妳排一下。</item>
+        <item>[smug]要我插隊嗎？</item>
+        <item>[normal]提示會從最關鍵的線索開始。</item>
+    </string-array>
+    <string-array name="ch26_special">
+        <item>[guilty]一次就排對？</item>
+        <item>[normal]妳是天生的排隊管理員。</item>
+        <item>[smug]飲料店應該請妳去上班。</item>
+    </string-array>
+    <string-array name="l401_enter">
+        <item>[normal]大家來排隊。</item>
+        <item>[smug]我不排，我是老闆。</item>
+    </string-array>
+    <string-array name="l401_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]每一條線索都要符合。</item>
+    </string-array>
+    <string-array name="l401_clear">
+        <item>[normal]排好了。</item>
+        <item>[smug]這是暖身。</item>
+    </string-array>
+    <string-array name="l402_enter">
+        <item>[normal]再排一次。</item>
+        <item>[smug]順序換了。</item>
+    </string-array>
+    <string-array name="l402_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]「左邊」不一定相鄰。</item>
+    </string-array>
+    <string-array name="l402_clear">
+        <item>[normal]又排好了。</item>
+        <item>[smug]妳很會排隊。</item>
+    </string-array>
+    <string-array name="l403_enter">
+        <item>[normal]五顆。</item>
+        <item>[smug]越來越長了。</item>
+    </string-array>
+    <string-array name="l403_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]相鄰、不相鄰要看清楚。</item>
+    </string-array>
+    <string-array name="l403_clear">
+        <item>[normal]五顆都排好了。</item>
+        <item>[smug]妳的隊伍很整齊。</item>
+    </string-array>
+    <string-array name="l404_enter">
+        <item>[normal]這次有「中間」的線索。</item>
+        <item>[smug]很多人卡在中間。</item>
+    </string-array>
+    <string-array name="l404_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]把緊貼的兩顆綁在一起。</item>
+    </string-array>
+    <string-array name="l404_clear">
+        <item>[normal]中間也搞定了。</item>
+        <item>[smug]妳是調解專家。</item>
+    </string-array>
+    <string-array name="l405_enter">
+        <item>[normal]這次有一條線索是我說的。</item>
+        <item>[smug]相信我。</item>
+    </string-array>
+    <string-array name="l405_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]聽我說的時候，看我的臉。</item>
+    </string-array>
+    <string-array name="l405_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我只是想插隊。</item>
+    </string-array>
+    <string-array name="l406_enter">
+        <item>[normal]六顆。</item>
+        <item>[smug]七百二十種排法。</item>
+    </string-array>
+    <string-array name="l406_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先用最能縮小範圍的線索。</item>
+    </string-array>
+    <string-array name="l406_clear">
+        <item>[normal]六顆都排好了。</item>
+        <item>[smug]妳的腦袋裡有一張表格。</item>
+    </string-array>
+    <string-array name="l407_enter">
+        <item>[normal]這次我說得比較多。</item>
+        <item>[smug]有兩條是假的。</item>
+    </string-array>
+    <string-array name="l407_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l407_clear">
+        <item>[normal]兩條謊話都被妳看穿了。</item>
+        <item>[smug]我要換個方法。</item>
+    </string-array>
+    <string-array name="l408_enter">
+        <item>[normal]大家來買飲料。</item>
+        <item>[smug]我請客。騙妳的。</item>
+    </string-array>
+    <string-array name="l408_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]飲料也要對。</item>
+    </string-array>
+    <string-array name="l408_clear">
+        <item>[normal]大家都拿到飲料了。</item>
+        <item>[smug]妳可以去當店員。</item>
+    </string-array>
+    <string-array name="l409_enter">
+        <item>[normal]四顆，四杯飲料。</item>
+        <item>[smug]有人點了全糖。</item>
+    </string-array>
+    <string-array name="l409_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先排一邊，再對另一邊。</item>
+    </string-array>
+    <string-array name="l409_clear">
+        <item>[normal]全部對上了。</item>
+        <item>[smug]妳的記性真好。</item>
+    </string-array>
+    <string-array name="l410_enter">
+        <item>[normal]飲料店很忙。</item>
+        <item>[smug]大家都在排隊。</item>
+    </string-array>
+    <string-array name="l410_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]畫表格試試看。</item>
+    </string-array>
+    <string-array name="l410_clear">
+        <item>[normal]店長要請妳了。</item>
+        <item>[smug]妳比店長還厲害。</item>
+    </string-array>
+    <string-array name="l411_enter">
+        <item>[normal]這次我不露臉。</item>
+        <item>[smug]有一條線索是假的。</item>
+    </string-array>
+    <string-array name="l411_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先找互相矛盾的兩條。</item>
+    </string-array>
+    <string-array name="l411_clear">
+        <item>[normal]妳找到假的那條了。</item>
+        <item>[smug]妳是偵探。</item>
+    </string-array>
+    <string-array name="l412_enter">
+        <item>[normal]這次沒有人告訴妳誰排第幾。</item>
+        <item>[smug]全部都是相對位置。</item>
+    </string-array>
+    <string-array name="l412_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]從兩端開始想。</item>
+    </string-array>
+    <string-array name="l412_clear">
+        <item>[normal]相對位置也難不倒妳。</item>
+        <item>[smug]妳的空間感很好。</item>
+    </string-array>
+    <string-array name="l413_enter">
+        <item>[normal]我來告訴妳誰買了什麼。</item>
+        <item>[smug]我記性很好。</item>
+    </string-array>
+    <string-array name="l413_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的臉。</item>
+    </string-array>
+    <string-array name="l413_clear">
+        <item>[normal]沒被我騙到。</item>
+        <item>[smug]我只是想喝別人的飲料。</item>
+    </string-array>
+    <string-array name="l414_enter">
+        <item>[normal]我戴了墨鏡。</item>
+        <item>[smug]說謊的幅度很小。</item>
+    </string-array>
+    <string-array name="l414_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的嘴角。</item>
+    </string-array>
+    <string-array name="l414_clear">
+        <item>[normal]墨鏡也擋不住。</item>
+        <item>[smug]妳的眼睛很利。</item>
+    </string-array>
+    <string-array name="l415_enter">
+        <item>[normal]店員記錯了一筆。</item>
+        <item>[smug]我不告訴妳是哪一筆。</item>
+    </string-array>
+    <string-array name="l415_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]一條一條假設它是假的。</item>
+    </string-array>
+    <string-array name="l415_clear">
+        <item>[normal]找到記錯的那筆了。</item>
+        <item>[smug]店長要請妳當會計。</item>
+    </string-array>
+    <string-array name="l416_enter">
+        <item>[normal]六顆，一條假的。</item>
+        <item>[smug]妳還撐得住嗎？</item>
+    </string-array>
+    <string-array name="l416_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先找矛盾。</item>
+    </string-array>
+    <string-array name="l416_clear">
+        <item>[normal]撐住了。</item>
+        <item>[smug]妳比我想像的還強。</item>
+    </string-array>
+    <string-array name="l417_enter">
+        <item>[normal]我戴了口罩。</item>
+        <item>[smug]飲料店的線索。</item>
+    </string-array>
+    <string-array name="l417_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]看我的眼睛。</item>
+    </string-array>
+    <string-array name="l417_clear">
+        <item>[normal]口罩也擋不住。</item>
+        <item>[smug]妳讀眼神的功夫一流。</item>
+    </string-array>
+    <string-array name="l418_enter">
+        <item>[normal]尖峰時段。</item>
+        <item>[smug]一萬四千種排法。</item>
+    </string-array>
+    <string-array name="l418_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]畫表格。</item>
+    </string-array>
+    <string-array name="l418_clear">
+        <item>[normal]尖峰時段也搞定了。</item>
+        <item>[smug]妳是飲料店的救星。</item>
+    </string-array>
+    <string-array name="l419_enter">
+        <item>[normal]六顆，兩個謊。</item>
+        <item>[smug]說得很自然。</item>
+    </string-array>
+    <string-array name="l419_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]仔細看我的臉。</item>
+    </string-array>
+    <string-array name="l419_clear">
+        <item>[normal]兩個謊都沒用。</item>
+        <item>[smug]我要去上表演課了。</item>
+    </string-array>
+    <string-array name="l420_enter">
+        <item>[normal]最後一次排隊。</item>
+        <item>[smug]也是最長的一次。</item>
+    </string-array>
+    <string-array name="l420_first_mistake">
+        <item>[smug]不對。</item>
+        <item>[normal]先分出謊話。</item>
+    </string-array>
+    <string-array name="l420_clear">
+        <item>[normal]隊伍排好了。</item>
+        <item>[smug]下一章，我們來走迷宮。</item>
+    </string-array>
+</resources>
