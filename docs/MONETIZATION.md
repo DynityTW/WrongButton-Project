@@ -17,7 +17,7 @@ App 沒有模擬付款。廣告的切換由 `app/build.gradle.kts` 的 `REAL_MON
 
 ## 規則
 
-- 前 75 關免費，第 76 關以後（目前到第 420 關）都需要 Pro（`Levels.FREE_LEVELS`）。之後新增的章節，已經買 Pro 的人直接可以玩。
+- 前 75 關免費，第 76 關以後（到第 500 關）都需要 Pro（`Levels.FREE_LEVELS`）。之後新增的章節，已經買 Pro 的人直接可以玩。
 - 強制更新：Google Play 上有任何比較新的版本，玩家打開遊戲就會被要求更新（`VersionRules`）。
 - 提示：第 1 階免費；第 2、3 階第一次看要先看一則獎勵廣告，看過就記住（`AdRules.FIRST_AD_HINT_TIER`）。
 - 全版廣告：免費版每過 5 關，在離開結算畫面時播（`AdRules.CLEARS_PER_AD_BREAK`）；關卡進行中不插播。

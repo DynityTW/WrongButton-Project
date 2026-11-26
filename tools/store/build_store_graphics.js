@@ -1,7 +1,7 @@
 // 產生 Google Play 商店圖片：7 張附標題的手機截圖（1080×1920）、1024×500 主圖片（圖示與 Logo 見 build_logo.js）。
 //
 // 1. 先截原始畫面（存到 app/build/store/）：
-//      WB_STORE=1 WB_STORE_LEVELS=2,166,199,228 ./gradlew testDebugUnitTest --rerun --tests '*StoreScreenshotTool*'
+//      WB_STORE=1 WB_STORE_LEVELS=2,199,228,313 ./gradlew testDebugUnitTest --rerun --tests '*StoreScreenshotTool*'
 //      WB_STORE=1 WB_STORE_LEVELS=6 ./gradlew testDebugUnitTest --rerun -Pwb.realMonetization=true --tests '*StoreScreenshotTool*'
 //    （第二行截第 16 關〈顧問〉說謊的臉；要先備份第一行的結果，因為會覆蓋同一個資料夾。）
 // 2. 在專案根目錄執行：node tools/store/build_store_graphics.js
@@ -23,7 +23,7 @@ const shots = [
   ['title_new', '一顆會說謊的按鈕。', '任務永遠只有一句：按下按鈕。'],
   ['level_6', '它說謊時，眼睛會看旁邊。', '學會讀臉，你就不會再被騙。'],
   ['level_2', '按鈕不見了？', '下拉重新整理、返回鍵、溢位選單……都是解法。'],
-  ['level_166', '300 關，20 章。', '每一章都換一種新的騙法。'],
+  ['level_313', '500 關，30 章。', '第三季：踩地雷、我不是機器人、誰在說謊……'],
   ['level_228', 'App 的語言，就是謎題。', '影片章節、設定、檔案、試算表都藏著它。'],
   ['level_199', '換你出題給它玩。', '關卡編輯器、按鈕語、會說謊的新同事。'],
   ['records', '它記得你做過的每一件事。', '紀錄只存在你的手機裡。'],
@@ -33,6 +33,8 @@ const shots = [
   const p = await b.newPage();
   // 1) 商店截圖 1080×1920
   for (const [name, title, sub] of shots) {
+    // 原始截圖不在的就跳過（例如只想重做其中一張）。
+    if (!fs.existsSync(`app/build/store/${name}.png`)) { console.log('略過', name); continue; }
     const img = 'data:image/png;base64,' + fs.readFileSync(`app/build/store/${name}.png`).toString('base64');
     await p.setViewportSize({ width: 1080, height: 1920 });
     await p.setContent(`<html lang="zh-Hant-TW"><body style="margin:0;width:1080px;height:1920px;background:linear-gradient(180deg,${CONT} 0%,${BG} 55%);${FONT}overflow:hidden">
@@ -53,7 +55,7 @@ const shots = [
     <div style="position:absolute;left:64px;top:128px">
       <div style="font-size:78px;font-weight:900;color:${INK};letter-spacing:0;line-height:1">Wrong Button</div>
       <div style="font-size:44px;font-weight:700;color:${PRIMARY};margin-top:28px">一顆會說謊的按鈕。</div>
-      <div style="font-size:28px;color:${INK};opacity:.75;margin-top:22px">300 關解謎・單指・不限時</div>
+      <div style="font-size:28px;color:${INK};opacity:.75;margin-top:22px">500 關解謎・單指・不限時</div>
     </div>
     <div style="position:absolute;right:230px;top:150px;transform:rotate(-6deg)">${face(false, 150)}</div>
     <div style="position:absolute;right:44px;top:112px;transform:rotate(7deg)">${face(true, 190)}</div>
