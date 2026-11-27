@@ -25,7 +25,7 @@ class ForcedUpdateTest {
 
     @Test
     fun anyNewerVersionForcesAnUpdate() {
-        assertEquals(1200, BuildConfig.VERSION_CODE)
+        assertEquals(1201, BuildConfig.VERSION_CODE)
         assertEquals(BuildConfig.VERSION_NAME, VersionRules.name(BuildConfig.VERSION_CODE))
         assertTrue("0.9.0 → 0.9.1 也強制", VersionRules.mustUpdate(900, 901))
         assertTrue("0.9.0 → 0.10.0 強制", VersionRules.mustUpdate(900, 1000))

@@ -104,7 +104,8 @@
     <string name="l320_hint_3">F1、A8 是謊話。第一步：B6 一定安全。</string>
     <string name="ch21_ready">地雷都排完了。可以按我了。</string>
     <string name="ch21_not_ready">還沒掃完。還有安全的格子沒翻開。</string>
-    <string name="ch21_wrong_flag">那裡沒有雷。</string>
+    <string name="ch21_wrong_flag">那裡沒有雷。旗子全部拔掉，重插。</string>
+    <string name="ch21_boom">碰！踩到雷了。整片重新來過。</string>
     <string name="ch21_said">%1$s 是 %2$d。</string>
     <string name="ch21_rule_cross">這張地圖的數字只算上下左右四格，不算斜角。</string>
     <string name="ch21_notes">紙條上的數字裡，剛好有 %1$d 張是假的。</string>

@@ -197,14 +197,20 @@ fun MineField(scope: LevelScope, board: MineBoard, subtle: Boolean) {
             state.flagging || board.mode == MineMode.Flag -> {
                 when {
                     i in state.flags -> state = state.copy(flags = state.flags - i)
-                    board.mode == MineMode.Flag && i !in board.mines -> scope.mistake("mf_flag", Line.Res(R.string.ch21_wrong_flag), Mood.Smug)
+                    board.mode == MineMode.Flag && i !in board.mines -> {
+                        // 插錯：旗子全部拔掉重插，免得一格一格試。
+                        state = state.copy(flags = emptySet())
+                        scope.mistake("mf_flag", Line.Res(R.string.ch21_wrong_flag), Mood.Smug)
+                    }
                     else -> { scope.cue(Cue.Tap); state = state.copy(flags = state.flags + i) }
                 }
             }
             i in state.flags -> scope.cue(Cue.Tap)
             i in board.mines -> {
-                state = state.copy(exploded = state.exploded + i)
-                scope.mistake("mf_mine")
+                // 跟真的踩地雷一樣：踩到雷，整片重來（翻開的格子、旗子都清掉；已經問過的數字不用再問）。
+                // 不然把每一格都點一遍也能過關。
+                state = MineState(flagging = state.flagging, asked = state.asked)
+                scope.mistake("mf_mine", Line.Res(R.string.ch21_boom), Mood.Guilty)
             }
             else -> {
                 scope.cue(Cue.Tap)

@@ -75,23 +75,45 @@ class Chapter21PlaythroughTest {
     }
 
     @Test
-    fun steppingOnAMineOrAWrongFlagCountsAsAMistake() = with(Player(rule)) {
+    fun steppingOnAMineResetsTheBoard() = with(Player(rule)) {
         clearChapters(8)
         openLevel(Chapter21.first().id)
         waitFor("the_button")
         val b: MineBoard = (Chapter21.first() as MineLevel).board
         val start = memory.totalMistakes
-        val mine = b.mines.first()
-        tap("mf_${b.name(mine)}")
+        // 先翻開一格安全的
+        val safe = b.safeToReveal.first { b.number(it) > 0 }
+        tap("mf_${b.name(safe)}")
         rule.waitForIdle()
-        assertEquals(start + 1, memory.totalMistakes)
-        assertTrue(desc(node("mf_${b.name(mine)}")).endsWith("地雷"))
-        // 插旗模式下插在雷上不算錯，也不會爆。
+        assertFalse(desc(node("mf_${b.name(safe)}")).endsWith("，沒翻開"))
+        // 插一支旗，再踩雷：算一次錯，整片重來（剛才翻開的、旗子都不見）
         tap("mf_mode_flag")
-        val other = b.mines.last()
-        tap("mf_${b.name(other)}")
+        tap("mf_${b.name(b.mines.last())}")
+        tap("mf_mode_reveal")
+        tap("mf_${b.name(b.mines.first())}")
         rule.waitForIdle()
         assertEquals(start + 1, memory.totalMistakes)
-        assertTrue(desc(node("mf_${b.name(other)}")).contains("插了旗"))
+        assertTrue(desc(node("mf_${b.name(safe)}")).endsWith("，沒翻開"))
+        assertTrue(desc(node("mf_${b.name(b.mines.first())}")).endsWith("，沒翻開"))
+        assertTrue(desc(node("mf_${b.name(b.mines.last())}")).endsWith("，沒翻開"))
+    }
+
+    @Test
+    fun aWrongFlagRemovesAllFlags() = with(Player(rule)) {
+        clearChapters(8)
+        val flagLevel = Chapter21.first { (it as MineLevel).board.mode == MineMode.Flag }
+        container.memory.update { m -> tw.dynity.wrongbutton.levels.Levels.all.takeWhile { it.id != flagLevel.id }.fold(m) { acc, l -> tw.dynity.wrongbutton.core.memory.MemoryOps.completeLevel(acc, l.id, tw.dynity.wrongbutton.core.memory.RunResult(0, 0, 1, 0, false)) } }
+        openLevel(flagLevel.id)
+        waitFor("the_button")
+        val b = (flagLevel as MineLevel).board
+        val start = memory.totalMistakes
+        tap("mf_${b.name(b.mines.first())}")
+        rule.waitForIdle()
+        assertTrue(desc(node("mf_${b.name(b.mines.first())}")).contains("插了旗"))
+        val notMine = (0 until b.size).first { it !in b.mines && it !in b.open && it !in b.reported }
+        tap("mf_${b.name(notMine)}")
+        rule.waitForIdle()
+        assertEquals(start + 1, memory.totalMistakes)
+        assertFalse("插錯之後旗子全部拔掉", desc(node("mf_${b.name(b.mines.first())}")).contains("插了旗"))
     }
 }
