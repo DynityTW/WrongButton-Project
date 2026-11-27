@@ -103,3 +103,21 @@ class FakeStore(private val cache: tw.dynity.wrongbutton.core.monetization.Monet
         if (cache.state.value.pro) tw.dynity.wrongbutton.core.monetization.RestoreResult.Found
         else tw.dynity.wrongbutton.core.monetization.RestoreResult.NotFound
 }
+
+/**
+ * 誰在說謊：照玩家的方式標記。點一下換標記——只找說謊的：說謊；找間諜：說謊 → 間諜；找分身：說謊 → 分身 → 分身・說謊。
+ */
+fun Player.markLiarPuzzle(p: tw.dynity.wrongbutton.levels.s3.LiarPuzzle) {
+    val target = p.answer.singleOrNull()
+    repeat(p.n) { i ->
+        val liar = p.roles[i] == 'L'
+        val special = p.goal != tw.dynity.wrongbutton.levels.s3.LiarGoal.Liars && i == target
+        val taps = when {
+            special && liar -> 3
+            special -> 2
+            liar -> 1
+            else -> 0
+        }
+        repeat(taps) { tap("kk_$i") }
+    }
+}

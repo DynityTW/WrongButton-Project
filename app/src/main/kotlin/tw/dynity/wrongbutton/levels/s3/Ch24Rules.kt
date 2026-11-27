@@ -56,12 +56,12 @@ data class Example(val tile: Tile, val fits: Boolean)
 
 /**
  * 找規則（第 361–370 關）。[spoken] 的範例要點一下聽 The Button 說它符不符合；[lies] 裡的它會說反。
- * 從四張 [candidates] 裡選出唯一符合的（[answer]）。
+ * 六張 [candidates] 要一張一張判斷符不符合；[answers] 是符合的那幾張（可能不只一張），全部判斷對才算過。
  */
-data class RuleQuiz(val examples: List<Example>, val candidates: List<Tile>, val answer: Int, val spoken: Set<Int> = emptySet(), val lies: Set<Int> = emptySet())
+data class RuleQuiz(val examples: List<Example>, val candidates: List<Tile>, val answers: Set<Int>, val spoken: Set<Int> = emptySet(), val lies: Set<Int> = emptySet())
 
 @Serializable
-data class RuleState(val heard: Set<Int> = emptySet())
+data class RuleState(val heard: Set<Int> = emptySet(), val fits: Set<Int> = emptySet())
 
 abstract class RuleLevel(meta: S2Meta, val quiz: RuleQuiz, private val cover: FaceCover = FaceCover.None, private val subtle: Boolean = false) : S2Level(meta) {
     override val chrome: LevelChrome get() = LevelChrome(speechBubble = false)
@@ -118,32 +118,46 @@ fun RuleField(scope: LevelScope, q: RuleQuiz, cover: FaceCover, subtle: Boolean)
             }
         }
         Text(stringResource(R.string.ch24_candidates), style = MaterialTheme.typography.titleSmall)
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally), verticalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.widthIn(max = 460.dp).fillMaxWidth()) {
             q.candidates.forEachIndexed { i, t ->
-                val desc = res.getString(R.string.ch24_cand_cd, "ABCD"[i].toString(), tileDescription(res, t))
+                val fits = i in state.fits
+                val letter = "ABCDEF"[i].toString()
+                val desc = res.getString(R.string.ch24_cand_cd, letter, tileDescription(res, t)) + "，" + res.getString(if (fits) R.string.ch24_judged_fits else R.string.ch24_judged_not)
                 Column(
                     Modifier
-                        .width(76.dp)
-                        .border(2.dp, MaterialTheme.colorScheme.primary, RoundedCornerShape(10.dp))
-                        .clickable(role = Role.Button) {
-                            if (q.spoken.any { it !in state.heard }) {
-                                scope.say(Line.Res(R.string.ch24_listen_first), Mood.Normal)
-                            } else if (i == q.answer) {
-                                scope.cue(Cue.Success); scope.complete()
-                            } else {
-                                scope.mistake("rq_wrong", Line.Res(R.string.ch24_wrong), Mood.Smug)
-                            }
+                        .width(92.dp)
+                        .background(if (fits) Color(0xFFC8E6C9) else MaterialTheme.colorScheme.surfaceContainerHigh, RoundedCornerShape(10.dp))
+                        .border(2.dp, if (fits) Color(0xFF2E7D32) else MaterialTheme.colorScheme.outline, RoundedCornerShape(10.dp))
+                        .clickable(role = Role.Switch) {
+                            scope.cue(Cue.Tap)
+                            state = state.copy(fits = if (fits) state.fits - i else state.fits + i)
                         }
                         .semantics(mergeDescendants = true) { contentDescription = desc }
                         .testTag("rq_cand_${i + 1}")
                         .padding(4.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    Text("ABCD"[i].toString(), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
+                    Text(letter, style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.primary)
                     Canvas(Modifier.size(60.dp)) { drawTile(t) }
+                    Text(
+                        if (fits) "✓ " + stringResource(R.string.ch24_judged_fits) else "✗ " + stringResource(R.string.ch24_judged_not),
+                        style = MaterialTheme.typography.labelMedium,
+                        color = if (fits) Color(0xFF1B5E20) else MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
                 }
             }
         }
+        Text(stringResource(R.string.ch24_judge_help), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        Button(
+            onClick = {
+                when {
+                    q.spoken.any { it !in state.heard } -> scope.say(Line.Res(R.string.ch24_listen_first), Mood.Normal)
+                    state.fits == q.answers -> { scope.cue(Cue.Success); scope.complete() }
+                    else -> scope.mistake("rq_wrong", Line.Res(R.string.ch24_wrong), Mood.Smug)
+                }
+            },
+            modifier = Modifier.heightIn(min = 48.dp).testTag("rq_confirm"),
+        ) { Text(stringResource(R.string.ch24_confirm)) }
     }
 }
 

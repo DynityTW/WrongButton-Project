@@ -20,6 +20,15 @@ class Chapter24PlaythroughTest {
     val rule = createAndroidComposeRule<MainActivity>()
 
     @Test
+    fun ruleQuizzesNeedEveryCandidateJudged() {
+        Chapter24.filterIsInstance<RuleLevel>().forEach { level ->
+            val q = level.quiz
+            assertEquals("第 ${level.id} 關有六張候選", 6, q.candidates.size)
+            assertTrue("第 ${level.id} 關至少一張符合、一張不符合", q.answers.isNotEmpty() && q.answers.size < 6)
+        }
+    }
+
+    @Test
     fun codeFeedbackMatchesTheSecret() {
         Chapter24.filterIsInstance<CodeLevel>().forEach { level ->
             val q = level.quiz
@@ -49,11 +58,12 @@ class Chapter24PlaythroughTest {
                         assertEquals("第 ${level.id} 關例子 ${j + 1} 的臉", j in q.lies, lying(desc(node("the_button"))))
                     }
                     if (level.id == 361) {
-                        tap("rq_cand_${(q.answer + 1) % 4 + 1}") // 選錯一次
+                        tap("rq_confirm") // 全部判斷成不符合：至少一張符合，所以算一次錯
                         rule.waitForIdle()
                         assertEquals(start + 1, memory.totalMistakes)
                     }
-                    tap("rq_cand_${q.answer + 1}")
+                    q.answers.sorted().forEach { tap("rq_cand_${it + 1}") }
+                    tap("rq_confirm")
                 }
                 is CodeLevel -> {
                     val q = level.quiz

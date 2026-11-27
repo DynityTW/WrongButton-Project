@@ -7,9 +7,9 @@ TITLE = "第 24 章　猜規則"
 INTRO = """
 **主題**：猜 The Button 心裡的規則。
 
-- **找規則（361–370）**：上面是幾張已經標好「✓ 符合／✗ 不符合」的圖片，下面四張候選（A–D）裡剛好一張符合。
+- **找規則（361–370）**：上面是幾張已經標好「✓ 符合／✗ 不符合」的圖片，下面六張候選（A–F）要一張一張判斷符不符合，符合的可能不只一張（所以不能用猜的）。
   可能的規則有：顏色、形狀、圖形數量，加上「不是」「而且」「或」「但不是」的組合（約三百條）。
-  題目保證：和範例一致的規則雖然可能不只一條，但它們對四張候選的判斷完全一樣；拿掉任何一張範例就不確定了。
+  題目保證：和範例一致的規則雖然可能不只一條，但它們對六張候選的判斷完全一樣；拿掉任何一張範例就不確定了。
   橘色的範例要點一下聽 The Button 說；說謊時它說的標籤是相反的。
 - **猜密碼（371–380）**：密碼是幾個顏色排成一排。每一行是之前的一次猜測：● 顏色和位置都對、○ 顏色對但位置不對。
   題目保證密碼唯一、每一行都用得到（謊話的那一行除外）。橘色的行要聽 The Button 說；說謊時真正的回饋一定不是它說的那個。
@@ -17,7 +17,7 @@ INTRO = """
 
 由 `tools/s3/rules.py` 產生。
 
-**本章規則**：選錯候選、密碼不對各算一次錯。有橘色的關卡，要全部聽過才能作答。
+**本章規則**：判斷錯（任何一張）、密碼不對各算一次錯。有橘色的關卡，要全部聽過才能作答。
 """
 
 PUZ = json.load(open(os.path.join(os.path.dirname(__file__), "ch24_puzzles.json")))
@@ -57,10 +57,13 @@ POOL = {
 
 STRINGS = {
     "rule_intro": "The Button 心裡有一條規則（顏色、形狀、數量，或它們的組合）。",
-    "rule_plain": "看上面的例子，從 A–D 選出唯一符合規則的那一張。",
-    "rule_spoken": "橘色的例子要點一下聽它說符不符合。說謊時它會說反。全部聽完再從 A–D 選。",
+    "rule_plain": "看上面的例子，判斷下面 A–F 每一張符不符合規則（符合的可能不只一張），再按「確定」。",
+    "rule_spoken": "橘色的例子要點一下聽它說符不符合。說謊時它會說反。全部聽完，再判斷 A–F 每一張。",
     "examples": "例子",
-    "candidates": "哪一張符合？",
+    "candidates": "這幾張符合嗎？",
+    "judged_fits": "符合",
+    "judged_not": "不符合",
+    "judge_help": "點一下切換「符合／不符合」。符合的可能不只一張。",
     "says_fits": "這張符合。",
     "says_not": "這張不符合。",
     "cd_ask": "點一下聽 The Button 說它符不符合",
@@ -100,7 +103,7 @@ def info(i):
 def ans(i):
     p = info(i)
     if p["kind"] == "zendo":
-        return f"規則是「{p['secret']}」，答案是 {'ABCD'[p['answer'] - 1]}。"
+        return f"規則是「{p['secret']}」，符合的是 {'、'.join('ABCDEF'[x - 1] for x in p['answer'])}。"
     return f"密碼是{p['secret']}。"
 
 
@@ -114,7 +117,7 @@ def lies(i):
 
 def L(i, title, h1, h2, enter, first_m, clear, screen, solution, clue, note=None, code=False):
     hints = [h1, h2, lies(i) + ans(i)]
-    task = "猜出密碼。" if code else "找出符合規則的那一張。"
+    task = "猜出密碼。" if code else "判斷每一張符不符合規則。"
     d = dict(id=i, title=title, task=task, hints=hints, enter=enter, first=first_m, clear=clear,
              doc=dict(screen=screen, solution=solution, clue=clue))
     d["doc"]["note"] = (note + " " if note else "") + ans(i) + lies(i)

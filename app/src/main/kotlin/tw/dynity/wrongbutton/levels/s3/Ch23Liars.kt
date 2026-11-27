@@ -73,7 +73,7 @@ data class LiarPuzzle(
 )
 
 @Serializable
-data class LiarState(val marked: Set<Int> = emptySet(), val heard: Boolean = false)
+data class LiarState(val marked: Set<Int> = emptySet(), val heard: Boolean = false, val special: Int? = null)
 
 abstract class LiarLevel(
     meta: S2Meta,
@@ -96,21 +96,39 @@ fun LiarField(scope: LevelScope, p: LiarPuzzle, cover: FaceCover, subtle: Boolea
     var state by rememberLevelState(LiarState.serializer()) { LiarState() }
     val names = res.getStringArray(R.array.ch23_names)
 
+    // 點一下換標記。找分身／找間諜的關卡，也要標出所有說謊的（不然一顆一顆試就過了）：
+    // 只找說謊的：無 → 說謊 → 無
+    // 找間諜：無 → 說謊 → 間諜 → 無（間諜不算說謊的）
+    // 找分身：無 → 說謊 → 分身 → 分身而且說謊 → 無
     fun toggle(i: Int) {
         scope.cue(Cue.Tap)
-        state = state.copy(
-            marked = when {
-                i in state.marked -> state.marked - i
-                p.goal == LiarGoal.Liars -> state.marked + i
-                else -> setOf(i)
-            },
-        )
+        val liar = i in state.marked
+        val special = state.special == i
+        state = when (p.goal) {
+            LiarGoal.Liars -> state.copy(marked = if (liar) state.marked - i else state.marked + i)
+            LiarGoal.Spy -> when {
+                !liar && !special -> state.copy(marked = state.marked + i)
+                liar -> state.copy(marked = state.marked - i, special = i)
+                else -> state.copy(special = null)
+            }
+            LiarGoal.Button -> when {
+                !liar && !special -> state.copy(marked = state.marked + i)
+                liar && !special -> state.copy(marked = state.marked - i, special = i)
+                !liar -> state.copy(marked = state.marked + i)
+                else -> state.copy(marked = state.marked - i, special = null)
+            }
+        }
+    }
+
+    fun solved(): Boolean {
+        val liars = p.roles.indices.filter { p.roles[it] == 'L' }.toSet()
+        return state.marked == liars && (p.goal == LiarGoal.Liars || state.special == p.answer.single())
     }
 
     fun confirm() {
         when {
             p.narrator != null && !state.heard -> scope.say(Line.Res(R.string.ch23_listen_first), Mood.Normal, Tell.Honest)
-            state.marked == p.answer -> { scope.cue(Cue.Success); scope.complete() }
+            solved() -> { scope.cue(Cue.Success); scope.complete() }
             else -> scope.mistake("kk_wrong", Line.Res(R.string.ch23_wrong), Mood.Smug)
         }
     }
@@ -159,17 +177,22 @@ fun LiarField(scope: LevelScope, p: LiarPuzzle, cover: FaceCover, subtle: Boolea
         ) {
             repeat(p.n) { i ->
                 val lines = p.said.filter { it.who == i }.map { res.getString(it.text) }
-                val marked = i in state.marked
-                val mark = res.getString(if (p.goal == LiarGoal.Liars) R.string.ch23_marked_liar else R.string.ch23_marked)
+                val liar = i in state.marked
+                val special = state.special == i
+                val marked = liar || special
+                val mark = listOfNotNull(
+                    if (special) res.getString(if (p.goal == LiarGoal.Spy) R.string.ch23_marked_spy else R.string.ch23_marked_double) else null,
+                    if (liar) res.getString(R.string.ch23_marked_liar) else null,
+                ).joinToString("・")
                 val cd = res.getString(R.string.ch23_card_cd, names[i], lines.joinToString("」「")) + if (marked) "，$mark" else ""
                 Surface(
                     onClick = { toggle(i) },
                     shape = RoundedCornerShape(14.dp),
                     color = MaterialTheme.colorScheme.surfaceContainerHigh,
                     modifier = Modifier
-                        .width(if (p.n >= 5) 140.dp else 200.dp)
+                        .fillMaxWidth(0.48f)
                         .heightIn(min = 96.dp)
-                        .border(if (marked) 3.dp else 0.dp, if (marked) MaterialTheme.colorScheme.error else Color.Transparent, RoundedCornerShape(14.dp))
+                        .border(if (marked) 3.dp else 0.dp, if (special) Color(0xFF6A1B9A) else if (marked) MaterialTheme.colorScheme.error else Color.Transparent, RoundedCornerShape(14.dp))
                         .semantics { contentDescription = cd; selected = marked }
                         .testTag("kk_$i"),
                 ) {
@@ -177,7 +200,7 @@ fun LiarField(scope: LevelScope, p: LiarPuzzle, cover: FaceCover, subtle: Boolea
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Box(Modifier.size(28.dp).background(SpeakerColors[i], RoundedCornerShape(8.dp)))
                             Text(names[i], style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
-                            if (marked) Text(mark, style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.error)
+                            if (marked) Text(mark, style = MaterialTheme.typography.labelMedium, color = if (special) Color(0xFF6A1B9A) else MaterialTheme.colorScheme.error)
                         }
                         lines.forEach { Text("「$it」", style = MaterialTheme.typography.bodyMedium) }
                     }

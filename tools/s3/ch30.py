@@ -81,7 +81,7 @@ def answer(i):
     if e == "rules":
         lie = ("、".join(f"第 {x} {'張' if p['kind'] == 'zendo' else '行'}" for x in p["lies"]) + "是謊話。") if p["lies"] else ""
         if p["kind"] == "zendo":
-            return lie + f"規則是「{p['secret']}」，答案是 {'ABCD'[p['answer'] - 1]}。"
+            return lie + f"規則是「{p['secret']}」，符合的是 {'、'.join('ABCDEF'[x - 1] for x in p['answer'])}。"
         return lie + f"密碼是{p['secret']}。"
     if e == "wires":
         return ("、".join(p["lies"]) + "是假的。" if p["lies"] else "") + f"打開 {'、'.join(p['answer'])}。"
@@ -118,9 +118,9 @@ def task(i):
     if i == 487:
         return "排好隊，也填好每一顆買的飲料。"
     if i == 493:
-        return "找出間諜。"
+        return "找出間諜，和所有說謊的。"
     if i == 500:
-        return "找出 The Button 的分身。"
+        return "找出 The Button 的分身，和所有說謊的。"
     if e == "rules":
         return "找出符合規則的那一張。" if p["kind"] == "zendo" else "猜出密碼。"
     if e == "maze":

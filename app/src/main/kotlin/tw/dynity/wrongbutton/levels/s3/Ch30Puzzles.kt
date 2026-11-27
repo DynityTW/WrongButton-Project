@@ -24,8 +24,8 @@ internal object Ch30Puzzles {
     // ---- 第 483 關：liars ----
     val l483 = LiarPuzzle(6, listOf(Said(0, R.string.l483_s0), Said(1, R.string.l483_s1), Said(2, R.string.l483_s2), Said(3, R.string.l483_s3), Said(4, R.string.l483_s4), Said(5, R.string.l483_s5)), answer = setOf(0, 1, 2, 3, 5), goal = LiarGoal.Liars, roles = "LLLLTL", narrator = R.string.l483_narrator, narratorTrue = false)
     // ---- 第 484 關：rules ----
-    // 規則：三角形但不是紅色（和範例一致的規則還有 4 條，但它們對候選的判斷都一樣）
-    val l484 = RuleQuiz(listOf(Example(Tile(1, 3, 2), false), Example(Tile(2, 0, 3), false), Example(Tile(3, 0, 3), false), Example(Tile(1, 3, 1), false), Example(Tile(2, 2, 3), true), Example(Tile(3, 2, 2), true), Example(Tile(1, 1, 3), false), Example(Tile(0, 3, 3), false)), listOf(Tile(2, 2, 2), Tile(2, 1, 1), Tile(3, 3, 2), Tile(0, 3, 2)), answer = 0, spoken = setOf(0, 1, 3, 6, 7), lies = setOf(6, 7))
+    // 規則：剛好 1 個圖形但不是紅色（和範例一致的規則還有 2 條，但它們對候選的判斷都一樣）
+    val l484 = RuleQuiz(listOf(Example(Tile(3, 0, 2), false), Example(Tile(3, 0, 1), true), Example(Tile(2, 3, 1), true), Example(Tile(2, 1, 2), false), Example(Tile(0, 2, 3), false), Example(Tile(1, 2, 1), true), Example(Tile(3, 1, 1), true), Example(Tile(1, 3, 3), false)), listOf(Tile(2, 0, 1), Tile(2, 2, 3), Tile(1, 3, 1), Tile(3, 3, 3), Tile(3, 1, 2), Tile(2, 1, 1)), answers = setOf(0, 2, 5), spoken = setOf(2, 4, 5, 6, 7), lies = setOf(2, 6))
     // ---- 第 485 關：rules ----
     val l485 = CodeQuiz(6, listOf(2, 0, 4, 4), listOf(Guess(listOf(5, 0, 1, 3), 2, 2), Guess(listOf(5, 3, 2, 4), 1, 1), Guess(listOf(0, 5, 0, 1), 0, 1), Guess(listOf(3, 4, 0, 2), 0, 3), Guess(listOf(5, 2, 3, 0), 0, 2), Guess(listOf(1, 0, 4, 0), 0, 3)), lies = setOf(0, 5), hiddenLies = 0, spoken = true, dup = true)
     // ---- 第 486 關：wires ----
@@ -59,10 +59,10 @@ internal object Ch30Puzzles {
         Captcha(4, listOf(Tile(2, 3, 2), Tile(0, 3, 2), Tile(2, 3, 1), Tile(3, 1, 3), Tile(0, 3, 3), Tile(3, 3, 1), Tile(2, 2, 1), Tile(1, 0, 2), Tile(3, 0, 2), Tile(1, 1, 3), Tile(2, 1, 1), Tile(0, 1, 1), Tile(2, 3, 1), Tile(0, 1, 1), Tile(3, 2, 3), Tile(3, 2, 2)), listOf(R.string.l492_r1_s0, R.string.l492_r1_s1, R.string.l492_r1_s2, R.string.l492_r1_s3, R.string.l492_r1_s4), answer = setOf(2, 5, 9), spoken = true, lies = setOf(0, 3), subtle = true),
     )
     // ---- 第 493 關：liars ----
-    val l493 = LiarPuzzle(5, listOf(Said(0, R.string.l493_s0), Said(0, R.string.l493_s1), Said(1, R.string.l493_s2), Said(1, R.string.l493_s3), Said(2, R.string.l493_s4), Said(2, R.string.l493_s5), Said(3, R.string.l493_s6), Said(3, R.string.l493_s7), Said(4, R.string.l493_s8), Said(4, R.string.l493_s9)), answer = setOf(2), goal = LiarGoal.Spy, roles = "TLSTT", spy = true)
+    val l493 = LiarPuzzle(5, listOf(Said(0, R.string.l493_s0), Said(0, R.string.l493_s1), Said(1, R.string.l493_s2), Said(1, R.string.l493_s3), Said(2, R.string.l493_s4), Said(2, R.string.l493_s5), Said(3, R.string.l493_s6), Said(3, R.string.l493_s7), Said(4, R.string.l493_s8), Said(4, R.string.l493_s9)), answer = setOf(3), goal = LiarGoal.Spy, roles = "LLLSL", spy = true)
     // ---- 第 494 關：rules ----
-    // 規則：剛好 3 個圖形但不是三角形（和範例一致的規則還有 5 條，但它們對候選的判斷都一樣）
-    val l494 = RuleQuiz(listOf(Example(Tile(2, 0, 2), false), Example(Tile(3, 1, 3), true), Example(Tile(0, 1, 1), false), Example(Tile(0, 3, 1), false), Example(Tile(1, 2, 2), false), Example(Tile(0, 3, 3), true), Example(Tile(3, 0, 1), false)), listOf(Tile(1, 2, 1), Tile(1, 1, 1), Tile(3, 3, 2), Tile(0, 1, 3)), answer = 3, spoken = setOf(1, 2, 3, 5, 6), lies = setOf(2, 6))
+    // 規則：2 個以上圖形但不是藍色（和範例一致的規則還有 1 條，但它們對候選的判斷都一樣）
+    val l494 = RuleQuiz(listOf(Example(Tile(0, 2, 3), true), Example(Tile(2, 2, 2), true), Example(Tile(0, 0, 2), true), Example(Tile(3, 3, 2), true), Example(Tile(2, 3, 1), false), Example(Tile(1, 1, 2), false), Example(Tile(1, 0, 3), false)), listOf(Tile(2, 2, 1), Tile(1, 2, 3), Tile(3, 2, 3), Tile(3, 0, 3), Tile(1, 2, 1), Tile(3, 3, 1)), answers = setOf(2, 3), spoken = setOf(0, 2, 3, 4, 6), lies = setOf(2, 3))
     // ---- 第 495 關：rules ----
     val l495 = CodeQuiz(6, listOf(2, 1, 0, 5), listOf(Guess(listOf(3, 4, 1, 2), 0, 2), Guess(listOf(1, 0, 5, 3), 0, 3), Guess(listOf(5, 2, 0, 1), 1, 0), Guess(listOf(4, 3, 2, 1), 0, 2), Guess(listOf(0, 4, 2, 5), 1, 2), Guess(listOf(4, 2, 3, 0), 0, 2)), lies = setOf(2), hiddenLies = 1, spoken = false, dup = false)
     // ---- 第 496 關：wires ----
@@ -75,5 +75,5 @@ internal object Ch30Puzzles {
     // ---- 第 499 關：pins ----
     val l499 = PinQuiz(listOf(3, 6, 2, 5, 1), listOf(R.string.l499_r0, R.string.l499_r1, R.string.l499_r2, R.string.l499_r3, R.string.l499_r4, R.string.l499_r5, R.string.l499_r6, R.string.l499_r7), spoken = setOf(0, 1, 2, 3, 4, 5, 6, 7), lies = setOf(2, 4), hiddenLies = 0)
     // ---- 第 500 關：liars ----
-    val l500 = LiarPuzzle(6, listOf(Said(0, R.string.l500_s0), Said(1, R.string.l500_s1), Said(2, R.string.l500_s2), Said(3, R.string.l500_s3), Said(4, R.string.l500_s4), Said(5, R.string.l500_s5)), answer = setOf(1), goal = LiarGoal.Button, roles = "TLSLTT", button = 1, spy = true, narrator = R.string.l500_narrator, narratorTrue = false)
+    val l500 = LiarPuzzle(6, listOf(Said(0, R.string.l500_s0), Said(1, R.string.l500_s1), Said(2, R.string.l500_s2), Said(3, R.string.l500_s3), Said(4, R.string.l500_s4), Said(5, R.string.l500_s5)), answer = setOf(0), goal = LiarGoal.Button, roles = "LTTLTS", button = 0, spy = true, narrator = R.string.l500_narrator, narratorTrue = false)
 }

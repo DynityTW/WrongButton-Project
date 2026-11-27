@@ -133,9 +133,9 @@ def M(size, fixed, rot, **kw):
 
 
 SPECS = {
-    461: M(4, 2, 2, min_turns=3),
-    462: M(4, 3, 3, min_turns=4),
-    463: M(5, 4, 3, min_turns=5),
+    461: M(4, 2, 3, min_turns=4),
+    462: M(4, 3, 4, min_turns=5),
+    463: M(5, 4, 4, min_turns=6),
     464: M(5, 5, 4, min_turns=6),
     465: M(5, 5, 4, spoken=2, lies=1, min_turns=6),
     466: M(5, 6, 5, min_turns=7),

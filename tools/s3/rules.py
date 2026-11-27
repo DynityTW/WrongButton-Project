@@ -4,7 +4,7 @@
 
 兩種題目：
 1. 找規則（第 361–370 關）：The Button 心裡有一條規則（例如「紅色或三角形」）。畫面上有幾張已經標好「符合／不符合」的圖片，
-   要從下面四張候選裡選出唯一符合的。產生器列舉約三百條可能的規則，檢查：
+   下面六張候選要一張一張判斷符不符合（符合的可能不只一張），全部判斷對才算過。產生器列舉約三百條可能的規則，檢查：
    - 和所有範例一致的規則，對四張候選的判斷完全相同，而且剛好一張符合（不用猜）。
    - 每一張範例都用得到：拿掉任何一張，候選的答案就不確定了。
    - 有些範例的標籤要聽 The Button 說；說謊時標籤相反。把謊話當真會選錯。
@@ -50,8 +50,8 @@ def rules():
         out.append((name, f, 1))
         out.append((f"不是{name}", lambda t, f=f: not f(t), 2))
     for (n1, f1, _), (n2, f2, _) in itertools.combinations(A, 2):
-        out.append((f"{n1}而且 {n2}", lambda t, f1=f1, f2=f2: f1(t) and f2(t), 2))
-        out.append((f"{n1}或{n2}", lambda t, f1=f1, f2=f2: f1(t) or f2(t), 3))
+        out.append((f"{n1}而且 {n2}" if n2[0].isdigit() else f"{n1}而且{n2}", lambda t, f1=f1, f2=f2: f1(t) and f2(t), 2))
+        out.append((f"{n1}或 {n2}" if n2[0].isdigit() else f"{n1}或{n2}", lambda t, f1=f1, f2=f2: f1(t) or f2(t), 3))
     for (n1, f1, _), (n2, f2, _) in itertools.permutations(A, 2):
         out.append((f"{n1}但不是{n2}", lambda t, f1=f1, f2=f2: f1(t) and not f2(t), 3))
     # 只留下會把 48 張圖片分成兩邊的規則，去掉完全相同的
@@ -75,16 +75,19 @@ def consistent_rules(examples):
 
 
 def candidates_ok(rs, cands):
-    """所有規則對每張候選的判斷都相同，而且剛好一張符合。回傳符合的那張的位置或 None。"""
+    """
+    所有一致的規則，對每一張候選的判斷都相同時，回傳「符合的是哪幾張」（位置的 tuple）；否則 None。
+    至少一張符合、至少一張不符合（玩家要逐張判斷，不能只挑一張）。
+    """
     if not rs:
         return None
     verdicts = [tuple(r[1](c) for c in cands) for r in rs]
     if len(set(verdicts)) != 1:
         return None
     v = verdicts[0]
-    if sum(v) != 1:
+    if not (1 <= sum(v) <= len(v) - 1):
         return None
-    return v.index(True)
+    return tuple(i for i, x in enumerate(v) if x)
 
 
 def make_zendo(spec, seed):
@@ -95,12 +98,24 @@ def make_zendo(spec, seed):
         secret = rnd.choice(pool)
         if secret[0] in USED:
             continue
+        # 關卡標題教的是哪一種規則（不是／而且／但不是／或），規則就要是那一種
+        form = spec.get("form")
+        if form == "not" and not secret[0].startswith("不是"):
+            continue
+        if form == "and" and "而且" not in secret[0]:
+            continue
+        if form == "but" and "但不是" not in secret[0]:
+            continue
+        if form == "or" and "或" not in secret[0]:
+            continue
         f = secret[1]
         pos = [t for t in ALL_TILES if f(t)]
         neg = [t for t in ALL_TILES if not f(t)]
         if len(pos) < 3 or len(neg) < 6:
             continue
-        cands = [rnd.choice(pos)] + rnd.sample(neg, 3)
+        # 六張候選，符合的有一到三張（玩家不知道有幾張）
+        k = rnd.randint(1, 3)
+        cands = rnd.sample(pos, k) + rnd.sample(neg, 6 - k)
         rnd.shuffle(cands)
         rest = [t for t in ALL_TILES if t not in cands]
         # 一張一張加範例，直到所有一致的規則對候選的判斷都一樣
@@ -249,11 +264,11 @@ M = lambda **kw: dict(kind="mm", **kw)
 SPECS = {
     361: Z(examples=(4, 6), max_weight=1),
     362: Z(examples=(4, 6), max_weight=1),
-    363: Z(examples=(6, 8), min_weight=2, max_weight=2),
-    364: Z(examples=(7, 9), min_weight=2, max_weight=2),
-    365: Z(examples=(7, 9), min_weight=3, max_weight=3),
+    363: Z(form="not", examples=(6, 8), min_weight=2, max_weight=2),
+    364: Z(form="and", examples=(7, 9), min_weight=2, max_weight=2),
+    365: Z(form="but", examples=(7, 9), min_weight=3, max_weight=3),
     366: Z(examples=(6, 8), spoken=3, lies=1, max_weight=2),
-    367: Z(examples=(8, 10), min_weight=3, max_weight=3),
+    367: Z(form="or", examples=(5, 12), min_weight=3, max_weight=3),
     368: Z(examples=(7, 9), spoken=4, lies=1, min_weight=2, max_weight=3),
     369: Z(examples=(7, 11), spoken=5, lies=2, min_weight=2, max_weight=3),
     370: Z(examples=(8, 13), spoken=4, lies=2, min_weight=3, max_weight=3),
@@ -287,8 +302,8 @@ def main(only=None):
             ex = ", ".join(f"Example(Tile({t[0]}, {t[1]}, {t[2]}), {'true' if l else 'false'})" for t, l in z["examples"])
             cd = ", ".join(f"Tile({t[0]}, {t[1]}, {t[2]})" for t in z["cands"])
             kt.append(f"    // 規則：{z['secret']}（和範例一致的規則還有 {z['rules']} 條，但它們對候選的判斷都一樣）\n")
-            kt.append(f"    val l{lvl} = RuleQuiz(listOf({ex}), listOf({cd}), answer = {z['answer']}, spoken = setOf({', '.join(map(str, z['spoken']))}), lies = setOf({', '.join(map(str, z['lies']))}))\n")
-            info[lvl] = dict(kind="zendo", secret=z["secret"], answer=z["answer"] + 1, lies=[j + 1 for j in z["lies"]], spoken=[j + 1 for j in z["spoken"]])
+            kt.append(f"    val l{lvl} = RuleQuiz(listOf({ex}), listOf({cd}), answers = setOf({', '.join(map(str, z['answer']))}), spoken = setOf({', '.join(map(str, z['spoken']))}), lies = setOf({', '.join(map(str, z['lies']))}))\n")
+            info[lvl] = dict(kind="zendo", secret=z["secret"], answer=[i + 1 for i in z["answer"]], lies=[j + 1 for j in z["lies"]], spoken=[j + 1 for j in z["spoken"]])
         else:
             m = make_mm(spec, lvl)
             rows = ", ".join(f"Guess(listOf({', '.join(map(str, g))}), {b}, {w})" for g, (b, w) in m["rows"])

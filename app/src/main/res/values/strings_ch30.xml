@@ -21,7 +21,7 @@
     <string name="l484_task">找出符合規則的那一張。</string>
     <string name="l484_hint_1">我說謊的時候，眼睛看旁邊、一邊嘴角翹起；這一章說得都很自然，要仔細看。</string>
     <string name="l484_hint_2">規則是兩個條件的組合。說謊的兩張例子要反過來。</string>
-    <string name="l484_hint_3">第 7 張、第 8 張是謊話。規則是「三角形但不是紅色」，答案是 A。</string>
+    <string name="l484_hint_3">第 3 張、第 7 張是謊話。規則是「剛好 1 個圖形但不是紅色」，符合的是 A、C、F。</string>
     <string name="l485_title">最後的密碼</string>
     <string name="l485_task">猜出密碼。</string>
     <string name="l485_hint_1">我戴口罩，只看得到眼睛。顏色可以重複，兩行是謊話。</string>
@@ -63,15 +63,15 @@
     <string name="l492_hint_2">兩題用不同的方法：組合檢查、讀臉。</string>
     <string name="l492_hint_3">答案：第 1 題選 1、4、5；第 2 題選 3、6、10（第 1 句、第 4 句是謊話）。</string>
     <string name="l493_title">間諜・終</string>
-    <string name="l493_task">找出間諜。</string>
+    <string name="l493_task">找出間諜，和所有說謊的。</string>
     <string name="l493_hint_1">五顆，每一顆說兩句，其中一顆是間諜。</string>
     <string name="l493_hint_2">間諜的兩句可以一真一假；其他人的兩句真假相同。</string>
-    <string name="l493_hint_3">答案：綠鈕。</string>
+    <string name="l493_hint_3">答案：黃鈕；說謊的：紅鈕、藍鈕、綠鈕、紫鈕。</string>
     <string name="l494_title">規則・終</string>
     <string name="l494_task">找出符合規則的那一張。</string>
     <string name="l494_hint_1">我戴口罩，只看得到眼睛。兩張說反了。</string>
     <string name="l494_hint_2">先找規則可能的樣子，再看哪兩張對不上。</string>
-    <string name="l494_hint_3">第 3 張、第 7 張是謊話。規則是「剛好 3 個圖形但不是三角形」，答案是 D。</string>
+    <string name="l494_hint_3">第 3 張、第 4 張是謊話。規則是「2 個以上圖形但不是藍色」，符合的是 C、D。</string>
     <string name="l495_title">密碼・終</string>
     <string name="l495_task">猜出密碼。</string>
     <string name="l495_hint_1">看不到臉，剛好一行回饋是假的。</string>
@@ -98,8 +98,8 @@
     <string name="l499_hint_2">先分出謊話，再算。</string>
     <string name="l499_hint_3">規則 3、規則 5是假的。密碼是 36251。</string>
     <string name="l500_title">The Button</string>
-    <string name="l500_task">找出 The Button 的分身。</string>
+    <string name="l500_task">找出 The Button 的分身，和所有說謊的。</string>
     <string name="l500_hint_1">最後一關。六顆按鈕裡有我的分身，也有一個間諜。我戴口罩說一句，是謊話。</string>
     <string name="l500_hint_2">先把我那句反過來，再找間諜，最後找分身。</string>
-    <string name="l500_hint_3">我那句是謊話。答案：藍鈕。</string>
+    <string name="l500_hint_3">我那句是謊話。答案：紅鈕；說謊的：紅鈕、黃鈕。</string>
 </resources>

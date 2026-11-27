@@ -51,7 +51,7 @@ class Chapter23PlaythroughTest {
                 rule.waitForIdle()
                 assertEquals(start + 1, memory.totalMistakes)
             }
-            p.answer.sorted().forEach { tap("kk_$it") }
+            markLiarPuzzle(p)
             tap("kk_confirm")
             if (level != Chapter23.last()) finished(level.id) else rule.waitUntil(15_000) { exists("result_title") }
             assertTrue(memory.isCleared(level.id))

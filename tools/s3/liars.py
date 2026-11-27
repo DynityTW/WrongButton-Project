@@ -6,7 +6,7 @@
 有些關卡還有一個「間諜」（S，想說什麼就說什麼），或是 The Button 本人混在裡面（目標是找到它）。
 
 暴力列舉所有身分組合，檢查：
-- 答案唯一（說謊的是哪幾個／The Button 是哪一個／間諜是哪一個／唯一說真話的是哪一個）。
+- 答案唯一（說謊的是哪幾個；找分身、找間諜的關卡，連說謊的是哪幾個也一起唯一，因為也要標出來）。
 - 每一句話都用得到：拿掉任何一句，答案就不唯一。
 - 難度：只用一半的句子時，可能的答案至少還有好幾種（不會一兩句就看穿）。
 
@@ -117,10 +117,12 @@ def consistent(w, stmts, narrator):
 def answer_of(w, goal):
     if goal == "liars":
         return tuple(i for i, r in enumerate(w.roles) if r == "L")
+    # 找分身／找間諜的關卡，也要標出所有說謊的（不然 3–6 顆一顆一顆試就過了），所以答案要連說謊的一起唯一。
+    liars = tuple(i for i, r in enumerate(w.roles) if r == "L")
     if goal == "button":
-        return w.button
+        return (liars, w.button)
     if goal == "spy":
-        return w.roles.index("S")
+        return (liars, w.roles.index("S"))
     if goal == "honest":
         return w.roles.index("T")
     raise ValueError(goal)
@@ -232,7 +234,7 @@ SPECS = {
     351: S(5, "liars", ["neighbors", "is", "same", "count"], must=["neighbors", "neighbors"], min_half=4, max_direct=2),
     352: S(4, "liars", ["would", "is", "same", "diff"], must=["would", "would"], min_half=3, max_direct=1),
     353: S(5, "button", COUNT + BTN, button=True, min_half=4, max_direct=2),
-    354: S(4, "button", BASIC + BTN + SPY, button=True, spies=1, min_half=4),
+    354: S(4, "button", COUNT + BTN + SPY, button=True, spies=1, min_half=3, attempts=400000),
     355: S(5, "liars", COUNT + ["if"], min_half=5, max_direct=1),
     356: S(4, "liars", LOGIC, per=2, min_half=3, max_direct=2),
     357: S(5, "liars", LOGIC, narrator=True, narrator_lies=True, min_half=5, max_direct=2),
@@ -263,8 +265,9 @@ def main(only=None):
             ans_kt = f"setOf({', '.join(map(str, ans))})"
             ans_txt = "、".join(NAMES[i] for i in ans)
         else:
-            ans_kt = f"setOf({ans})"
-            ans_txt = NAMES[ans]
+            liars_, who = ans
+            ans_kt = f"setOf({who})"
+            ans_txt = NAMES[who] + ("；說謊的：" + "、".join(NAMES[i] for i in liars_) if liars_ else "；沒有人說謊")
         opts = [f'goal = LiarGoal.{spec["goal"].capitalize()}', f'roles = "{roles}"']
         if spec.get("button"):
             opts.append(f"button = {w.button}")

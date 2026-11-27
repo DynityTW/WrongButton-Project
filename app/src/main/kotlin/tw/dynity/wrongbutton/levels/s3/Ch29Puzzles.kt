@@ -3,12 +3,12 @@ package tw.dynity.wrongbutton.levels.s3
 // 由 tools/s3/mirrors.py 產生（只有一種轉法打得到、謊話鏡子在光線上）。請改產生器再重新產生。
 // 格子：. 空、/ 或 \ 固定鏡子（畫面上顯示、它說的方向）、R 可以轉的鏡子。
 internal object Ch29Puzzles {
-    // 光線經過 5 格、轉 3 次彎。
-    val l461 = MirrorQuiz(4, listOf(".", ".", ".", ".", "\\", "R", ".", ".", ".", "R", ".", ".", ".", "\\", ".", "."), row = 2, exitSide = 3, exitPos = 0, answer = listOf("\\", "/"), spoken = setOf(), lies = setOf())
-    // 光線經過 8 格、轉 5 次彎。
-    val l462 = MirrorQuiz(4, listOf("R", ".", "R", ".", ".", "R", ".", ".", "\\", "/", ".", ".", ".", ".", "\\", "."), row = 1, exitSide = 3, exitPos = 2, answer = listOf("/", "/", "\\"), spoken = setOf(), lies = setOf())
-    // 光線經過 13 格、轉 5 次彎。
-    val l463 = MirrorQuiz(5, listOf(".", ".", ".", ".", ".", "R", ".", "R", "\\", ".", ".", "/", ".", ".", ".", ".", ".", ".", ".", "\\", "R", ".", "/", ".", "."), row = 1, exitSide = 1, exitPos = 3, answer = listOf("\\", "/", "\\"), spoken = setOf(), lies = setOf())
+    // 光線經過 6 格、轉 4 次彎。
+    val l461 = MirrorQuiz(4, listOf(".", ".", ".", ".", "\\", ".", ".", ".", "R", "R", ".", "/", ".", "R", ".", "."), row = 1, exitSide = 0, exitPos = 3, answer = listOf("\\", "\\", "\\"), spoken = setOf(), lies = setOf())
+    // 光線經過 10 格、轉 6 次彎。
+    val l462 = MirrorQuiz(4, listOf(".", ".", ".", ".", "R", "/", "/", "\\", ".", ".", ".", ".", "R", ".", "R", "R"), row = 1, exitSide = 0, exitPos = 3, answer = listOf("\\", "\\", "/", "\\"), spoken = setOf(), lies = setOf())
+    // 光線經過 14 格、轉 7 次彎。
+    val l463 = MirrorQuiz(5, listOf("/", ".", ".", ".", ".", "R", "\\", ".", ".", ".", ".", ".", ".", ".", ".", "R", "R", ".", ".", "\\", "R", ".", ".", ".", "/"), row = 3, exitSide = 1, exitPos = 0, answer = listOf("/", "/", "\\", "/"), spoken = setOf(), lies = setOf())
     // 光線經過 9 格、轉 6 次彎。
     val l464 = MirrorQuiz(5, listOf(".", ".", "/", ".", ".", ".", ".", "\\", "R", ".", "/", "\\", ".", ".", ".", "R", "R", ".", "R", ".", ".", "/", ".", ".", "."), row = 3, exitSide = 0, exitPos = 1, answer = listOf("/", "/", "\\", "/"), spoken = setOf(), lies = setOf())
     // 光線經過 9 格、轉 7 次彎。

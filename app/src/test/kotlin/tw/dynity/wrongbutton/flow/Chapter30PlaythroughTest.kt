@@ -72,14 +72,15 @@ class Chapter30PlaythroughTest {
                     val p = level.puzzle
                     waitFor("kk_confirm")
                     if (p.narrator != null) { tap("kk_narrator"); face(level, "The Button 那句", !p.narratorTrue) }
-                    p.answer.sorted().forEach { tap("kk_$it") }
+                    markLiarPuzzle(p)
                     tap("kk_confirm")
                 }
                 is RuleLevel -> {
                     val q = level.quiz
                     waitFor("rq_cand_1")
                     q.spoken.sorted().forEach { j -> tap("rq_ex_${j + 1}"); face(level, "例子 ${j + 1}", j in q.lies) }
-                    tap("rq_cand_${q.answer + 1}")
+                    q.answers.sorted().forEach { tap("rq_cand_${it + 1}") }
+                    tap("rq_confirm")
                 }
                 is CodeLevel -> {
                     val q = level.quiz
